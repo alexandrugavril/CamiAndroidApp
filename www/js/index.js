@@ -17,9 +17,14 @@
  * under the License.
  */
 var app = {
+    SOME_CONSTANTS : false,  // some constant
+
+
     // Application Constructor
     initialize: function() {
+        console.log("console log init");
         this.bindEvents();
+        this.initFastClick();
     },
     // Bind Event Listeners
     //
@@ -28,22 +33,16 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+    initFastClick : function() {
+        window.addEventListener('load', function() {
+            FastClick.attach(document.body);
+        }, false);
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+    // Phonegap is now ready...
+    onDeviceReady: function() {
+        console.log("device ready, start making you custom calls!");
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        // Start adding your code here....
 
-        console.log('Received Event: ' + id);
     }
 };
