@@ -30,13 +30,25 @@ body {
 }
 
 h1 {
+    font-size:36px;
+    font-weight:bold;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+    color: #68a693
+}
+
+p {
     font-size:24px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
     padding:0px;
     text-align:center;
+    color: #68a693
 }
+
 
 /* header */
 .ui-header > .ui-btn {
@@ -54,9 +66,28 @@ margin: .8em 30% .8em;
 #reminder-logo {
     border: 10px solid white;
     border-radius: 50%;
-    max-width:206px;
-    margin:35px 0 40px;
+    width:10%;
+    height:10%;
+
 }
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.writingHeader {
+    margin-top: 15%;
+    margin-right: 30%;
+}
+
+.writingText {
+    margin-top: 1%;
+    margin-right: 30%;
+}
+
 
 .bgimg {
     background-image: url('../img/elder-bg-default.jpg');
@@ -64,6 +95,21 @@ margin: .8em 30% .8em;
 
 .centerText{
     text-align:center;
+}
+
+.background{
+    background-image: url('../img/elder-mainContent-bg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+
+
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
 }
 
 .headerContainer {
@@ -74,14 +120,7 @@ margin: .8em 30% .8em;
 }
 
 .fullImage {
-    min-height: 100%;
-    width: auto;
-    height: 100%;
 
-    /* Set up positioning */
-    position: fixed;
-    top: 0;
-    transform:translate(-50%, 0%);
 }
 
 
