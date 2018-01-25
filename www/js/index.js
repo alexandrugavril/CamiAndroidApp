@@ -16,6 +16,48 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
+function checkPreAuth() {
+    var form = $("#loginForm");
+    console.log("checking preauth");
+    if(window.localStorage["username"] !== undefined && window.localStorage["password"] !== undefined) {
+        $("#username", form).val(window.localStorage["username"]);
+        $("#password", form).val(window.localStorage["password"]);
+        handleLogin();
+    }
+}
+
+function handleLogin() {
+    console.log("handling");
+    var form = $("#loginForm");
+    //disable the button so we can't resubmit while we wait
+    $("#submitButton",form).attr("disabled","disabled");
+    var u = $("#username", form).val();
+    var p = $("#password", form).val();
+    console.log("click");
+
+    if(u !== '' && p !== '')
+    {
+        if(u === 'catalin' && p === 'cami') {
+            window.localStorage["username"] = u;
+            window.localStorage["password"] = p;
+            $.mobile.changePage("UserPage.html");
+        } else {
+            navigator.notification.alert("Your login failed", function() {});
+            $("#submitButton").removeAttr("disabled");
+        }
+    }
+    else {
+        //Thanks Igor!
+        navigator.notification.alert("You must enter a username and password", function() {});
+        $("#submitButton").removeAttr("disabled");
+    }
+    return false;
+}
+
+
+
 var app = {
     SOME_CONSTANTS : false,  // some constant
 
@@ -40,9 +82,8 @@ var app = {
     },
     // Phonegap is now ready...
     onDeviceReady: function() {
-        console.log("device ready, start making you custom calls!");
-
-        // Start adding your code here....
-
+        console.log("Device ready");
     }
+
+
 };

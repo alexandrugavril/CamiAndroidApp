@@ -39,6 +39,8 @@ h1 {
     color: #68a693
 }
 
+
+
 p {
     font-size:24px;
     font-weight:normal;
@@ -63,13 +65,13 @@ margin: .8em 30% .8em;
 
 }
 
-#reminder-logo {
+.reminder-logo {
     border: 10px solid white;
     border-radius: 50%;
-    width:10%;
-    height:10%;
-
+    max-width: 50%;
+    max-height: 50%;
 }
+
 /* Centered text */
 .centered {
     position: absolute;
@@ -99,36 +101,22 @@ margin: .8em 30% .8em;
 
 .background{
     background-image: url('../img/elder-mainContent-bg.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-size: contain;
+    position: absolute;
     background-position: center;
-    min-height: 100%;
-    width: 100%;
+    background-repeat: no-repeat;
     height: 100%;
-
-
-    /* Set up positioning */
-    position: fixed;
-    top: 0;
-}
-
-.headerContainer {
+    width: 100%;
 }
 
 .bodyContainer {
     text-align:center;
 }
 
-.fullImage {
-
-}
-
-
 #home-page a{
     margin-top:20px;
     padding-top:8px;
     padding-bottom:8px;
-
 }
 
 .ui-grid-a .ui-block-a .ui-btn{
