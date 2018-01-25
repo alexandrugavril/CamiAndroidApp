@@ -25,6 +25,14 @@ body {
     width:100%;
 }
 
+.ui-icon-journal:after {
+    background-image: url("../img/journal-menu.png");
+}
+/* Fallback */
+.ui-nosvg .ui-icon-journal:after {
+    background-image: url("../img/journal-menu.png");
+}
+
 .ui-page {
     background-color: #67a592;
 }
@@ -128,6 +136,9 @@ margin: .8em 30% .8em;
 }
 
 /* map */
+#home-page{
+
+}
 #second-page{
    
 }

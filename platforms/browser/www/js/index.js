@@ -109,7 +109,6 @@ function handleLogin() {
     console.log("handling");
     var form = $("#loginForm");
     //disable the button so we can't resubmit while we wait
-    $("#submitButton",form).attr("disabled","disabled");
     var u = $("#username", form).val();
     var p = $("#password", form).val();
     console.log("click");
@@ -119,16 +118,21 @@ function handleLogin() {
         if(u === 'catalin' && p === 'cami') {
             window.localStorage["username"] = u;
             window.localStorage["password"] = p;
-            $.mobile.navigate("#home-page", { transition : "slide"});
-        } else {
+            $.mobile.navigate("#first-page", { transition : "slide"});
+        }
+        else if(u === 'andrei' && p === 'cami')
+        {
+            window.localStorage["username"] = u;
+            window.localStorage["password"] = p;
+            $.mobile.navigate("#second-page", { transition : "slide"});
+        }
+        else {
             navigator.notification.alert("Your login failed", function() {});
-            $("#submitButton").removeAttr("disabled");
         }
     }
     else {
         //Thanks Igor!
         navigator.notification.alert("You must enter a username and password", function() {});
-        $("#submitButton").removeAttr("disabled");
     }
     return false;
 }
