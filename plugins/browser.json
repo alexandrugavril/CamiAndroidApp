@@ -63,6 +63,9 @@
         },
         "cordova-plugin-vibration": {
             "PACKAGE_NAME": "com.phonegap.cami"
+        },
+        "pushbots-cordova-plugin": {
+            "PACKAGE_NAME": "com.phonegap.cami"
         }
     },
     "dependent_plugins": {

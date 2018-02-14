@@ -81,6 +81,9 @@
         },
         "cordova-plugin-vibration": {
             "PACKAGE_NAME": "com.phonegap.cami"
+        },
+        "pushbots-cordova-plugin": {
+            "PACKAGE_NAME": "com.phonegap.cami"
         }
     },
     "dependent_plugins": {},
@@ -687,6 +690,14 @@
                 "navigator.notification",
                 "navigator"
             ]
+        },
+        {
+            "file": "plugins/pushbots-cordova-plugin/www/pushbots.js",
+            "id": "pushbots-cordova-plugin.PushbotsPlugin",
+            "pluginId": "pushbots-cordova-plugin",
+            "clobbers": [
+                "PushbotsPlugin"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -709,6 +720,7 @@
         "cordova-plugin-media": "2.2.0",
         "cordova-plugin-network-information": "1.2.1",
         "cordova-plugin-splashscreen": "3.2.2",
-        "cordova-plugin-vibration": "2.1.6"
+        "cordova-plugin-vibration": "2.1.6",
+        "pushbots-cordova-plugin": "1.4.9"
     }
 }
