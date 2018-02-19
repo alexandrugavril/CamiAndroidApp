@@ -141,9 +141,22 @@ function handleLogin() {
                                     $.mobile.navigate("#second-page", { transition : "slide"});
                                 }
                             }
+                            else {
+                                alert('Login Failed');
+                                $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
+                            }
                         }
                     }
-                });
+                    else {
+                        alert('Login Failed');
+                        $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
+                    }
+                }).error(
+                    function() {
+                        alert('Login Failed');
+                        $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
+                    }
+                );
 
         }
 
