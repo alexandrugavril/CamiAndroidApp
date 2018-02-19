@@ -118,6 +118,7 @@ function getReminders()
                 }
             }
             $('.carousel.carousel-slider').carousel({fullWidth: true});
+            Materialize.toast('Called', 4000, 'rounded');// 4000 is the duration of the toast
 
         },
         error: function () {
