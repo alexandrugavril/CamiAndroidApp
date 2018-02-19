@@ -39,7 +39,25 @@ function changeIcon(domImg,srcImage)
     img.src = srcImage;
 }
 
-function updateLogo(type)
+function getImageForReminderType(type)
+{
+    switch(type) {
+        case ('medication'):
+            return 'img/pill-2-xxl.png';
+        case ('appointment'):
+            return 'img/journal-menu.png';
+        case ('weight'):
+            return 'img/weight-warning.png';
+        case ('heart'):
+            return 'img/heart-ok.png';
+        case ('steps'):
+            return 'img/steps-ok.png';
+        default:
+            return ""
+    }
+}
+
+function updateLogo(type, severity)
 {
     var logo = document.getElementById("logo");
     switch(type){
@@ -79,10 +97,6 @@ function nextReminder()
     app.setCurrentReminder(app.currentReminder + 1);
 }
 
-function getLatestReminders()
-{
-    console.log("Meh");
-}
 
 function getReminders()
 {
@@ -94,17 +108,12 @@ function getReminders()
         success: function (data) {
             console.log(data);
             var rems = data.objects;
-            console.log(rems);
             app.reminders = rems;
             var cnt = 0;
             var nCnt = 0;
             for (var i = 0; i < rems.length; i++) {
-                if (rems[i].acknowledged === true || rems[i].acknowledged === false) {
-                    nCnt = nCnt + 1;
-                }
-                else {
-                    app.setCurrentReminder(i);
-                    break;
+                if (!(rems[i].acknowledged === true || rems[i].acknowledged === false)) {
+                    app.addReminder(rems[i]);
                 }
             }
         },
@@ -195,7 +204,13 @@ function handleLogin() {
     return false;
 }
 
+function createElementFromHTML(htmlString) {
+    var div = document.createElement('div');
+    div.innerHTML = htmlString.trim();
 
+    // Change this to div.childNodes to support multiple top-level nodes
+    return div.firstChild;
+}
 
 var app = {
     SOME_CONSTANTS : false,  // some constant
@@ -218,6 +233,46 @@ var app = {
 
         $('#enduser-journal-header-reminderContent').html(this.reminders[this.currentReminder].message);
         updateLogo(this.reminders[this.currentReminder].type);
+    },
+    addReminder: function(reminder)
+    {
+        var content = '<li class="collection-item avatar">' +
+         '<i class="material-icons circle">folder</i> ' +
+         '<img src=' + '"' + getImageForReminderType(reminder['type'], reminder['severity']) + '"' + 'alt="" class="circle">' +
+
+         '<span class="title">'+ reminder['description'] + ' </span><br>' +
+         '<span class="h1">'+ reminder['message'] + ' </span> ' +
+         '<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>' +
+         '</li>';
+     var timestamp = reminder['timestamp'];
+     var t = new Date(timestamp*1000);
+     var formatted = t.getDate() + "." + (t.getMonth() + 1) + "." + t.getFullYear() + " " + ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
+
+
+
+        var content2 = '<div class="col s12 m7">' +
+         '<h3 class="header">' + formatted + ' </h3>' +
+         '<div class="card horizontal">' +
+         '<div class="card-image">' +
+         '<img class="circle" src="' + getImageForReminderType(reminder['type']) + '">'+
+         '</div>' +
+         '<div class="card-stacked">' +
+        '<div class="card-content">' +
+         '<p>'+ reminder['description'] + '</p>' +
+        '<p>' + reminder['message'] + ' </p>' +
+        '</div>' +
+        '<div class="card-action">'+
+        '<a href="#">Finished</a>'+
+        '</div>'+
+        '</div>'+
+        '</div>'+
+        '</div>';
+
+
+
+        var ul = document.getElementById("enduser-journal-collection");
+        ul.appendChild(createElementFromHTML(content2));
+
     },
 
     // Application Constructor
