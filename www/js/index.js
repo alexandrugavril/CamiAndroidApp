@@ -106,16 +106,50 @@ function getReminders()
 }
 
 function handleLogin() {
-    console.log("handling");
     var form = $("#loginForm");
     //disable the button so we can't resubmit while we wait
     var u = $("#username", form).val();
     var p = $("#password", form).val();
-    console.log("click");
 
     if(u !== '' && p !== '')
     {
-        if(u === 'catalin' && p === 'cami') {
+        if (p !== 'imac') {
+        } else {
+            $.getJSON("http://cami.vitaminsoftware.com:8008/api/v1/user/?username=" + u,
+                function (userJson) {
+                    var users = userJson['users'];
+                    if(users && users.length > 0)
+                    {
+                        window.localStorage["user"] = users[0];
+                        var profile = users[0]['enduser_profile'];
+
+                        if(profile)
+                        {
+                            var account_role = profile['account_role'];
+                            if(account_role === 'end_user')
+                            {
+                                $.mobile.navigate("#first-page", { transition : "slide"});
+                            }
+                        }
+                        else {
+                            profile = users[0]['caregiver_profile'];
+                            if(profile)
+                            {
+                                var account_role = profile['account_role'];
+                                if(account_role === 'caregiver')
+                                {
+                                    $.mobile.navigate("#second-page", { transition : "slide"});
+                                }
+                            }
+                        }
+                    }
+                });
+
+        }
+
+
+        /*
+        if(u === 'catalin' && p === 'imac') {
             window.localStorage["username"] = u;
             window.localStorage["password"] = p;
             $.mobile.navigate("#first-page", { transition : "slide"});
@@ -129,9 +163,9 @@ function handleLogin() {
         else {
             navigator.notification.alert("Your login failed", function() {});
         }
+        */
     }
     else {
-        //Thanks Igor!
         navigator.notification.alert("You must enter a username and password", function() {});
     }
     return false;
@@ -184,6 +218,9 @@ var app = {
     onDeviceReady: function() {
         console.log("Device ready");
         window.plugins.PushbotsPlugin.initialize("5a84222e1db2dc56731e6e63", {"android":{"sender_id":"716888555189"}});
+        window.plugins.PushbotsPlugin.on("registered", function(token){
+            console.log("Registration Id:" + token);
+        });
     }
 
 
