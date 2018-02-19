@@ -25,6 +25,12 @@ body {
     width:100%;
 }
 
+.bgColor {
+    background-color: #2C3E50;
+    width: 100%;
+    height: 100%;
+}
+
 .ui-icon-journal:after {
     background-image: url("../img/journal-menu.png");
 }

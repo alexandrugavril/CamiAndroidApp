@@ -114,8 +114,11 @@ function getReminders()
             for (var i = 0; i < rems.length; i++) {
                 if (!(rems[i].acknowledged === true || rems[i].acknowledged === false)) {
                     app.addReminder(rems[i]);
+                    app.addToLatestReminders(rems[i]);
                 }
             }
+            $('.carousel.carousel-slider').carousel({fullWidth: true});
+
         },
         error: function () {
             alert("Cannot receive reminders. Check your internet connection!");
@@ -162,18 +165,18 @@ function handleLogin() {
                                 }
                             }
                             else {
-                                alert('Login Failed');
+                                Materialize.toast('Login Failed!', 4000, 'rounded');// 4000 is the duration of the toast
                                 $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
                             }
                         }
                     }
                     else {
-                        alert('Login Failed');
+                        Materialize.toast('Login Failed!', 4000, 'rounded');// 4000 is the duration of the toast
                         $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
                     }
                 }).error(
                     function() {
-                        alert('Login Failed');
+                        Materialize.toast('Login Failed!', 4000, 'rounded');// 4000 is the duration of the toast
                         $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
                     }
                 );
@@ -199,7 +202,8 @@ function handleLogin() {
         */
     }
     else {
-        alert("You must enter a username and password!", function() {});
+        Materialize.toast('You must enter a username and password!', 4000, 'rounded');// 4000 is the duration of the toast
+
     }
     return false;
 }
@@ -236,14 +240,7 @@ var app = {
     },
     addReminder: function(reminder)
     {
-        var content = '<li class="collection-item avatar">' +
-         '<i class="material-icons circle">folder</i> ' +
-         '<img src=' + '"' + getImageForReminderType(reminder['type'], reminder['severity']) + '"' + 'alt="" class="circle">' +
 
-         '<span class="title">'+ reminder['description'] + ' </span><br>' +
-         '<span class="h1">'+ reminder['message'] + ' </span> ' +
-         '<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>' +
-         '</li>';
      var timestamp = reminder['timestamp'];
      var t = new Date(timestamp*1000);
      var formatted = t.getDate() + "." + (t.getMonth() + 1) + "." + t.getFullYear() + " " + ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
@@ -259,10 +256,9 @@ var app = {
          '<div class="card-stacked">' +
         '<div class="card-content">' +
          '<p>'+ reminder['description'] + '</p>' +
-        '<p>' + reminder['message'] + ' </p>' +
         '</div>' +
         '<div class="card-action">'+
-        '<a href="#">Finished</a>'+
+        '<a href="#">'+reminder['message']+'</a>'+
         '</div>'+
         '</div>'+
         '</div>'+
@@ -271,6 +267,33 @@ var app = {
 
 
         var ul = document.getElementById("enduser-journal-collection");
+        ul.appendChild(createElementFromHTML(content2));
+
+    },
+    addToLatestReminders: function (reminder) {
+        var ul = document.getElementById("enduser-latest-reminders");
+        var timestamp = reminder['timestamp'];
+        var t = new Date(timestamp*1000);
+        var formatted = t.getDate() + "." + (t.getMonth() + 1) + "." + t.getFullYear() + " " + ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
+        var content2 =
+            '<div class="carousel-item bgColor white-text">' +
+            '<h2>'+ reminder['description'] +'</h2>' +
+            '<p class="white-text">'+ reminder['message'] +'</p>' +
+            '<fieldset class="ui-grid-a">' +
+            '<div class="ui-block-a">' +
+            '<div class="ui-input-btn ui-btn ui-corner-all">' +
+            '<input type="button" data-enhanced="true" value="Enhanced">' +
+            '</div>' +
+            '</div>' +
+            '<div class="ui-block-b">' +
+            '<div class="ui-input-btn ui-btn ui-corner-all">' +
+            '<input type="button" data-enhanced="true" value="Enhanced">' +
+            '</div>' +
+            '</div>' +
+            '</fieldset>'
+            '</div>';
+
+
         ul.appendChild(createElementFromHTML(content2));
 
     },

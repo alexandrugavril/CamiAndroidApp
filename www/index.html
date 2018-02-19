@@ -7,6 +7,7 @@
 
     <link rel="stylesheet"  href="libs/jQM-flat/jquery.mobile.flatui.css">
     <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
@@ -45,9 +46,12 @@
             <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Pacient</h1>
         </div>
-        <div data-role="content" >
+        <div data-role="content">
+            <div id="enduser-latest-reminders" class="carousel carousel-slider center" data-indicators="true" >
 
+            </div>
         </div>
+
         <div id="enduser-footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
             <div id="enduser-navbar" data-role="navbar">
                 <ul>
@@ -71,10 +75,7 @@
             </div>
             <div id="enduser-journal-menu">
                 <p id="enduser-journal-header-reminderContent"></p>
-                <fieldset class="ui-grid-a">
-                    <div class="ui-block-a"><a data-icon="arrow-l" data-theme="e" onclick="previousReminder()" data-role="button">Previous</a></div>
-                    <div class="ui-block-b"><a data-iconpos="right" data-icon="arrow-r" data-theme="a" onclick="nextReminder()" data-role="button">Next</a></div>
-                </fieldset>
+
             </div>
             -->
             <ul id='enduser-journal-collection' class="collection">
