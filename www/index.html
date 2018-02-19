@@ -37,27 +37,57 @@
         </div>
     </div><!-- /page  -->
 
-    <div id="first-page" data-role="page">
+    <div id="enduser-page" data-role="page">
         <div data-role="header" data-id="header" id="header2" data-position="fixed" class="ui-header">
             <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Pacient</h1>
         </div>
         <div data-role="content" >
-            <div id="logoContainer" class="centerText">
+
+        </div>
+        <div id="enduser-footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+            <div id="enduser-navbar" data-role="navbar">
+                <ul>
+                    <li><a id="enduser-home-button" href="#enduser-page" data-icon="home" data-theme="b">Home</a></li>
+                    <li><a id="enduser-journal-button" href="#enduser-journal-page" data-icon="star">Journal</a></li>
+                    <li><a id="enduser-logout-button" href="#loginPage" data-icon="back">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div><!-- /page  -->
+
+    <div id="enduser-journal-page" data-role="page">
+        <div data-role="header" data-id="header" id="enduser-journal-header" data-position="fixed" class="ui-header">
+            <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
+            <h1>Pacient</h1>
+        </div>
+        <div data-role="content" >
+            <div id="enduser-journal-logoContainer" class="centerText">
                 <img src="img/cami-ios-app-icon-512.png" id="logo" class="reminder-logo"  />
             </div>
-            <div id="menu">
+            <div id="enduser-journal-menu">
                 <!--<a data-icon="flat-heart" data-theme="d" href="#second-page" data-role="button">Second Page</a>-->
-                <p id="reminderContent"></p>
+                <p id="enduser-journal-header-reminderContent"></p>
                 <fieldset class="ui-grid-a">
                     <div class="ui-block-a"><a data-icon="arrow-l" data-theme="e" onclick="previousReminder()" data-role="button">Previous</a></div>
                     <div class="ui-block-b"><a data-iconpos="right" data-icon="arrow-r" data-theme="a" onclick="nextReminder()" data-role="button">Next</a></div>
                 </fieldset>
             </div>
         </div>
+        <div id="enduser-journal-footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+            <div id="enduser-journal-navbar" data-role="navbar">
+                <ul>
+                    <li><a id="enduser-journal-home-button" href="#enduser-page" data-icon="home" >Home</a></li>
+                    <li><a id="enduser-journal-journal-button" href="#enduser-journal-page" data-icon="star" data-theme="b">Journal</a></li>
+                    <li><a id="enduser-journal-logout-button" href="#loginPage" data-icon="back">Logout</a></li>
+                </ul>
+            </div>
+        </div>
     </div><!-- /page  -->
 
-    <div  id="second-page" data-role="page">
+
+
+    <div  id="caregiver-page" data-role="page">
         <div data-role="header" data-id="header" id="header-second-page" data-position="fixed" class="ui-header">
             <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Doctor</h1>
@@ -103,17 +133,17 @@
         <div id="footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
             <div id="navbar" data-role="navbar">
                 <ul>
-                    <li><a id="home-button" href="#second-page" data-icon="home" data-theme="b">Home</a></li>
-                    <li><a id="status-button" href="#status-page" data-icon="flat-menu">Status</a></li>
-                    <li><a id="journal-button" href="#journal-page" data-icon="star">Journal</a></li>
-                    <li><a id="activities-button" href="#activities-page" data-icon="grid">Activities</a></li>
+                    <li><a id="home-button" href="#caregiver-page" data-icon="home" data-theme="b">Home</a></li>
+                    <li><a id="status-button" href="#caregiver-status-page" data-icon="flat-menu">Status</a></li>
+                    <li><a id="journal-button" href="#caregiver-journal-page" data-icon="star">Journal</a></li>
+                    <li><a id="activities-button" href="#caregiver-activities-page" data-icon="grid">Activities</a></li>
                     <li><a id="logout-button" href="#loginPage" data-icon="back">Logout</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div  id="status-page" data-role="page">
+    <div id="caregiver-status-page" data-role="page">
         <div data-role="header" data-id="header" id="header-third-page" data-position="fixed" class="ui-header">
             <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Doctor</h1>
@@ -124,17 +154,17 @@
         <div id="footerStatus" data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div id="navbarStatus" data-role="navbar">
                 <ul>
-                    <li><a href="#second-page" data-icon="home" >Home</a></li>
-                    <li><a href="#status-page" data-icon="flat-menu" data-theme="b">Status</a></li>
-                    <li><a href="#journal-page" data-icon="star">Journal</a></li>
-                    <li><a href="#activities-page" data-icon="grid">Activities</a></li>
+                    <li><a href="#caregiver-page" data-icon="home" >Home</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">Status</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star">Journal</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid">Activities</a></li>
                     <li><a href="#loginPage" data-icon="back">Logout</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div  id="journal-page" data-role="page">
+    <div id="caregiver-journal-page" data-role="page">
         <div data-role="header" data-id="header" id="header-journal-page" data-position="fixed" class="ui-header">
             <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Doctor</h1>
@@ -145,17 +175,17 @@
         <div id="footerJournal" data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div id="navbarJournal" data-role="navbar">
                 <ul>
-                    <li><a href="#second-page" data-icon="home" >Home</a></li>
-                    <li><a href="#status-page" data-icon="flat-menu" >Status</a></li>
-                    <li><a href="#journal-page" data-icon="star" data-theme="b">Journal</a></li>
-                    <li><a href="#activities-page" data-icon="grid">Activities</a></li>
+                    <li><a href="#caregiver-page" data-icon="home" >Home</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" >Status</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star" data-theme="b">Journal</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid">Activities</a></li>
                     <li><a href="#loginPage" data-icon="back">Logout</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div  id="activities-page" data-role="page">
+    <div id="caregiver-activities-page" data-role="page">
         <div data-role="header" data-id="header" id="header-activities-page" data-position="fixed" class="ui-header">
             <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Doctor</h1>
@@ -166,17 +196,17 @@
         <div id="footerActivities" data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div id="navbarActivities" data-role="navbar">
                 <ul>
-                    <li><a href="#second-page" data-icon="home" >Home</a></li>
-                    <li><a href="#status-page" data-icon="flat-menu" >Status</a></li>
-                    <li><a href="#journal-page" data-icon="star">Journal</a></li>
-                    <li><a href="#activities-page" data-icon="grid" data-theme="b">Activities</a></li>
+                    <li><a href="#caregiver-page" data-icon="home" >Home</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" >Status</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star">Journal</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid" data-theme="b">Activities</a></li>
                     <li><a href="#loginPage" data-icon="back">Logout</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div  id="about-page" data-role="page">
+    <div id="caregiver-about-page" data-role="page">
         <div data-role="header" data-id="header-about-page" data-position="fixed" class="ui-header">
             <a href="#" data-rel="back" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>About App</h1>
@@ -200,8 +230,11 @@
     app.initialize();
     var login = $("#loginForm");
     login.on("submit",handleLogin);
-    $("#first-page").on("pageinit", function(e) {
+    $("#enduser-journal-page").on("pageinit", function(e) {
         getReminders();
+    });
+    $("#enduser-page").on("pageinit", function(e) {
+        getLatestReminders();
     });
 
 </script>

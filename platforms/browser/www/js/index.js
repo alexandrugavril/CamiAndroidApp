@@ -42,7 +42,6 @@ function changeIcon(domImg,srcImage)
 function updateLogo(type)
 {
     var logo = document.getElementById("logo");
-    console.log(logo);
     switch(type){
         case ('medication'):
             changeIcon(logo, 'img/pill-2-xxl.png');
@@ -80,13 +79,20 @@ function nextReminder()
     app.setCurrentReminder(app.currentReminder + 1);
 }
 
+function getLatestReminders()
+{
+    console.log("Meh");
+}
+
 function getReminders()
 {
+    console.log("Receiving reminders");
     $.ajax({
         url: "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/?user=2",
         dataType: "json",
         type: 'GET',
         success: function (data) {
+            console.log(data);
             var rems = data.objects;
             console.log(rems);
             app.reminders = rems;
@@ -101,7 +107,12 @@ function getReminders()
                     break;
                 }
             }
+        },
+        error: function () {
+            alert("Cannot receive reminders. Check your internet connection!");
+            $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
         }
+
     });
 }
 
@@ -128,7 +139,7 @@ function handleLogin() {
                             var account_role = profile['account_role'];
                             if(account_role === 'end_user')
                             {
-                                $.mobile.navigate("#first-page", { transition : "slide"});
+                                $.mobile.navigate("#enduser-page", { transition : "slide"});
                             }
                         }
                         else {
@@ -138,7 +149,7 @@ function handleLogin() {
                                 var account_role = profile['account_role'];
                                 if(account_role === 'caregiver')
                                 {
-                                    $.mobile.navigate("#second-page", { transition : "slide"});
+                                    $.mobile.navigate("#caregiver-page", { transition : "slide"});
                                 }
                             }
                             else {
@@ -179,7 +190,7 @@ function handleLogin() {
         */
     }
     else {
-        navigator.notification.alert("You must enter a username and password", function() {});
+        alert("You must enter a username and password!", function() {});
     }
     return false;
 }
@@ -205,7 +216,7 @@ var app = {
             this.currentReminder = i;
         }
 
-        $('#reminderContent').html(this.reminders[this.currentReminder].message);
+        $('#enduser-journal-header-reminderContent').html(this.reminders[this.currentReminder].message);
         updateLogo(this.reminders[this.currentReminder].type);
     },
 
