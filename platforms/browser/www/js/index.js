@@ -280,7 +280,7 @@ var app = {
 
         var content = '<li>' +
         '<div class="col s12 m7">' +
-        '<div class="row vertical-divider">' +
+        '<div class="row vertical-divider w3-container w3-border w3-round-xlarge">' +
         '<div class="col-3">' +
         '<br>' +
         '<img class="card-type-image" src="' + getImageForReminderType(reminder['type']) + '">' +
