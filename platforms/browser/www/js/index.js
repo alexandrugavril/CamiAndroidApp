@@ -111,9 +111,23 @@ function getReminders()
             app.reminders = rems;
             var cnt = 0;
             var nCnt = 0;
+            var remsByDay = {};
+
             for (var i = 0; i < rems.length; i++) {
                 if (!(rems[i].acknowledged === true || rems[i].acknowledged === false)) {
-                    app.addReminder(rems[i]);
+                    var timestamp = rems[i]['timestamp'];
+                    var t = new Date(timestamp*1000);
+                    var date = moment(t).format('ddd D MMM');
+                    if(date in remsByDay)
+                    {
+                        app.addReminder(remsByDay[date], rems[i]);
+                    }
+                    else {
+                        var dom = document.getElementById('enduser-journal-collection');
+                        var dayDom = app.addReminderDay(dom, date);
+                        remsByDay[date] = dayDom;
+                        app.addReminder(remsByDay[date], rems[i]);
+                    }
                     app.addToLatestReminders(rems[i]);
                 }
             }
@@ -239,36 +253,56 @@ var app = {
         $('#enduser-journal-header-reminderContent').html(this.reminders[this.currentReminder].message);
         updateLogo(this.reminders[this.currentReminder].type);
     },
-    addReminder: function(reminder)
+    addReminderDay: function(dom, day)
+    {
+        var content = '<div class="roundedCard w3-container w3-border w3-round-xlarge">' +
+        '<div class="row enduser-journal-dateholder">' +
+        '<div class="col-3">' +
+        '<hr class="line">' +
+        '</div>' +
+        '<div class="col-6 date-holder">' +
+        '<p class="date-p">'+ day + '</p>' +
+        '</div>' +
+        '<div class="col-3">' +
+        '<hr class="line">' +
+        '</div>' +
+        '</div>';
+        var dayDom = createElementFromHTML(content);
+        dom.appendChild(dayDom);
+        return dayDom;
+    },
+    addReminder: function(dom, reminder)
     {
 
-     var timestamp = reminder['timestamp'];
-     var t = new Date(timestamp*1000);
-     var formatted = t.getDate() + "." + (t.getMonth() + 1) + "." + t.getFullYear() + " " + ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
+        var timestamp = reminder['timestamp'];
+        var t = new Date(timestamp*1000);
+        var formatted = ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
 
-
-
-        var content2 = '<div class="col s12 m7">' +
-         '<h3 class="header">' + formatted + ' </h3>' +
-         '<div class="card horizontal">' +
-         '<div class="card-image">' +
-         '<img class="circle" src="' + getImageForReminderType(reminder['type']) + '">'+
-         '</div>' +
-         '<div class="card-stacked">' +
-        '<div class="card-content">' +
-         '<p>'+ reminder['description'] + '</p>' +
+        var content = '<li>' +
+        '<div class="col s12 m7">' +
+        '<div class="row vertical-divider">' +
+        '<div class="col-3">' +
+        '<br>' +
+        '<img class="card-type-image" src="' + getImageForReminderType(reminder['type']) + '">' +
+        '<p class="card-time">'+formatted+'</p>' +
         '</div>' +
-        '<div class="card-action">'+
-        '<a href="#">'+reminder['message']+'</a>'+
-        '</div>'+
-        '</div>'+
-        '</div>'+
-        '</div>';
+        '<div class="' + reminder['severity'] +' col-9">' +
+        '<br>' +
+        '<div>' +
+        '<p class="card-text">'+ reminder['description'] + '</p>' +
+        '</div>' +
+        '<hr>' +
+        '<div>' +
+        '<p class="card-text">' +reminder['message']+ '</p>' +
+        '</div>' +
+        '<br>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</li>';
 
 
-
-        var ul = document.getElementById("enduser-journal-collection");
-        ul.appendChild(createElementFromHTML(content2));
+        dom.appendChild(createElementFromHTML(content));
 
     },
     addToLatestReminders: function (reminder) {

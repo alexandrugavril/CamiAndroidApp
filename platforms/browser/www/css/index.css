@@ -53,19 +53,83 @@ h1 {
     color: #68a693
 }
 
-
-
-p {
-    font-size:24px;
-    font-weight:normal;
-    margin:0px;
-    overflow:visible;
-    padding:0px;
-    text-align:center;
-    color: white
+.card-type-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
 }
 
+.date-holder {
+    text-align: center;
+    vertical-align:middle;
+}
 
+.row.vertical-divider {
+    overflow: hidden;
+    background-color: white;
+}
+.row.vertical-divider > div[class^="high col"] {
+    padding-bottom: 100px;
+    margin-bottom: -100px;
+    border-left: 2px solid red;
+}
+
+.row.vertical-divider > div[class^="medium col"] {
+    padding-bottom: 100px;
+    margin-bottom: -100px;
+    border-left: 2px solid orange;
+}
+
+.row.vertical-divider > div[class^="low col"] {
+    padding-bottom: 100px;
+    margin-bottom: -100px;
+    border-left: 2px solid green;
+}
+
+.row.vertical-divider > div[class^="none col"] {
+    padding-bottom: 100px;
+    margin-bottom: -100px;
+    border-left: 2px solid gray;
+}
+
+.journal-holder {
+    border-color: gray;
+    border-width:1px;
+}
+
+.row.vertical-divider div[class^="col"]:first-child {
+    border-left: none;
+}
+.row.vertical-divider div[class^="col"]:last-child {
+    border-right: none;
+}
+
+.card-text {
+    font-size: 160%;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+.card-time {
+    text-align: center;
+    font-size:130%;
+}
+
+.date-p {
+    font-size: 140%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.card-image {
+    width: 10%;
+}
+
+.roundedCard {
+    margin-bottom:5px;
+    margin-top:5px;
+}
 /* header */
 .ui-header > .ui-btn {
     padding: 7px 10px 11px;
