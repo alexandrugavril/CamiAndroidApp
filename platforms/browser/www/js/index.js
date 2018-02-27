@@ -82,8 +82,7 @@ function updateLogo(type, severity)
             console.log("steps");
             break;
         default:
-            return
-
+            return "";
     }
 }
 
@@ -108,11 +107,13 @@ function getReminders()
         success: function (data) {
             console.log(data);
             var rems = data.objects;
-            app.reminders = rems;
             var cnt = 0;
             var nCnt = 0;
             var remsByDay = {};
-
+            var d = new Date();
+            var dateOffset = 30*60*1000;
+            d.setTime(d.getTime() - dateOffset);
+            app.reminders = [];
             for (var i = 0; i < rems.length; i++) {
                 if (!(rems[i].acknowledged === true || rems[i].acknowledged === false)) {
                     var timestamp = rems[i]['timestamp'];
@@ -128,11 +129,15 @@ function getReminders()
                         remsByDay[date] = dayDom;
                         app.addReminder(remsByDay[date], rems[i]);
                     }
-                    app.addToLatestReminders(rems[i]);
+                    if(t < d)
+                    {
+                        console.log("t" + t);
+                        console.log("d" + d);
+                        app.reminders.push(rems[i]);
+                    }
                 }
             }
-            $('.carousel.carousel-slider').carousel({fullWidth: true});
-            Materialize.toast('Called', 4000, 'rounded');// 4000 is the duration of the toast
+            app.addToLatestReminders(app.reminders[0]);
 
         },
         error: function () {
@@ -233,26 +238,8 @@ function createElementFromHTML(htmlString) {
 
 var app = {
     SOME_CONSTANTS : false,  // some constant
-
     reminders: [],
     currentReminder: -1,
-    setCurrentReminder: function(i)
-    {
-        if(i >= this.reminders.length)
-        {
-            this.currentReminder = 0;
-        }
-        else if(i < 0)
-        {
-            this.currentReminder = this.reminders.length - 1;
-        }
-        else{
-            this.currentReminder = i;
-        }
-
-        $('#enduser-journal-header-reminderContent').html(this.reminders[this.currentReminder].message);
-        updateLogo(this.reminders[this.currentReminder].type);
-    },
     addReminderDay: function(dom, day)
     {
         var content = '<div class="roundedCard w3-container w3-border w3-round-xlarge">' +
@@ -279,57 +266,82 @@ var app = {
         var formatted = ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
 
         var content = '<li>' +
-        '<div class="col s12 m7">' +
-        '<div class="row vertical-divider w3-container w3-border w3-round-xlarge">' +
-        '<div class="col-3">' +
-        '<br>' +
-        '<img class="card-type-image" src="' + getImageForReminderType(reminder['type']) + '">' +
-        '<p class="card-time">'+formatted+'</p>' +
-        '</div>' +
-        '<div class="' + reminder['severity'] +' col-9">' +
-        '<br>' +
-        '<div>' +
-        '<p class="card-text">'+ reminder['description'] + '</p>' +
-        '</div>' +
-        '<hr>' +
-        '<div>' +
-        '<p class="card-text">' +reminder['message']+ '</p>' +
-        '</div>' +
-        '<br>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '</li>';
-
-
+            '<div class="col s12 m7">' +
+            '<div class="row vertical-divider w3-container w3-border w3-round-xlarge">' +
+            '<div class="col-3">' +
+            '<br>' +
+            '<img class="card-type-image" src="' + getImageForReminderType(reminder['type']) + '">' +
+            '<p class="card-time">'+formatted+'</p>' +
+            '</div>' +
+            '<div class="' + reminder['severity'] +' col-9">' +
+            '<br>' +
+            '<div>' +
+            '<p class="card-text">'+ reminder['description'] + '</p>' +
+            '</div>' +
+            '<hr>' +
+            '<div>' +
+            '<p class="card-text">' +reminder['message']+ '</p>' +
+            '</div>' +
+            '<br>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</li>';
         dom.appendChild(createElementFromHTML(content));
-
     },
     addToLatestReminders: function (reminder) {
         var ul = document.getElementById("enduser-latest-reminders");
+        while (ul.firstChild) {
+            ul.removeChild(ul.firstChild);
+        }
         var timestamp = reminder['timestamp'];
         var t = new Date(timestamp*1000);
         var formatted = t.getDate() + "." + (t.getMonth() + 1) + "." + t.getFullYear() + " " + ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
-        var content2 =
-            '<div class="carousel-item bgColor white-text">' +
-            '<h2>'+ reminder['description'] +'</h2>' +
-            '<p class="white-text">'+ reminder['message'] +'</p>' +
-            '<fieldset class="ui-grid-a">' +
-            '<div class="ui-block-a">' +
-            '<div class="ui-input-btn ui-btn ui-corner-all">' +
-            '<input type="button" data-enhanced="true" value="Enhanced">' +
+        var content= '<li>' +
+            '<div class="row">' +
+            '<div class="col-4 left-border">' +
+            '</div>' +
+            '<div class="col-4">' +
+            '<img class="enduser-latest-reminder-img" src="'+ getImageForReminderType(reminder['type']) + '"/>' +
+            '</div>' +
+            '<div class="col-4 right-border">' +
             '</div>' +
             '</div>' +
-            '<div class="ui-block-b">' +
-            '<div class="ui-input-btn ui-btn ui-corner-all">' +
-            '<input type="button" data-enhanced="true" value="Enhanced">' +
+            '<div class="latest-reminder-container">' +
+            '<div class="row">' +
+            '<div class="col-1"></div>' +
+            '<div class="col-10 latest-reminder-content1">' +
+             reminder['description'] +
+            '</div>' +
+            '<div class="col-1"></div>' +
+            '</div>' +
+            '<hr/>' +
+            '<div class="row">' +
+            '<div class="col-1"></div>' +
+            '<div class="col-10 latest-reminder-content2">' +
+            reminder['message'] +
+            '</div>' +
+            '<div class="col-1"></div>' +
+            '</div>' +
+            '<div class="row">' +
+            '<div class="col-6">' +
+            '<div class="btn-reminder">' +
+            '<i class="fa fa-check"></i>' +
+            '<br>' +
+            'Check' +
             '</div>' +
             '</div>' +
-            '</fieldset>'
-            '</div>';
-
-
-        ul.appendChild(createElementFromHTML(content2));
+            '<div class="col-6">' +
+            '<div class="btn-reminder">' +
+            '<i class="fa fa-exclamation"></i>' +
+            '<br>' +
+            'Alert' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            ' </div>' +
+            '</li>';
+            ul.appendChild(createElementFromHTML(content));
 
     },
 
