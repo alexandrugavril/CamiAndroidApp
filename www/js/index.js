@@ -360,9 +360,13 @@ var app = {
         window.plugins.PushbotsPlugin.initialize("5a84222e1db2dc56731e6e63", {"android":{"sender_id":"716888555189"}});
         window.plugins.PushbotsPlugin.on("registered", function(token){
             Materialize.toast(token, 4000, 'rounded');// 4000 is the duration of the toast
+            alert(token);
         });
         window.plugins.PushbotsPlugin.on("user:ids", function(data){
             console.log("user:ids" + JSON.stringify(data));
+            Materialize.toast(JSON.stringify(data), 4000, 'rounded');// 4000 is the duration of the toast
+            alert(data);
+
         });
     }
 
