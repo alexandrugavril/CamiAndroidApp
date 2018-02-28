@@ -168,7 +168,6 @@ function registerNotifications()
                 Materialize.toast("CAMI ERROR::" + JSON.stringify(jqXhr), 4000, 'rounded');// 4000 is the duration of the toast
             }
         });
-        Materialize.toast(JSON.stringify({"camiId": camiUserId, "data": data}), 10000, 'rounded');// 4000 is the duration of the toast
     });
 }
 
@@ -392,8 +391,6 @@ var app = {
     },
     // Phonegap is now ready...
     onDeviceReady: function() {
-        Materialize.toast('Device Ready', 4000, 'rounded');// 4000 is the duration of the toast
-
 
     }
 
