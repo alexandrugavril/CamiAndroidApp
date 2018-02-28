@@ -361,6 +361,9 @@ var app = {
         window.plugins.PushbotsPlugin.on("registered", function(token){
             Materialize.toast(token, 4000, 'rounded');// 4000 is the duration of the toast
         });
+        window.plugins.PushbotsPlugin.on("user:ids", function(data){
+            console.log("user:ids" + JSON.stringify(data));
+        });
     }
 
 
