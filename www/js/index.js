@@ -153,13 +153,14 @@ function registerNotifications()
         $.ajax({
             url: "http://cami.vitaminsoftware.com:8008/api/v1/pushnotificationdevice/",
             type: 'POST',
+            contentType: 'application/json',
+            dataType: 'application/json',
             data: {
                 "registration_id": token,
                 "type": "GCM",
-                "user": camiUserId,
+                "user": camiUserId + "/",
                 "other_info": JSON.stringify({"pushBotId": userId})
             },
-            dataType: 'application/json',
             success: function( data, textStatus, jQxhr ){
                 Materialize.toast(JSON.stringify(data), 1000, 'rounded');// 4000 is the duration of the toast
             },
