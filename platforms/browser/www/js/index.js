@@ -158,7 +158,7 @@ function registerNotifications()
                 "registration_id": camiUserId,
                 "type": "GCM",
                 "user": camiUserId,
-                "other_info": JSON.stringify({"pushBotId": userId})
+                "other_info": "{}"
             },
             success: function( data, textStatus, jQxhr ){
                 Materialize.toast("SUCCESS::" + JSON.stringify(data), 4000, 'rounded');// 4000 is the duration of the toast
