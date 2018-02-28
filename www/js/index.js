@@ -355,10 +355,11 @@ var app = {
     },
     // Phonegap is now ready...
     onDeviceReady: function() {
-        console.log("Device ready");
+        Materialize.toast('Device Ready', 4000, 'rounded');// 4000 is the duration of the toast
+
         window.plugins.PushbotsPlugin.initialize("5a84222e1db2dc56731e6e63", {"android":{"sender_id":"716888555189"}});
         window.plugins.PushbotsPlugin.on("registered", function(token){
-            alert(token);
+            Materialize.toast(token, 4000, 'rounded');// 4000 is the duration of the toast
         });
     }
 
