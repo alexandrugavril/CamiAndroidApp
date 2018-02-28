@@ -145,11 +145,13 @@ function registerNotifications()
 
     });
     window.plugins.PushbotsPlugin.on("user:ids", function(data){
-        data = JSON.stringify(data);
         var token = data['token'];
         var userId = data['userId'];
         var camiUserId = window.localStorage["user"]['resource_uri'];
-        Materialize.toast({"data": data, 'camiId': camiUserId}, 10000, 'rounded');// 4000 is the duration of the toast
+        Materialize.toast(JSON.stringify({"data": data, 'camiId': camiUserId}), 10000, 'rounded');// 4000 is the duration of the toast
+
+
+
     });
 }
 
