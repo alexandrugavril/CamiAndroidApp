@@ -157,7 +157,14 @@ function registerNotifications()
                 "user": camiUserId,
                 "other_info": JSON.stringify({"pushBotId": userId})
             },
-            dataType: 'application/json'
+            dataType: 'application/json',
+            success: function( data, textStatus, jQxhr ){
+                Materialize.toast(JSON.stringify({"camiId": camiUserId, "data": data}), 10000, 'rounded');// 4000 is the duration of the toast
+
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+            }
         });
 
 
