@@ -239,10 +239,10 @@
 
     var login = $("#loginForm");
     login.on("submit",handleLogin);
-    $("#enduser-journal-page").on("pageinit", function(e) {
+    $("#enduser-journal-page").on("pageshow", function(e) {
         getReminders();
     });
-    $("#enduser-page").on("pageinit", function(e) {
+    $("#enduser-page").on("pageshow ", function(e) {
         getReminders();
     });
 

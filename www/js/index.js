@@ -51,6 +51,8 @@ function getImageForReminderType(type)
             return 'img/heart-ok.png';
         case ('steps'):
             return 'img/steps-ok.png';
+        case ('exercise'):
+            return 'img/steps-ok.png';
         default:
             return ""
     }
@@ -90,6 +92,18 @@ function nextReminder()
     app.setCurrentReminder(app.currentReminder + 1);
 }
 
+function checkReminder()
+{
+    console.log("Check: " + app.reminders[0]);
+    location.reload();
+}
+
+
+function cancelReminder()
+{
+    console.log("Cancel: " + app.reminders[0]);
+    location.reload();
+}
 
 function getReminders()
 {
@@ -129,6 +143,7 @@ function getReminders()
             }
             if(app.reminders.length > 0)
                 app.addToLatestReminders(app.reminders[0]);
+            console.log(app.reminders);
         },
         error: function () {
             alert("Cannot receive reminders. Check your internet connection!");
@@ -352,14 +367,14 @@ var app = {
             '</div>' +
             '<div class="row">' +
             '<div class="col-6">' +
-            '<div class="btn-reminder">' +
+            '<div id="checkReminderBtn" class="btn-reminder">' +
             '<i class="fa fa-check"></i>' +
             '<br>' +
             'Check' +
             '</div>' +
             '</div>' +
             '<div class="col-6">' +
-            '<div class="btn-reminder">' +
+            '<div id="cancelReminderBtn" class="btn-reminder">' +
             '<i class="fa fa-times"></i>' +
             '<br>' +
             'Cancel' +
@@ -369,6 +384,9 @@ var app = {
             ' </div>' +
             '</li>';
             ul.appendChild(createElementFromHTML(content));
+
+        $("#checkReminderBtn").click(checkReminder);
+        $("#cancelReminderBtn").click(cancelReminder);
 
     },
 
