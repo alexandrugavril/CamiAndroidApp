@@ -20,7 +20,6 @@
 
 function checkPreAuth() {
     var form = $("#loginForm");
-    console.log("checking preauth");
     if(window.localStorage["username"] !== undefined && window.localStorage["password"] !== undefined) {
         $("#username", form).val(window.localStorage["username"]);
         $("#password", form).val(window.localStorage["password"]);
@@ -63,23 +62,18 @@ function updateLogo(type, severity)
     switch(type){
         case ('medication'):
             changeIcon(logo, 'img/pill-2-xxl.png');
-            console.log("medication");
             break;
         case ('appointment'):
             changeIcon(logo, 'img/journal-menu.png');
-            console.log("it's an appointment appointment");
             break;
         case ('weight'):
             changeIcon(logo, 'img/weight-warning.png');
-            console.log("weight");
             break;
         case ('heart'):
             changeIcon(logo, 'img/heart-ok.png');
-            console.log("heart");
             break;
         case ('steps'):
             changeIcon(logo, 'img/steps-ok.png');
-            console.log("steps");
             break;
         default:
             return "";
@@ -99,13 +93,11 @@ function nextReminder()
 
 function getReminders()
 {
-    console.log("Receiving reminders");
     $.ajax({
         url: "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/?user=2",
         dataType: "json",
         type: 'GET',
         success: function (data) {
-            console.log(data);
             var rems = data.objects;
             var cnt = 0;
             var nCnt = 0;
@@ -131,8 +123,6 @@ function getReminders()
                     }
                     if(t < d)
                     {
-                        console.log("t" + t);
-                        console.log("d" + d);
                         app.reminders.push(rems[i]);
                     }
                 }
@@ -157,6 +147,7 @@ function handleLogin() {
     if(u !== '' && p !== '')
     {
         if (p !== 'imac') {
+            Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
         } else {
             $.getJSON("http://cami.vitaminsoftware.com:8008/api/v1/user/?username=" + u,
                 function (userJson) {
@@ -185,18 +176,18 @@ function handleLogin() {
                                 }
                             }
                             else {
-                                Materialize.toast('Login Failed!', 4000, 'rounded');// 4000 is the duration of the toast
+                                Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
                                 $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
                             }
                         }
                     }
                     else {
-                        Materialize.toast('Login Failed!', 4000, 'rounded');// 4000 is the duration of the toast
+                        Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
                         $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
                     }
                 }).error(
                     function() {
-                        Materialize.toast('Login Failed!', 4000, 'rounded');// 4000 is the duration of the toast
+                        Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
                         $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
                     }
                 );
@@ -347,7 +338,6 @@ var app = {
 
     // Application Constructor
     initialize: function() {
-        console.log("console log init");
         this.bindEvents();
         this.initFastClick();
     },
@@ -368,7 +358,7 @@ var app = {
         console.log("Device ready");
         window.plugins.PushbotsPlugin.initialize("5a84222e1db2dc56731e6e63", {"android":{"sender_id":"716888555189"}});
         window.plugins.PushbotsPlugin.on("registered", function(token){
-            console.log("Registration Id:" + token);
+            alert(token);
         });
     }
 
