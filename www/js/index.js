@@ -121,14 +121,14 @@ function getReminders()
                         remsByDay[date] = dayDom;
                         app.addReminder(remsByDay[date], rems[i]);
                     }
-                    if(t < d)
+                    if(t > d)
                     {
                         app.reminders.push(rems[i]);
                     }
                 }
             }
-            app.addToLatestReminders(app.reminders[0]);
-
+            if(app.reminders.length > 0)
+                app.addToLatestReminders(app.reminders[0]);
         },
         error: function () {
             alert("Cannot receive reminders. Check your internet connection!");
@@ -195,7 +195,7 @@ function handleLogin() {
                             var account_role = profile['account_role'];
                             if(account_role === 'end_user')
                             {
-                                registerNotifications();
+                                //registerNotifications();
                                 $.mobile.navigate("#enduser-page", { transition : "slide"});
                             }
                         }
@@ -206,7 +206,7 @@ function handleLogin() {
                                 var account_role = profile['account_role'];
                                 if(account_role === 'caregiver')
                                 {
-                                    registerNotifications();
+                                    //registerNotifications();
                                     $.mobile.navigate("#caregiver-page", { transition : "slide"});
                                 }
                             }
@@ -303,11 +303,11 @@ var app = {
             '<div class="' + reminder['severity'] +' col-9">' +
             '<br>' +
             '<div>' +
-            '<p class="card-text">'+ reminder['description'] + '</p>' +
+            '<p class="card-time">'+ reminder['description'] + '</p>' +
             '</div>' +
             '<hr>' +
             '<div>' +
-            '<p class="card-text">' +reminder['message']+ '</p>' +
+            '<p class="card-time">' +reminder['message']+ '</p>' +
             '</div>' +
             '<br>' +
             '</div>' +
@@ -360,9 +360,9 @@ var app = {
             '</div>' +
             '<div class="col-6">' +
             '<div class="btn-reminder">' +
-            '<i class="fa fa-exclamation"></i>' +
+            '<i class="fa fa-times"></i>' +
             '<br>' +
-            'Alert' +
+            'Cancel' +
             '</div>' +
             '</div>' +
             '</div>' +

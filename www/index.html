@@ -47,7 +47,7 @@
             <h1>Pacient</h1>
         </div>
         <div data-role="content">
-            <ul id="enduser-latest-reminders" data-indicators="true" >
+            <ul id="enduser-latest-reminders" data-indicators="true" data-role="listview" style="overflow-y:scroll; margin: 0 !important;" >
 
             </ul>
         </div>
@@ -239,10 +239,10 @@
 
     var login = $("#loginForm");
     login.on("submit",handleLogin);
-    $("#enduser-journal-page").on("pageinit", function(e) {
+    $("#enduser-journal-page").on("pageshow", function(e) {
         getReminders();
     });
-    $("#enduser-page").on("pageinit", function(e) {
+    $("#enduser-page").on("pageshow ", function(e) {
         getReminders();
     });
 
