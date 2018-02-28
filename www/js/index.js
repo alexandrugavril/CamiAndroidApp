@@ -148,7 +148,6 @@ function registerNotifications()
         var token = data['token'];
         var userId = data['userId'];
         var camiUserId = app.user['resource_uri'];
-        var u = $("#username").val(token);
 
         $.ajax({
             url: "http://cami.vitaminsoftware.com:8008/api/v1/pushnotificationdevice/",
@@ -158,14 +157,14 @@ function registerNotifications()
             data: {
                 "registration_id": token,
                 "type": "GCM",
-                "user": camiUserId + "/",
+                "user": camiUserId,
                 "other_info": JSON.stringify({"pushBotId": userId})
             },
             success: function( data, textStatus, jQxhr ){
-                Materialize.toast(JSON.stringify(data), 1000, 'rounded');// 4000 is the duration of the toast
+                Materialize.toast("SUCCESS::" + JSON.stringify(data), 1000, 'rounded');// 4000 is the duration of the toast
             },
             error: function( jqXhr, textStatus, errorThrown ){
-                Materialize.toast(JSON.stringify(jqXhr), 1000, 'rounded');// 4000 is the duration of the toast
+                Materialize.toast("ERROR::" + JSON.stringify(jqXhr), 1000, 'rounded');// 4000 is the duration of the toast
             }
         });
         Materialize.toast(JSON.stringify({"camiId": camiUserId, "data": data}), 10000, 'rounded');// 4000 is the duration of the toast
