@@ -161,10 +161,10 @@ function registerNotifications()
                 "other_info": JSON.stringify({"pushBotId": userId})
             },
             success: function( data, textStatus, jQxhr ){
-                Materialize.toast("SUCCESS::" + JSON.stringify(data), 1000, 'rounded');// 4000 is the duration of the toast
+                Materialize.toast("SUCCESS::" + JSON.stringify(data), 4000, 'rounded');// 4000 is the duration of the toast
             },
             error: function( jqXhr, textStatus, errorThrown ){
-                Materialize.toast("ERROR::" + JSON.stringify(jqXhr), 1000, 'rounded');// 4000 is the duration of the toast
+                Materialize.toast("ERROR::" + JSON.stringify(jqXhr), 4000, 'rounded');// 4000 is the duration of the toast
             }
         });
         Materialize.toast(JSON.stringify({"camiId": camiUserId, "data": data}), 10000, 'rounded');// 4000 is the duration of the toast
