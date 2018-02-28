@@ -147,8 +147,21 @@ function registerNotifications()
     window.plugins.PushbotsPlugin.on("user:ids", function(data){
         var token = data['token'];
         var userId = data['userId'];
-        var camiUserId = window.localStorage["user"]['resource_uri'];
-        Materialize.toast(JSON.stringify({"data": data, 'camiId': camiUserId}), 10000, 'rounded');// 4000 is the duration of the toast
+        var camiUserId = app.user['resource_uri'];
+        $.ajax({
+            url: "http://cami.vitaminsoftware.com:8008/api/v1/pushnotificationdevice/",
+            type: 'POST',
+            data: {
+                "registration_id": token,
+                "type": "GCM",
+                "user": camiUserId,
+                "other_info": JSON.stringify({"pushBotId": userId})
+            },
+            dataType: 'application/json'
+        });
+
+
+        Materialize.toast(JSON.stringify({"camiId": camiUserId, "data": data}), 10000, 'rounded');// 4000 is the duration of the toast
 
 
 
@@ -171,7 +184,7 @@ function handleLogin() {
                     var users = userJson['users'];
                     if(users && users.length > 0)
                     {
-                        window.localStorage["user"] = users[0];
+                        app.user = users[0];
                         var profile = users[0]['enduser_profile'];
 
                         if(profile)
@@ -248,6 +261,7 @@ function createElementFromHTML(htmlString) {
 
 var app = {
     SOME_CONSTANTS : false,  // some constant
+    user: {},
     reminders: [],
     currentReminder: -1,
     addReminderDay: function(dom, day)
