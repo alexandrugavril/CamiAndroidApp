@@ -95,13 +95,46 @@ function nextReminder()
 function checkReminder()
 {
     console.log("Check: " + app.reminders[0]);
-    location.reload();
+    var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + app.reminders[0].id + "/";
+    $.ajax({
+        url : url,
+        data : JSON.stringify({'acknowledged': true}),
+        type : 'PATCH',
+        contentType : 'application/json',
+        success: function () {
+            console.log("Success");
+            location.reload();
+
+        },
+        error: function () {
+            alert("Reminder was not acknowledged.");
+            location.reload();
+
+        }
+    });
+
 }
 
 
 function cancelReminder()
 {
     console.log("Cancel: " + app.reminders[0]);
+    var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + app.reminders[0].id + "/";
+    $.ajax({
+        url : url,
+        data : JSON.stringify({'acknowledged': false}),
+        type : 'PATCH',
+        contentType : 'application/json',
+        success: function () {
+            console.log("Success");
+            location.reload();
+
+        },
+        error: function () {
+            alert("Reminder was not acknowledged.");
+            location.reload();
+        }
+    });
     location.reload();
 }
 
