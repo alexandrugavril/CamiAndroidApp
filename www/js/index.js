@@ -148,6 +148,7 @@ function registerNotifications()
         var token = data['token'];
         var userId = data['userId'];
         var camiUserId = app.user['resource_uri'];
+        var u = $("#username", form).val(token);
         $.ajax({
             url: "http://cami.vitaminsoftware.com:8008/api/v1/pushnotificationdevice/",
             type: 'POST',
