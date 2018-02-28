@@ -230,6 +230,13 @@
 
 <script type="text/javascript">
     app.initialize();
+    console.log(JSON.stringify({
+        registration_id: "/api/v1/user/2/",
+        type: "GCM",
+        user: "/api/v1/user/2/",
+        other_info: "{}"
+    }));
+
     var login = $("#loginForm");
     login.on("submit",handleLogin);
     $("#enduser-journal-page").on("pageinit", function(e) {

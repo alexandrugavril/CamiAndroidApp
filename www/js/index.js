@@ -152,19 +152,20 @@ function registerNotifications()
         $.ajax({
             url: "http://cami.vitaminsoftware.com:8008/api/v1/pushnotificationdevice/",
             type: 'POST',
-            contentType: 'application/json',
-            dataType: 'application/json',
-            data: {
-                "registration_id": camiUserId,
-                "type": "GCM",
-                "user": camiUserId,
-                "other_info": "{}"
+            beforeSend: function(request) {
+                request.setRequestHeader("Content-Type", 'application/json');
             },
+            dataType: 'json',
+            data: JSON.stringify({
+                registration_id: camiUserId,
+                type: "GCM",
+                user: camiUserId,
+                other_info: "{}"
+            }),
             success: function( data, textStatus, jQxhr ){
-                Materialize.toast("SUCCESS::" + JSON.stringify(data), 4000, 'rounded');// 4000 is the duration of the toast
             },
             error: function( jqXhr, textStatus, errorThrown ){
-                Materialize.toast("ERROR::" + JSON.stringify(jqXhr), 4000, 'rounded');// 4000 is the duration of the toast
+                Materialize.toast("CAMI ERROR::" + JSON.stringify(jqXhr), 4000, 'rounded');// 4000 is the duration of the toast
             }
         });
         Materialize.toast(JSON.stringify({"camiId": camiUserId, "data": data}), 10000, 'rounded');// 4000 is the duration of the toast
