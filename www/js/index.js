@@ -148,14 +148,14 @@ function registerNotifications()
         var token = data['token'];
         var userId = data['userId'];
         var camiUserId = app.user['resource_uri'];
-
+        window.plugins.PushbotsPlugin.updateAlias(camiUserId);
         $.ajax({
             url: "http://cami.vitaminsoftware.com:8008/api/v1/pushnotificationdevice/",
             type: 'POST',
             contentType: 'application/json',
             dataType: 'application/json',
             data: {
-                "registration_id": token,
+                "registration_id": camiUserId,
                 "type": "GCM",
                 "user": camiUserId,
                 "other_info": JSON.stringify({"pushBotId": userId})
