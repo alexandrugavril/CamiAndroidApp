@@ -113,7 +113,7 @@ function checkIfUserAlreadyLogged()
 
 function cancelReminder()
 {
-    console.log("Cancel: " + app.reminders[0]);
+    console.log("Check: " + app.reminders[0]);
     var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + app.reminders[0].id + "/";
     $.ajax({
         url : url,
@@ -128,9 +128,9 @@ function cancelReminder()
         error: function () {
             alert("Reminder was not acknowledged.");
             location.reload();
+
         }
     });
-    location.reload();
 }
 
 function getReminders()
