@@ -17,16 +17,6 @@
  * under the License.
  */
 
-
-function checkPreAuth() {
-    var form = $("#loginForm");
-    if(window.localStorage["username"] !== undefined && window.localStorage["password"] !== undefined) {
-        $("#username", form).val(window.localStorage["username"]);
-        $("#password", form).val(window.localStorage["password"]);
-        handleLogin();
-    }
-}
-
 function changeIcon(domImg,srcImage)
 {
     var img = new Image();
@@ -115,6 +105,11 @@ function checkReminder()
 
 }
 
+function checkIfUserAlreadyLogged()
+{
+    var user = window.localStorage.getItem("user");
+    return user !== undefined;
+}
 
 function cancelReminder()
 {
@@ -176,14 +171,23 @@ function getReminders()
             }
             if(app.reminders.length > 0)
                 app.addToLatestReminders(app.reminders[0]);
+            else {
+                app.onNoLatestReminders();
+            }
             console.log(app.reminders);
         },
         error: function () {
             alert("Cannot receive reminders. Check your internet connection!");
-            $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
+            logOff();
         }
 
     });
+}
+
+function logOff()
+{
+    window.localStorage.removeItem("user");
+    $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
 }
 
 function registerNotifications()
@@ -211,9 +215,10 @@ function registerNotifications()
                 other_info: "{}"
             }),
             success: function( data, textStatus, jQxhr ){
+                console.log("Registered user");
             },
             error: function( jqXhr, textStatus, errorThrown ){
-                Materialize.toast("CAMI ERROR::" + JSON.stringify(jqXhr), 4000, 'rounded');// 4000 is the duration of the toast
+                console.log("Already registered");
             }
         });
     });
@@ -224,6 +229,13 @@ function handleLogin() {
     //disable the button so we can't resubmit while we wait
     var u = $("#username", form).val();
     var p = $("#password", form).val();
+
+    checkLogin(u, p);
+    return false;
+}
+
+function checkLogin(u, p)
+{
 
     if(u !== '' && p !== '')
     {
@@ -244,6 +256,7 @@ function handleLogin() {
                             if(account_role === 'end_user')
                             {
                                 //registerNotifications();
+                                window.localStorage.setItem("user", JSON.stringify({'user': u, 'password': p}));
                                 $.mobile.navigate("#enduser-page", { transition : "slide"});
                             }
                         }
@@ -255,25 +268,26 @@ function handleLogin() {
                                 if(account_role === 'caregiver')
                                 {
                                     //registerNotifications();
+                                    window.localStorage.setItem("user",  JSON.stringify({'user': u, 'password': p}));
                                     $.mobile.navigate("#caregiver-page", { transition : "slide"});
                                 }
                             }
                             else {
                                 Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
-                                $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
+                                logOff();
                             }
                         }
                     }
                     else {
                         Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
-                        $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
+                        logOff();
                     }
                 }).error(
-                    function() {
-                        Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
-                        $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
-                    }
-                );
+                function() {
+                    Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
+                    logOff();
+                }
+            );
 
         }
 
@@ -299,7 +313,6 @@ function handleLogin() {
         Materialize.toast('You must enter a username and password!', 4000, 'rounded');// 4000 is the duration of the toast
 
     }
-    return false;
 }
 
 function createElementFromHTML(htmlString) {
@@ -363,6 +376,24 @@ var app = {
             '</div>' +
             '</li>';
         dom.appendChild(createElementFromHTML(content));
+    },
+    onNoLatestReminders: function ()
+    {
+        var ul = document.getElementById("enduser-latest-reminders");
+        var ul = document.getElementById("enduser-latest-reminders");
+        while (ul.firstChild) {
+            ul.removeChild(ul.firstChild);
+        }
+        var content= '<li>' +
+            '<div class="row">' +
+             '<div class="col-12">' +
+            '<h1>' +
+            'No new reminders!'+
+            '</h1>' +
+            '</div>'+
+            '</div>';
+
+        ul.appendChild(createElementFromHTML(content));
     },
     addToLatestReminders: function (reminder) {
         var ul = document.getElementById("enduser-latest-reminders");

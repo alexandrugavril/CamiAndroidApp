@@ -43,7 +43,7 @@
 
     <div id="enduser-page" data-role="page">
         <div data-role="header" data-id="header" id="header2" data-position="fixed" class="ui-header">
-            <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
+            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Pacient</h1>
         </div>
         <div data-role="content">
@@ -57,7 +57,7 @@
                 <ul>
                     <li><a id="enduser-home-button" href="#enduser-page" data-icon="home" data-theme="b">Home</a></li>
                     <li><a id="enduser-journal-button" href="#enduser-journal-page" data-icon="star">Journal</a></li>
-                    <li><a id="enduser-logout-button" href="#loginPage" data-icon="back">Logout</a></li>
+                    <li><a id="enduser-logout-button" onclick="logOff()" href="#loginPage" data-icon="back">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -65,7 +65,7 @@
 
     <div id="enduser-journal-page" data-role="page">
         <div data-role="header" data-id="header" id="enduser-journal-header" data-position="fixed" class="ui-header">
-            <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
+            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Pacient</h1>
         </div>
         <div data-role="content" >
@@ -78,7 +78,7 @@
                 <ul>
                     <li><a id="enduser-journal-home-button" href="#enduser-page" data-icon="home" >Home</a></li>
                     <li><a id="enduser-journal-journal-button" href="#enduser-journal-page" data-icon="star" data-theme="b">Journal</a></li>
-                    <li><a id="enduser-journal-logout-button" href="#loginPage" data-icon="back">Logout</a></li>
+                    <li><a id="enduser-journal-logout-button" onclick="logOff()" href="#loginPage" data-icon="back">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -88,7 +88,7 @@
 
     <div  id="caregiver-page" data-role="page">
         <div data-role="header" data-id="header" id="header-second-page" data-position="fixed" class="ui-header">
-            <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
+            <a onclick="logOff()" href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Doctor</h1>
         </div>
         <div data-role="content" >
@@ -136,7 +136,7 @@
                     <li><a id="status-button" href="#caregiver-status-page" data-icon="flat-menu">Status</a></li>
                     <li><a id="journal-button" href="#caregiver-journal-page" data-icon="star">Journal</a></li>
                     <li><a id="activities-button" href="#caregiver-activities-page" data-icon="grid">Activities</a></li>
-                    <li><a id="logout-button" href="#loginPage" data-icon="back">Logout</a></li>
+                    <li><a id="logout-button" onclick="logOff()" href="#loginPage" data-icon="back">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -144,7 +144,7 @@
 
     <div id="caregiver-status-page" data-role="page">
         <div data-role="header" data-id="header" id="header-third-page" data-position="fixed" class="ui-header">
-            <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
+            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Doctor</h1>
         </div>
         <div data-role="content" >
@@ -157,7 +157,7 @@
                     <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">Status</a></li>
                     <li><a href="#caregiver-journal-page" data-icon="star">Journal</a></li>
                     <li><a href="#caregiver-activities-page" data-icon="grid">Activities</a></li>
-                    <li><a href="#loginPage" data-icon="back">Logout</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -165,7 +165,7 @@
 
     <div id="caregiver-journal-page" data-role="page">
         <div data-role="header" data-id="header" id="header-journal-page" data-position="fixed" class="ui-header">
-            <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
+            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Doctor</h1>
         </div>
         <div data-role="content" >
@@ -178,7 +178,7 @@
                     <li><a href="#caregiver-status-page" data-icon="flat-menu" >Status</a></li>
                     <li><a href="#caregiver-journal-page" data-icon="star" data-theme="b">Journal</a></li>
                     <li><a href="#caregiver-activities-page" data-icon="grid">Activities</a></li>
-                    <li><a href="#loginPage" data-icon="back">Logout</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -186,7 +186,7 @@
 
     <div id="caregiver-activities-page" data-role="page">
         <div data-role="header" data-id="header" id="header-activities-page" data-position="fixed" class="ui-header">
-            <a href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
+            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Doctor</h1>
         </div>
         <div data-role="content" >
@@ -199,7 +199,7 @@
                     <li><a href="#caregiver-status-page" data-icon="flat-menu" >Status</a></li>
                     <li><a href="#caregiver-journal-page" data-icon="star">Journal</a></li>
                     <li><a href="#caregiver-activities-page" data-icon="grid" data-theme="b">Activities</a></li>
-                    <li><a href="#loginPage" data-icon="back">Logout</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -239,6 +239,19 @@
 
     var login = $("#loginForm");
     login.on("submit",handleLogin);
+
+    $('#loginPage').on("pageshow", function(e) {
+       if(checkIfUserAlreadyLogged())
+       {
+           var user = window.localStorage.getItem("user");
+           console.log(user);
+           user = JSON.parse(user);
+           if(user !== null && user !== undefined)
+           {
+               checkLogin(user['user'], user['password']);
+           }
+       }
+    });
     $("#enduser-journal-page").on("pageshow", function(e) {
         getReminders();
     });
