@@ -407,10 +407,6 @@ var app = {
                         }]
                     },
                     options: {
-                        title: {
-                            display: true,
-                            text: 'Weight'
-                        },
                         maintainAspectRatio: false,
                         scales: {
                             yAxes: [{
@@ -459,15 +455,10 @@ var app = {
                         }]
                     },
                     options: {
-                        title: {
-                            display: true,
-                            text: 'Heart Rate'
-                        },
                         maintainAspectRatio: false,
                         scales: {
                             yAxes: [{
                                 ticks: {
-                                    beginAtZero: true
                                 }
                             }]
                         }
