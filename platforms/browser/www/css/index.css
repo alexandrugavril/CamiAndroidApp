@@ -257,6 +257,8 @@ margin: .8em 30% .8em;
 .chart-container {
     border-color: black;
     background: whitesmoke;
+    width:100%;
+    height:100%;
     border-radius: 15px 15px 0px 0px;
 }
 
@@ -323,4 +325,57 @@ margin: .8em 30% .8em;
 }
 .ui-icon-ms-search {
     background: url("../img/search-icon.png") 50% 50% no-repeat;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.tabicon {
+    margin:auto;
+    height: 100%;
+    width: 100%;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    float:left;
+}
+
+.tablinks{
+    background-color:#CCCCCC;
+}
+
+/* Change background color of buttons on hover */
+.tab div.button:hover {
+    background-color: rgba(104, 104, 104, 0.5);
+}
+
+/* Create an active/current tablink class */
+.tab div.button.active {
+    background-color: red;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+
+.tabcontent {
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }

@@ -142,29 +142,66 @@
         </div>
     </div>
 
+
     <div id="caregiver-status-page" data-role="page">
         <div data-role="header" data-id="header" id="header-third-page" data-position="fixed" class="ui-header">
             <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Doctor</h1>
         </div>
         <div data-role="content" >
-            <div id="caregiver-blood-pressure-chart-div" class="chart-container">
+            <div class="row">
+                <div class="col-4">
+                    <button id="defaultOpen" class="tablinks" onclick="openTab(event, 'caregiver-heartrate-chart-div')">
+                        <img class="tabicon" src="img/heart.png"/>
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button class="tablinks" onclick="openTab(event, 'caregiver-weight-chart-div')">
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button class="tablinks" onclick="openTab(event, 'caregiver-blood-pressure-chart-div')">
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </button>
+                </div>
+            </div>
+            <!--
+            <div class="tab">
+                <button id="defaultOpen" class="tablinks" onclick="openTab(event, 'caregiver-heartrate-chart-div')">
+                    <img class="tabicon" src="img/heart.png"/>
+                </button>
+                <button class="tablinks" onclick="openTab(event, 'caregiver-weight-chart-div')">
+                    <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                </button>
+                <button class="tablinks" onclick="openTab(event, 'caregiver-blood-pressure-chart-div')">
+                    <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                </button>
+            </div>
+            -->
+
+
+            <div id="caregiver-blood-pressure-chart-div" class="tabcontent chart-container">
+                <h1>Blood Pressure</h1>
                 <canvas id="caregiver-blood-pressure-chart">
 
                 </canvas>
             </div>
-            <br>
-            <div id="caregiver-weight-chart-div" class="chart-container">
-                <canvas id="caregiver-weight-chart">
-
-                </canvas>
-            </div>
-            <br>
-            <div id="caregiver-heartrate-chart-div" class="chart-container">
+            <!-- Tab content -->
+            <div id="caregiver-heartrate-chart-div" class="tabcontent chart-container">
+                <h1>Heart Rate</h1>
                 <canvas id="caregiver-heart-rate-chart">
 
                 </canvas>
             </div>
+
+            <div id="caregiver-weight-chart-div" class="tabcontent chart-container">
+                <h1>Weight</h1>
+                <canvas id="caregiver-weight-chart">
+
+                </canvas>
+            </div>
+
         </div>
         <div id="footerStatus" data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div id="navbarStatus" data-role="navbar">
@@ -276,6 +313,7 @@
         getReminders();
     });
     $("#caregiver-status-page").on("pageshow", function(e) {
+        document.getElementById("defaultOpen").click();
         var ctx =document.getElementById("caregiver-blood-pressure-chart");
         app.plotBloodPressureChart(ctx);
         ctx = document.getElementById("caregiver-heart-rate-chart");

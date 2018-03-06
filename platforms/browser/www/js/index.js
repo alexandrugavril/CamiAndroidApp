@@ -48,6 +48,29 @@ function getImageForReminderType(type)
     }
 }
 
+function openTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    var cTab = document.getElementById(tabName);
+    cTab.style.display = "block";
+
+    evt.currentTarget.className += " active";
+}
+
 function updateLogo(type, severity)
 {
     var logo = document.getElementById("logo");
@@ -348,7 +371,7 @@ var app = {
     },
     plotWeightChart: function(ctx)
     {
-        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=weight&order_by=-timestamp&user=2";
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=weight&limit=7&order_by=-timestamp&user=2";
         $.ajax({
             url: url,
             dataType: "json",
@@ -388,7 +411,7 @@ var app = {
                             display: true,
                             text: 'Weight'
                         },
-                        maintainAspectRatio: true,
+                        maintainAspectRatio: false,
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -402,7 +425,7 @@ var app = {
         });
     },
     plotHeartRateChart: function(ctx) {
-        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=pulse&order_by=-timestamp&user=2";
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=pulse&limit=7&order_by=-timestamp&user=2";
         $.ajax({
             url: url,
             dataType: "json",
@@ -440,7 +463,7 @@ var app = {
                             display: true,
                             text: 'Heart Rate'
                         },
-                        maintainAspectRatio: true,
+                        maintainAspectRatio: false,
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -456,7 +479,7 @@ var app = {
 
     },
     plotBloodPressureChart: function(ctx) {
-        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=blood_pressure&order_by=-timestamp&user=2";
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=blood_pressure&limit=7&order_by=-timestamp&user=2";
         $.ajax({
             url: url,
             dataType: "json",
@@ -515,11 +538,8 @@ var app = {
                     scaleSteps: 5,
                     scaleStepWidth: 5,
                     options: {
-                        title: {
-                            display: true,
-                            text: 'Blood Pressure'
-                        },
-                        maintainAspectRatio: true,
+
+                        maintainAspectRatio: false,
                         responsive: true,
                         hoverMode: 'index',
                         stacked: false,
@@ -530,8 +550,6 @@ var app = {
                                 position: "left",
                                 beginAtZero: true,
                                 fontSize: 12,
-                                steps: 10,
-                                stepValue: 5,
                                 id: "y-axis-1"
                             }],
                             xAxes: [{
