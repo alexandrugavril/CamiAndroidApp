@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="css/materialize.min.css">
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>App Name</title>
+    <link rel="stylesheet" href="css/fullcalendar.print.css"/>
+    <link rel="stylesheet" href="css/fullcalendar.min.cs.css"/>
+    <title>Cami</title>
 </head>
 <body>
 <div id="app">
@@ -183,6 +185,15 @@
 
             <div id="caregiver-blood-pressure-chart-div" class="tabcontent chart-container">
                 <h1>Blood Pressure</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Latest Value:</p>
+                    </div>
+                    <div class="col-6">
+                        <p id="latest-blood-pressure-value">?</p>
+
+                    </div>
+                </div>
                 <canvas id="caregiver-blood-pressure-chart">
 
                 </canvas>
@@ -190,6 +201,15 @@
             <!-- Tab content -->
             <div id="caregiver-heartrate-chart-div" class="tabcontent chart-container">
                 <h1>Heart Rate</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Latest Value:</p>
+                    </div>
+                    <div class="col-6">
+                        <p id="latest-heartrate-value">?</p>
+
+                    </div>
+                </div>
                 <canvas id="caregiver-heart-rate-chart">
 
                 </canvas>
@@ -197,6 +217,15 @@
 
             <div id="caregiver-weight-chart-div" class="tabcontent chart-container">
                 <h1>Weight</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Latest Value:</p>
+                    </div>
+                    <div class="col-6">
+                        <p id="latest-weight-value">?</p>
+
+                    </div>
+                </div>
                 <canvas id="caregiver-weight-chart">
 
                 </canvas>
@@ -244,6 +273,9 @@
         </div>
         <div data-role="content" >
             <h1>Activities Page</h1>
+            <div id="#caregiver-calendar" class="fc fc-unthemed fc-ltr">
+
+            </div>
         </div>
         <div id="footerActivities" data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div id="navbarActivities" data-role="navbar">
@@ -279,6 +311,7 @@
 <script type="text/javascript" src="js/moment.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="js/fullcalendar.min.js"></script>
 <!-- Compiled and minified JavaScript -->
 <script type="text/javascript" src="js/materialize.min.js"></script>
 
@@ -314,14 +347,22 @@
     });
     $("#caregiver-status-page").on("pageshow", function(e) {
         document.getElementById("defaultOpen").click();
-        var ctx =document.getElementById("caregiver-blood-pressure-chart");
-        app.plotBloodPressureChart(ctx);
+        var ctx = document.getElementById("caregiver-blood-pressure-chart");
+        var ctx2 = document.getElementById("latest-blood-pressure-value");
+        app.plotBloodPressureChart(ctx, ctx2);
         ctx = document.getElementById("caregiver-heart-rate-chart");
-        app.plotHeartRateChart(ctx);
+        ctx2 = document.getElementById("latest-heartrate-value");
+        app.plotHeartRateChart(ctx, ctx2);
         ctx = document.getElementById("caregiver-weight-chart");
-        app.plotWeightChart(ctx);
+        ctx2 = document.getElementById("latest-weight-value");
+        app.plotWeightChart(ctx, ctx2);
     });
+    $("#caregiver-activities-page").on("pageshow", function(e) {
+        $('#caregiver-calendar').fullCalendar({
+            // put your options and callbacks here
+        });
 
+    });
 </script>
 </body>
 </html>

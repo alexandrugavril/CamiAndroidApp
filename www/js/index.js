@@ -369,15 +369,14 @@ var app = {
         dom.appendChild(dayDom);
         return dayDom;
     },
-    plotWeightChart: function(ctx)
-    {
+    plotWeightChart: function(ctx, ctx2) {
         var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=weight&limit=7&order_by=-timestamp&user=2";
         $.ajax({
             url: url,
             dataType: "json",
             type: 'GET',
             success: function (data) {
-                var pData = data.measurements;
+                var pData = data.measurements.reverse();
                 var labs = [];
                 var dataValues = [];
                 for (var i = 0; i < pData.length; i++) {
@@ -389,8 +388,10 @@ var app = {
                     }
                     var formatted = t.getDate() + "/" + month;
                     labs.push(formatted);
-                    dataValues.push(pData[i].value_info.value)
+                    dataValues.push(pData[i].value_info.value);
                 }
+                var latestValue = pData[pData.length - 1].value_info.value;
+                ctx2.innerHTML = latestValue;
 
                 var myChart = new Chart(ctx, {
                     type: 'line',
@@ -420,14 +421,14 @@ var app = {
             }
         });
     },
-    plotHeartRateChart: function(ctx) {
+    plotHeartRateChart: function(ctx, ctx2) {
         var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=pulse&limit=7&order_by=-timestamp&user=2";
         $.ajax({
             url: url,
             dataType: "json",
             type: 'GET',
             success: function (data) {
-                var pData = data.measurements;
+                var pData = data.measurements.reverse();
                 var labs = [];
                 var dataValues = [];
                 for (var i = 0; i < pData.length; i++) {
@@ -439,8 +440,10 @@ var app = {
                     }
                     var formatted = t.getDate() + "/" + month;
                     labs.push(formatted);
-                    dataValues.push(pData[i].value_info.value)
+                    dataValues.push(pData[i].value_info.value);
                 }
+                var latestValue = pData[pData.length - 1].value_info.value;
+                ctx2.innerHTML = latestValue;
 
                 var myChart = new Chart(ctx, {
                     type: 'line',
@@ -469,15 +472,14 @@ var app = {
 
 
     },
-    plotBloodPressureChart: function(ctx) {
+    plotBloodPressureChart: function(ctx, ctx2) {
         var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=blood_pressure&limit=7&order_by=-timestamp&user=2";
         $.ajax({
             url: url,
             dataType: "json",
             type: 'GET',
             success: function (data) {
-                var pData = data.measurements;
-                pData = pData.reverse();
+                var pData = data.measurements.reverse();
                 var labs = [];
                 var diastolicValues = [];
                 var systolicValues = [];
@@ -501,7 +503,8 @@ var app = {
                     borderColorS.push('rgba(255,99,0,1)');
                     systolicValues.push(pData[i].value_info.systolic);
                 }
-
+                var latestValue = pData[pData.length - 1].value_info.systolic + "/" + pData[pData.length - 1].value_info.diastolic;
+                ctx2.innerHTML = latestValue;
 
 
                 var lineChartData = {
