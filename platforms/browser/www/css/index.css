@@ -254,6 +254,12 @@ margin: .8em 30% .8em;
 }
 
 
+.chart-container {
+    border-color: black;
+    background: whitesmoke;
+    border-radius: 15px 15px 0px 0px;
+}
+
 .latest-reminder-content1 {
     font-size:30px;
     font-weight:bold;

@@ -148,7 +148,23 @@
             <h1>Doctor</h1>
         </div>
         <div data-role="content" >
-            <h1>Status Page</h1>
+            <div id="caregiver-blood-pressure-chart-div" class="chart-container">
+                <canvas id="caregiver-blood-pressure-chart">
+
+                </canvas>
+            </div>
+            <br>
+            <div id="caregiver-weight-chart-div" class="chart-container">
+                <canvas id="caregiver-weight-chart">
+
+                </canvas>
+            </div>
+            <br>
+            <div id="caregiver-heartrate-chart-div" class="chart-container">
+                <canvas id="caregiver-heart-rate-chart">
+
+                </canvas>
+            </div>
         </div>
         <div id="footerStatus" data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div id="navbarStatus" data-role="navbar">
@@ -225,6 +241,7 @@
 <script type="text/javascript" src="libs/jQueryMobile/jquery.mobile-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/moment.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/Chart.bundle.min.js"></script>
 <!-- Compiled and minified JavaScript -->
 <script type="text/javascript" src="js/materialize.min.js"></script>
 
@@ -257,6 +274,14 @@
     });
     $("#enduser-page").on("pageshow ", function(e) {
         getReminders();
+    });
+    $("#caregiver-status-page").on("pageshow", function(e) {
+        var ctx =document.getElementById("caregiver-blood-pressure-chart");
+        app.plotBloodPressureChart(ctx);
+        ctx = document.getElementById("caregiver-heart-rate-chart");
+        app.plotHeartRateChart(ctx);
+        ctx = document.getElementById("caregiver-weight-chart");
+        app.plotWeightChart(ctx);
     });
 
 </script>

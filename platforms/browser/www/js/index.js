@@ -346,6 +346,205 @@ var app = {
         dom.appendChild(dayDom);
         return dayDom;
     },
+    plotWeightChart: function(ctx)
+    {
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=weight&order_by=-timestamp&user=2";
+        $.ajax({
+            url: url,
+            dataType: "json",
+            type: 'GET',
+            success: function (data) {
+                var pData = data.measurements;
+                var labs = [];
+                var dataValues = [];
+                for (var i = 0; i < pData.length; i++) {
+                    var t = new Date(pData[i].timestamp*1000);
+                    var month = t.getMonth() + 1;
+                    if(month < 10)
+                    {
+                        month = "0" + month;
+                    }
+                    var formatted = t.getDate() + "/" + month;
+                    labs.push(formatted);
+                    dataValues.push(pData[i].value_info.value)
+                }
+
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labs,
+                        datasets: [{
+                            label: 'Weight',
+                            data: dataValues,
+                            backgroundColor:
+                                'rgba(122,122, 132, 0.2)'
+                            ,
+                            borderColor: 'rgba(122,122,132,1)'
+
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Weight'
+                        },
+                        maintainAspectRatio: true,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: false,
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+        });
+    },
+    plotHeartRateChart: function(ctx) {
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=pulse&order_by=-timestamp&user=2";
+        $.ajax({
+            url: url,
+            dataType: "json",
+            type: 'GET',
+            success: function (data) {
+                var pData = data.measurements;
+                var labs = [];
+                var dataValues = [];
+                for (var i = 0; i < pData.length; i++) {
+                    var t = new Date(pData[i].timestamp*1000);
+                    var month = t.getMonth() + 1;
+                    if(month < 10)
+                    {
+                        month = "0" + month;
+                    }
+                    var formatted = t.getDate() + "/" + month;
+                    labs.push(formatted);
+                    dataValues.push(pData[i].value_info.value)
+                }
+
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labs,
+                        datasets: [{
+                            label: 'Heart Rate',
+                            data: dataValues,
+                            backgroundColor:'rgba(255,99, 132, 0.2)',
+                            borderColor:  'rgba(255,99,132,1)'
+
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Heart Rate'
+                        },
+                        maintainAspectRatio: true,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+        });
+
+
+    },
+    plotBloodPressureChart: function(ctx) {
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=blood_pressure&order_by=-timestamp&user=2";
+        $.ajax({
+            url: url,
+            dataType: "json",
+            type: 'GET',
+            success: function (data) {
+                var pData = data.measurements;
+                pData = pData.reverse();
+                var labs = [];
+                var diastolicValues = [];
+                var systolicValues = [];
+                var backgroundColorD= [];
+                var borderColorD= [];
+                var backgroundColorS = [];
+                var borderColorS = [];
+                for (var i = 0; i < pData.length; i++) {
+                    var t = new Date(pData[i].timestamp*1000);
+                    var month = t.getMonth() + 1;
+                    if(month < 10)
+                    {
+                        month = "0" + month;
+                    }
+                    var formatted = t.getDate() + "/" + month;
+                    labs.push(formatted);
+                    diastolicValues.push(pData[i].value_info.diastolic);
+                    backgroundColorD.push('rgba(255, 99, 132, 0.2)');
+                    backgroundColorS.push('rgba(255, 99, 0, 0.2)');
+                    borderColorD.push('rgba(255,99,132,1)');
+                    borderColorS.push('rgba(255,99,0,1)');
+                    systolicValues.push(pData[i].value_info.systolic);
+                }
+
+
+
+                var lineChartData = {
+                    labels: labs,
+                    datasets: [{
+                        label: "Diastolic",
+                        backgroundColor: backgroundColorD,
+                        borderColor: borderColorD,
+                        fill: false,
+                        data: diastolicValues,
+                        yAxisID: "y-axis-1",
+                    }, {
+                        label: "Systolic",
+                        backgroundColor: backgroundColorS,
+                        borderColor: borderColorS,
+                        fill: false,
+                        data: systolicValues,
+                    }]
+                };
+
+
+                var myChart  = Chart.Bar(ctx, {
+                    data: lineChartData,
+                    scaleOverride: true,
+                    scaleSteps: 5,
+                    scaleStepWidth: 5,
+                    options: {
+                        title: {
+                            display: true,
+                            text: 'Blood Pressure'
+                        },
+                        maintainAspectRatio: true,
+                        responsive: true,
+                        hoverMode: 'index',
+                        stacked: false,
+                        scales: {
+                            yAxes: [{
+                                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                                display: true,
+                                position: "left",
+                                beginAtZero: true,
+                                fontSize: 12,
+                                steps: 10,
+                                stepValue: 5,
+                                id: "y-axis-1"
+                            }],
+                            xAxes: [{
+                                fontSize: 12,
+                                id: "x-axis-1"
+                            }]
+                        }
+                    }
+                });
+            }
+        });
+
+    },
     addReminder: function(dom, reminder)
     {
 
