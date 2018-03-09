@@ -253,46 +253,31 @@
 
 
     <div id="caregiver-status-page" data-role="page">
-        <div data-role="header" data-id="header" id="header-third-page" data-position="fixed" class="ui-header">
+        <div data-role="header" data-id="header" data-position="fixed" class="ui-header">
             <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Doctor</h1>
         </div>
         <div data-role="content" >
             <div class="row">
-                <div class="col-4">
-                    <button id="defaultOpen" class="tablinks" onclick="openTab(event, 'caregiver-heartrate-chart-div')">
+                <div class="col-4 selected">
+                    <a href='#caregiver-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
-                    </button>
+                    </a>
                 </div>
-                <div class="col-4">
-                    <button class="tablinks" onclick="openTab(event, 'caregiver-weight-chart-div')">
+                <div class="col-4 notSelected">
+                    <a href="#caregiver-status-page-weight" >
                         <img class="tabicon" src="img/icon-weight_400x400.png"/>
-                    </button>
+                    </a>
                 </div>
-                <div class="col-4">
-                    <button class="tablinks" onclick="openTab(event, 'caregiver-blood-pressure-chart-div')">
+                <div class="col-4 notSelected">
+                    <a href='#caregiver-status-page-blood-pressure'>
                         <img class="tabicon" src="img/blood-pressure-icon.png"/>
-                    </button>
+                    </a>
                 </div>
             </div>
 
-            <div id="caregiver-blood-pressure-chart-div" class="tabcontent chart-container">
-                <h1>Blood Pressure</h1>
-                <div class="row">
-                    <div class="col-6">
-                        <p>Latest Value:</p>
-                    </div>
-                    <div class="col-6">
-                        <p id="latest-blood-pressure-value">?</p>
-
-                    </div>
-                </div>
-                <canvas id="caregiver-blood-pressure-chart">
-
-                </canvas>
-            </div>
             <!-- Tab content -->
-            <div id="caregiver-heartrate-chart-div" class="tabcontent chart-container">
+            <div id="caregiver-heartrate-chart-div" class="chart-container">
                 <h1>Heart Rate</h1>
                 <div class="row">
                     <div class="col-6">
@@ -308,7 +293,46 @@
                 </canvas>
             </div>
 
-            <div id="caregiver-weight-chart-div" class="tabcontent chart-container">
+
+        </div>
+        <div  data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#caregiver-page" data-icon="home" >Home</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">Status</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star">Journal</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid">Activities</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="caregiver-status-page-weight" data-role="page">
+        <div data-role="header" data-id="header" data-position="fixed" class="ui-header">
+            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
+            <h1>Doctor</h1>
+        </div>
+        <div data-role="content" >
+            <div class="row">
+                <div class="col-4 notSelected">
+                    <a href='#caregiver-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-4 selected">
+                    <a href="#caregiver-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-4 notSelected">
+                    <a href='#caregiver-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+            </div>
+
+            <div id="caregiver-weight-chart-div" class="chart-container">
                 <h1>Weight</h1>
                 <div class="row">
                     <div class="col-6">
@@ -327,6 +351,59 @@
         </div>
         <div id="footerStatus" data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div id="navbarStatus" data-role="navbar">
+                <ul>
+                    <li><a href="#caregiver-page" data-icon="home" >Home</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">Status</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star">Journal</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid">Activities</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="caregiver-status-page-blood-pressure" data-role="page">
+        <div data-role="header" data-id="header" data-position="fixed" class="ui-header">
+            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
+            <h1>Doctor</h1>
+        </div>
+        <div data-role="content" >
+            <div class="row">
+                <div class="col-4 notSelected">
+                    <a href='#caregiver-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-4 notSelected">
+                    <a href="#caregiver-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-4 selected">
+                    <a href='#caregiver-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+            </div>
+
+            <div id="caregiver-blood-pressure-chart-div" class="chart-container">
+                <h1>Blood Pressure</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Latest Value:</p>
+                    </div>
+                    <div class="col-6">
+                        <p id="latest-blood-pressure-value">?</p>
+
+                    </div>
+                </div>
+                <canvas id="caregiver-blood-pressure-chart">
+
+                </canvas>
+            </div>
+        </div>
+        <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
                 <ul>
                     <li><a href="#caregiver-page" data-icon="home" >Home</a></li>
                     <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">Status</a></li>
@@ -418,17 +495,21 @@
         getReminders();
     });
     $("#caregiver-status-page").on("pageshow", function(e) {
-        document.getElementById("defaultOpen").click();
+        var ctx = document.getElementById("caregiver-heart-rate-chart");
+        var ctx2 = document.getElementById("latest-heartrate-value");
+        app.plotHeartRateChart(ctx, ctx2);
+    });
+    $("#caregiver-status-page-weight").on("pageshow", function(e) {
+        var ctx = document.getElementById("caregiver-weight-chart");
+        var ctx2 = document.getElementById("latest-weight-value");
+        app.plotWeightChart(ctx, ctx2);
+    });
+    $("#caregiver-status-page-blood-pressure").on("pageshow", function(e) {
         var ctx = document.getElementById("caregiver-blood-pressure-chart");
         var ctx2 = document.getElementById("latest-blood-pressure-value");
         app.plotBloodPressureChart(ctx, ctx2);
-        ctx = document.getElementById("caregiver-heart-rate-chart");
-        ctx2 = document.getElementById("latest-heartrate-value");
-        app.plotHeartRateChart(ctx, ctx2);
-        ctx = document.getElementById("caregiver-weight-chart");
-        ctx2 = document.getElementById("latest-weight-value");
-        app.plotWeightChart(ctx, ctx2);
     });
+
     $("#caregiver-activities-page").on("pageshow", function(e) {
         $('#caregiver-calendar').fullCalendar({
             // put your options and callbacks here
