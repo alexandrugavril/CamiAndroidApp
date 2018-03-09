@@ -201,20 +201,36 @@
     </div><!-- /page  -->
 
     <div  id="caregiver-page" data-role="page">
-        <div class="ui-header header">
-            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-        </div>
+        
         <div data-role="content" >
 
           <div id="healthstatuscontainerdr"><img src="./img/old-man.jpg"></div>  
           <div id="healthstatusondr">All is fine</div>
 	</div>
-	<div id="healthstatuslogodr"><img src="./img/cami-ios-app-icon-512.png" height="82" width="82"></div>
-	<div id="afterhealthstatusbandr">ss
-	<div id="healthstatusmeasdr">
-	<div id="healthstatusmeasleftdr" style="width:49.5%; display:inline-block;"><img src="./img/heart-ok.png"></div> 
-	<div id="healthstatusmeasrightdr" style="width:49.5%; display:inline-block;"><img src="./img/weight-warning.png"></div>
-	</div>
+	<div id="healthstatuslogodr"><img src="./img/cami-ios-app-icon-512.png" style="height: 23%; width: 23%;"></div>
+	<div id="afterhealthstatusbandr">
+        <div id="healthstatusmeasdr" class="row" style="margin-bottom:5px">
+
+            <div id="healthstatusmeasleftdr" class="col-6">
+                <div class="row" id="partborderrowleft" style="margin-bottom:5px">
+                    <div class="col-4"><img src="./img/heart-ok.png" style="max-height:80%"></div>
+                    <div class="col-8"><strong>59</strong> bpm <br /> Heart rate</div>
+                    <div class="col-12" id="graphbt">Graph <br />Graph </div>
+                </div>
+                </div>
+
+            <div id="healthstatusmeasrightdr" class="col-6">
+                <div class="row" id="partborderrowright" style="margin-bottom:5px">
+                    <div class="col-4"><img src="./img/weight-warning.png" style="max-height:80%"></div>
+                    <div class="col-8"><strong>72.44</strong> kg <br /> Weight</div>
+                    <div class="col-12" id="graphbt">Graph <br />Graph</div>
+                </div>
+            </div>
+
+        </div>
+         <div id="latestjournaldr" class="row" style="margin-bottom:5px">
+             <div class="col-12" style="text-align:center;"><h5 style="color:grey">Latest Journal Entries</h5></div>
+         </div>
 	</div>
         <div id="footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
             <div id="navbar" data-role="navbar">
