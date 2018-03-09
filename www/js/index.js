@@ -68,8 +68,8 @@ function getImageForReminderStatus(status)
 
 function checkReminder()
 {
-    console.log("Check: " + app.cami.pacient.latestReminders[0]);
-    var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + app.cami.pacient.latestReminders[0].id + "/";
+    console.log("Check: " + app.model.latestReminders[0]);
+    var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + app.model.latestReminders[0].id + "/";
     $.ajax({
         url : url,
         data : JSON.stringify({'acknowledged': true}),
@@ -97,8 +97,8 @@ function checkIfUserAlreadyLogged()
 
 function cancelReminder()
 {
-    console.log("Cancel: " + app.cami.pacient.latestReminders[0]);
-    var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + app.cami.pacient.latestReminders[0].id + "/";
+    console.log("Cancel: " + app.model.latestReminders[0]);
+    var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + app.model.latestReminders[0].id + "/";
     $.ajax({
         url : url,
         data : JSON.stringify({'acknowledged': false}),
@@ -127,7 +127,7 @@ function getActivities(userId)
     var d = new Date();
     var dateOffset = 30*60*1000;
 
-    app.cami.pacient.nextActivity = {
+    app.model.nextActivity = {
         severityClass: "high" + ' col-9',
         dayWeek: moment(d).format('ddd'),
         day: moment(d).format('DD'),
@@ -141,7 +141,7 @@ function getActivities(userId)
         location: "Awesome location"
     };
 
-    app.cami.pacient.activities = [];
+    app.model.activities = [];
 
     for(var i = 0 ; i < 10; i++)
     {
@@ -174,9 +174,9 @@ function getActivities(userId)
             description: "Awesome description",
             location: "Awesome location"
         };
-        app.cami.pacient.activities.push(activity);
+        app.model.activities.push(activity);
     }
-    app.cami.pacient.$apply();
+    app.model.$apply();
 }
 
 
@@ -194,7 +194,7 @@ function getReminders(userId)
             var d = new Date();
             var dateOffset = 30*60*1000;
             d.setTime(d.getTime() - dateOffset);
-            app.cami.pacient.latestReminders = [];
+            app.model.latestReminders = [];
 
             for (var i = 0; i < rems.length; i++) {
                 var timestamp = rems[i]['timestamp'];
@@ -214,11 +214,11 @@ function getReminders(userId)
                 }
                 if(t > d && !(rems[i].acknowledged === true || rems[i].acknowledged === false))
                 {
-                    app.cami.pacient.latestReminders.push(rems[i]);
+                    app.model.latestReminders.push(rems[i]);
                 }
             }
-            app.cami.pacient.reminders = remsByDay;
-            app.cami.pacient.$apply();
+            app.model.reminders = remsByDay;
+            app.model.$apply();
 
         },
         error: function () {
@@ -294,11 +294,22 @@ function checkLogin(u, p)
                     if(users && users.length > 0)
                     {
                         app.user = users[0];
+
                         var profile = users[0]['enduser_profile'];
 
                         if(profile)
                         {
                             var account_role = profile['account_role'];
+                            if(profile.language in translations)
+                            {
+                                app.model.translations = translations[profile.language];
+                                console.log("Language: " + "ro");
+                            }
+                            else {
+                                app.model.translations = translations['ro'];
+                                console.log("Language: ro");
+                            }
+                            app.model.$apply();
                             if(account_role === 'end_user')
                             {
                                 //registerNotifications();
@@ -310,6 +321,16 @@ function checkLogin(u, p)
                             profile = users[0]['caregiver_profile'];
                             if(profile)
                             {
+                                if(profile.language in translations)
+                                {
+                                    app.model.translations = translations[profile.language];
+                                    console.log("Language: " + "ro");
+                                }
+                                else {
+                                    app.model.translations = translations['ro'];
+                                    console.log("Language: ro");
+                                }
+                                app.model.$apply();
                                 var account_role = profile['account_role'];
                                 if(account_role === 'caregiver')
                                 {

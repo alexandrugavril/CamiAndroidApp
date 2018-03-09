@@ -53,13 +53,6 @@ h1 {
     color: #68a693
 }
 
-#toast-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .card-type-image {
     width: 50%;
     position: absolute;
@@ -73,17 +66,33 @@ h1 {
     background-color: rgba(255,255,255,1)!important;
 }
 
-.urgent-type {
-    background-color: rgba(255,255,255,0.75)!important;
+.next-type-color {
+    background-color: #67a592;
+}
 
+.next-type-font-color {
+    color: white;
 }
 
 .old-type {
     background-color: rgba(255,255,255,0.25)!important;
 }
+.old-type-color {
+    background-color: rgba(255,255,255,0.25)!important;
+}
+.old-type-font-color {
+    color: black;
+}
 
 .future-type {
     background-color: rgba(255,255,255, 0.5)!important;
+}
+.future-type-color {
+    background-color: #67a592;
+    opacity: 0.5;
+}
+.future-type-font-color {
+    color: white;
 }
 
 .status-type-image{
@@ -108,7 +117,7 @@ h1 {
 .sticky {
     position: fixed;
     top: 0%;
-    min-width:97%;
+    min-width:96%;
     z-index: 3;
 }
 
@@ -439,6 +448,10 @@ margin: .8em 30% .8em;
     min-height: 100%; background-color:white;
 }
 
+#caregiver-activities-page {
+    min-height: 100%; background-color:lightgray;
+}
+
 .content-scroll {
     overflow: -moz-scrollbars-vertical;
     overflow-y: scroll;
@@ -485,6 +498,22 @@ margin: .8em 30% .8em;
     width: 100%;
 }
 
+.day-week {
+    font-size: 120%;
+    position: relative;
+    text-align: center;
+}
+.day {
+    font-size: 170%;
+    font-weight: bold;
+    text-align: center;
+}
+.month {
+    font-size: 150%;
+    text-align: center;
+    font-weight: bold;
+}
+
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
     from {opacity: 0;}
@@ -508,7 +537,7 @@ padding-left: 5px;
 }
 #healthstatuslogodr {
 position: absolute;
-top: 97px;
+top: 8.3%;
 margin: 0;
 width: 100%;
 } 
@@ -520,7 +549,7 @@ margin-right: auto;
 #healthstatuslogodr img {
 border: white;
 border-style: solid;
-border-radius: 50px;
+border-radius: 50%;
 }
 #afterhealthstatusbandr{
 padding-right: 15px;
@@ -528,8 +557,30 @@ padding-left: 15px;
 padding-top: 0px;
 padding-bottom: 0px;
 background-color: #eeeeee;
+margin-left: 15px;
+margin-right: 15px;
+min-height: 408px;
 }
-#healthstatusmeasdr{
-width: 100%;
-height: 75px;
+
+
+#partborderrowright {
+	border-bottom: rgba(0,0,0,0.25);
+	border-left: rgba(0,0,0,0.25);
+	border-style: solid;
+	border-top: none;
+	border-right: none;
+	padding: 0px;
+	padding-top: 5%;
+}
+#partborderrowleft {
+	border-bottom: rgba(0,0,0,0.25);
+	border-style: solid;
+	border-left: none;
+	border-top: none;
+	border-right: none;
+	padding: 0px;
+	padding-top: 5%;
+}
+#graphbt{
+text-align: center;
 }
