@@ -142,7 +142,7 @@
             <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
         </div>
         <div class="content">
-            <ul>
+            <ul class="content-scroll">
                 <li data-ng-repeat="(date,rems) in reminders">
                     <div class="roundedCard w3-container w3-border w3-round-xlarge">
                         <div class="row enduser-journal-dateholder">
@@ -156,12 +156,19 @@
                                 <hr class="line">
                             </div>
                         </div>
+
                         <div class="col s12 m7" data-ng-repeat="rem in rems">
                             <div class="row vertical-divider w3-container w3-border w3-round-xlarge">
                                 <div class="col-3">
-                                    <br>
-                                    <img class="card-type-image" src="{{rem.image}}">
-                                    <p class="card-time">{{rem.date}}</p>
+                                    <div>
+                                        <img class="card-type-image" src="{{rem.image}}">
+                                    </div>
+                                    <div class="centered">
+                                        <p class="card-time">{{rem.date}}</p>
+                                    </div>
+                                    <div>
+                                        <img class="status-type-image" src="{{rem.statusImage}}">
+                                    </div>
                                 </div>
                                 <div class="{{rem.severityClass}}">
                                     <br>
@@ -194,12 +201,11 @@
     </div><!-- /page  -->
 
     <div  id="caregiver-page" data-role="page">
-        <div data-role="header" data-id="header" id="header-second-page" data-position="fixed" class="ui-header">
-            <a onclick="logOff()" href="#loginPage"  data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-            <h1>Doctor</h1>
+        <div class="ui-header header">
+            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
         </div>
         <div data-role="content" >
-            
+
         </div>
         <div id="footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
             <div id="navbar" data-role="navbar">
@@ -214,11 +220,9 @@
         </div>
     </div>
 
-
     <div id="caregiver-status-page" data-role="page">
-        <div data-role="header" data-id="header" data-position="fixed" class="ui-header">
-            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-            <h1>Doctor</h1>
+        <div class="ui-header header">
+            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
         </div>
         <div data-role="content" >
             <div class="row">
@@ -238,12 +242,11 @@
                     </a>
                 </div>
             </div>
-
             <!-- Tab content -->
             <div id="caregiver-heartrate-chart-div" class="chart-container">
                 <h1>Heart Rate</h1>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 horizontal-centered">
                         <p>Latest Value:</p>
                     </div>
                     <div class="col-6">
@@ -255,8 +258,6 @@
 
                 </canvas>
             </div>
-
-
         </div>
         <div  data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
@@ -272,9 +273,8 @@
     </div>
 
     <div id="caregiver-status-page-weight" data-role="page">
-        <div data-role="header" data-id="header" data-position="fixed" class="ui-header">
-            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-            <h1>Doctor</h1>
+        <div class="ui-header header">
+            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
         </div>
         <div data-role="content" >
             <div class="row">
@@ -326,9 +326,8 @@
     </div>
 
     <div id="caregiver-status-page-blood-pressure" data-role="page">
-        <div data-role="header" data-id="header" data-position="fixed" class="ui-header">
-            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-            <h1>Doctor</h1>
+        <div class="ui-header header">
+            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
         </div>
         <div data-role="content" >
             <div class="row">
@@ -379,12 +378,56 @@
     </div>
 
     <div id="caregiver-journal-page" data-role="page">
-        <div data-role="header" data-id="header" id="header-journal-page" data-position="fixed" class="ui-header">
-            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-            <h1>Doctor</h1>
+        <div class="ui-header header">
+            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
         </div>
-        <div data-role="content" >
-            <h1>Journal Page</h1>
+        <div class="content">
+            <ul class="content-scroll">
+                <li data-ng-repeat="(date,rems) in reminders">
+                    <div class="roundedCard w3-container w3-border w3-round-xlarge">
+                        <div class="row enduser-journal-dateholder">
+                            <div class="col-3">
+                                <hr class="line">
+                            </div>
+                            <div class="col-6 date-holder">
+                                <p class="date-p">{{date}}</p>
+                            </div>
+                            <div class="col-3">
+                                <hr class="line">
+                            </div>
+                        </div>
+
+                        <div class="col s12 m7" data-ng-repeat="rem in rems">
+                            <div class="row vertical-divider w3-container w3-border w3-round-xlarge">
+                                <div class="col-3">
+                                    <div>
+                                        <img class="card-type-image" src="{{rem.image}}">
+                                    </div>
+                                    <div class="centered">
+                                        <p class="card-time">{{rem.date}}</p>
+                                    </div>
+                                    <div>
+                                        <img class="status-type-image" src="{{rem.statusImage}}">
+                                    </div>
+                                </div>
+                                <div class="{{rem.severityClass}}">
+                                    <br>
+                                    <div>
+                                        <p class="card-time">{{rem.description}}</p>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <p class="card-time">{{rem.message}}</p>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </li>
+            </ul>
         </div>
         <div id="footerJournal" data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div id="navbarJournal" data-role="navbar">
@@ -400,9 +443,8 @@
     </div>
 
     <div id="caregiver-activities-page" data-role="page">
-        <div data-role="header" data-id="header" id="header-activities-page" data-position="fixed" class="ui-header">
-            <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-            <h1>Doctor</h1>
+        <div class="ui-header header">
+            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
         </div>
         <div data-role="content" >
             <h1>Activities Page</h1>
@@ -424,9 +466,8 @@
     </div>
 
     <div id="caregiver-about-page" data-role="page">
-        <div data-role="header" data-id="header-about-page" data-position="fixed" class="ui-header">
-            <a href="#" data-rel="back" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-            <h1>About App</h1>
+        <div class="ui-header header">
+            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
         </div>
         <div data-role="content"  class="big-text">
             <h2>Privacy Policy</h2>
@@ -438,7 +479,6 @@
 <script type="text/javascript">
     var login = $("#loginForm");
     login.on("submit",handleLogin);
-
     $('#loginPage').on("pageshow", function(e) {
         if(checkIfUserAlreadyLogged())
         {
@@ -452,10 +492,14 @@
         }
     });
     $("#enduser-journal-page").on("pageshow", function(e) {
-        getReminders();
+        var userId = JSON.parse(window.localStorage.getItem("user")).id;
+        console.log(userId);
+        getReminders(userId);
     });
     $("#enduser-page").on("pageshow ", function(e) {
-        getReminders();
+        var userId = JSON.parse(window.localStorage.getItem("user")).id;
+        console.log(userId);
+        getReminders(userId);
     });
     $("#caregiver-status-page").on("pageshow", function(e) {
         var ctx = document.getElementById("caregiver-heart-rate-chart");
@@ -472,7 +516,11 @@
         var ctx2 = document.getElementById("latest-blood-pressure-value");
         app.plotBloodPressureChart(ctx, ctx2);
     });
-
+    $("#caregiver-journal-page").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).id;
+        console.log(userId);
+        getReminders(userId);
+    });
     $("#caregiver-activities-page").on("pageshow", function(e) {
         $('#caregiver-calendar').fullCalendar({
             // put your options and callbacks here

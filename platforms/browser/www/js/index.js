@@ -48,43 +48,23 @@ function getImageForReminderType(type)
     }
 }
 
-function openTab(evt, tabName) {
-
-}
-
-function updateLogo(type, severity)
+function getImageForReminderStatus(status)
 {
-    var logo = document.getElementById("logo");
-    switch(type){
-        case ('medication'):
-            changeIcon(logo, 'img/pill-2-xxl.png');
-            break;
-        case ('appointment'):
-            changeIcon(logo, 'img/journal-menu.png');
-            break;
-        case ('weight'):
-            changeIcon(logo, 'img/weight-warning.png');
-            break;
-        case ('heart'):
-            changeIcon(logo, 'img/heart-ok.png');
-            break;
-        case ('steps'):
-            changeIcon(logo, 'img/steps-ok.png');
-            break;
-        default:
-            return "";
+    if(status !== undefined)
+    {
+        if(status)
+        {
+            return "img/acknowledged.png";
+        }
+        else{
+            return "img/notAcknowledged.png";
+        }
+    }
+    else{
+        return "img/null_acknowledged.png";
     }
 }
 
-function previousReminder()
-{
-    app.setCurrentReminder(app.currentReminder - 1);
-}
-
-function nextReminder()
-{
-    app.setCurrentReminder(app.currentReminder + 1);
-}
 
 function checkReminder()
 {
@@ -137,10 +117,10 @@ function cancelReminder()
     });
 }
 
-function getReminders()
+function getReminders(userId)
 {
     $.ajax({
-        url: "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/?user=2",
+        url: "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/?user=" + userId,
         dataType: "json",
         type: 'GET',
         success: function (data) {
@@ -154,25 +134,24 @@ function getReminders()
             app.cami.pacient.latestReminders = [];
 
             for (var i = 0; i < rems.length; i++) {
-                if (!(rems[i].acknowledged === true || rems[i].acknowledged === false)) {
-                    var timestamp = rems[i]['timestamp'];
-                    var t = new Date(timestamp*1000);
-                    var date = moment(t).format('ddd D MMM');
-                    rems[i].image = getImageForReminderType(rems[i]['type']);
-                    rems[i].date = moment(t).format('HH:mm');
-                    rems[i].severityClass = rems[i].severity + ' col-9';
-                    if(date in remsByDay)
-                    {
-                        remsByDay[date].push(rems[i]);
-                    }
-                    else {
-                        remsByDay[date] = [];
-                        remsByDay[date].push(rems[i]);
-                    }
-                    if(t > d)
-                    {
-                        app.cami.pacient.latestReminders.push(rems[i]);
-                    }
+                var timestamp = rems[i]['timestamp'];
+                var t = new Date(timestamp*1000);
+                var date = moment(t).format('ddd D MMM');
+                rems[i].image = getImageForReminderType(rems[i]['type']);
+                rems[i].date = moment(t).format('HH:mm');
+                rems[i].severityClass = rems[i].severity + ' col-9';
+                rems[i].statusImage = getImageForReminderStatus(rems[i].acknowledged);
+                if(date in remsByDay)
+                {
+                    remsByDay[date].push(rems[i]);
+                }
+                else {
+                    remsByDay[date] = [];
+                    remsByDay[date].push(rems[i]);
+                }
+                if(t > d && !(rems[i].acknowledged === true || rems[i].acknowledged === false))
+                {
+                    app.cami.pacient.latestReminders.push(rems[i]);
                 }
             }
             app.cami.pacient.reminders = remsByDay;
@@ -190,6 +169,7 @@ function getReminders()
 function logOff()
 {
     window.localStorage.removeItem("user");
+    location.reload();
     $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
 }
 
@@ -243,7 +223,7 @@ function checkLogin(u, p)
     if(u !== '' && p !== '')
     {
         if (p !== 'imac') {
-            Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
+            Materialize.toast('Wrong Password!', 2000, 'rounded');// 4000 is the duration of the toast
         } else {
             $.getJSON("http://cami.vitaminsoftware.com:8008/api/v1/user/?username=" + u,
                 function (userJson) {
@@ -259,7 +239,7 @@ function checkLogin(u, p)
                             if(account_role === 'end_user')
                             {
                                 //registerNotifications();
-                                window.localStorage.setItem("user", JSON.stringify({'user': u, 'password': p}));
+                                window.localStorage.setItem("user", JSON.stringify({'user': u, 'password': p, 'id': users[0].id}));
                                 $.mobile.navigate("#enduser-page", { transition : "slide"});
                             }
                         }
@@ -271,23 +251,23 @@ function checkLogin(u, p)
                                 if(account_role === 'caregiver')
                                 {
                                     //registerNotifications();
-                                    window.localStorage.setItem("user",  JSON.stringify({'user': u, 'password': p}));
+                                    window.localStorage.setItem("user",  JSON.stringify({'user': u, 'password': p,'id': users[0].id}));
                                     $.mobile.navigate("#caregiver-page", { transition : "slide"});
                                 }
                             }
                             else {
-                                Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
+                                Materialize.toast('Wrong Username!', 2000, 'rounded');// 4000 is the duration of the toast
                                 logOff();
                             }
                         }
                     }
                     else {
-                        Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
+                        Materialize.toast('Wrong Username!', 2000, 'rounded');// 4000 is the duration of the toast
                         logOff();
                     }
                 }).error(
                 function() {
-                    Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
+                    Materialize.toast('Connection failed! Please try again later.', 2000, 'rounded');// 4000 is the duration of the toast
                     logOff();
                 }
             );
