@@ -137,10 +137,10 @@ function cancelReminder()
     });
 }
 
-function getReminders()
+function getReminders(userId)
 {
     $.ajax({
-        url: "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/?user=2",
+        url: "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/?user=" + userId,
         dataType: "json",
         type: 'GET',
         success: function (data) {

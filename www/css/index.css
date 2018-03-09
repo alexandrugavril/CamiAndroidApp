@@ -312,12 +312,22 @@ margin: .8em 30% .8em;
 .selected {
     background-color: whitesmoke;
 }
-
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
 .content {
     margin-left: 2%;
     margin-right: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
+    overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
 }
 
 .btn-reminder {

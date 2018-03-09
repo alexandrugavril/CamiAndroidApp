@@ -199,7 +199,7 @@
             <h1>Doctor</h1>
         </div>
         <div data-role="content" >
-            
+
         </div>
         <div id="footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
             <div id="navbar" data-role="navbar">
@@ -213,7 +213,6 @@
             </div>
         </div>
     </div>
-
 
     <div id="caregiver-status-page" data-role="page">
         <div data-role="header" data-id="header" data-position="fixed" class="ui-header">
@@ -383,8 +382,46 @@
             <a href="#loginPage" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
             <h1>Doctor</h1>
         </div>
-        <div data-role="content" >
-            <h1>Journal Page</h1>
+        <div class="content">
+            <ul>
+                <li data-ng-repeat="(date,rems) in reminders">
+                    <div class="roundedCard w3-container w3-border w3-round-xlarge">
+                        <div class="row enduser-journal-dateholder">
+                            <div class="col-3">
+                                <hr class="line">
+                            </div>
+                            <div class="col-6 date-holder">
+                                <p class="date-p">{{date}}</p>
+                            </div>
+                            <div class="col-3">
+                                <hr class="line">
+                            </div>
+                        </div>
+                        <div class="col s12 m7" data-ng-repeat="rem in rems">
+                            <div class="row vertical-divider w3-container w3-border w3-round-xlarge">
+                                <div class="col-3">
+                                    <br>
+                                    <img class="card-type-image" src="{{rem.image}}">
+                                    <p class="card-time">{{rem.date}}</p>
+                                </div>
+                                <div class="{{rem.severityClass}}">
+                                    <br>
+                                    <div>
+                                        <p class="card-time">{{rem.description}}</p>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <p class="card-time">{{rem.message}}</p>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </li>
+            </ul>
         </div>
         <div id="footerJournal" data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div id="navbarJournal" data-role="navbar">
@@ -452,10 +489,10 @@
         }
     });
     $("#enduser-journal-page").on("pageshow", function(e) {
-        getReminders();
+        getReminders(app.user.id);
     });
     $("#enduser-page").on("pageshow ", function(e) {
-        getReminders();
+        getReminders(app.user.id);
     });
     $("#caregiver-status-page").on("pageshow", function(e) {
         var ctx = document.getElementById("caregiver-heart-rate-chart");
@@ -472,7 +509,9 @@
         var ctx2 = document.getElementById("latest-blood-pressure-value");
         app.plotBloodPressureChart(ctx, ctx2);
     });
-
+    $("#caregiver-journal-page").on("pageshow", function(e) {
+        getReminders(app.user.id);
+    });
     $("#caregiver-activities-page").on("pageshow", function(e) {
         $('#caregiver-calendar').fullCalendar({
             // put your options and callbacks here
