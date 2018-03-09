@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="cami">
 <head>
     <meta charset="utf-8" />
@@ -46,7 +46,16 @@
 <body ng-controller="AppController">
 <div id="app">
     <div id="loginPage" data-role="page">
-        <div data-role="content">
+        <div class="content">
+            <br>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <img class="reminder-logo" src="./img/cami-ios-app-icon-512.png">
+                </div>
+                <div class="col-3"></div>
+            </div>
+
             <form id="loginForm">
                 <div data-role="fieldcontain" class="ui-hide-label">
                     <label for="username">Username:</label>
@@ -206,7 +215,16 @@
         </div>
         <div data-role="content" >
 
-        </div>
+          <div id="healthstatuscontainerdr"><img src="./img/old-man.jpg"></div>  
+          <div id="healthstatusondr">All is fine</div>
+	</div>
+	<div id="healthstatuslogodr"><img src="./img/cami-ios-app-icon-512.png" height="82" width="82"></div>
+	<div id="afterhealthstatusbandr">ss
+	<div id="healthstatusmeasdr">
+	<div id="healthstatusmeasleftdr" style="width:49.5%; display:inline-block;"><img src="./img/heart-ok.png"></div> 
+	<div id="healthstatusmeasrightdr" style="width:49.5%; display:inline-block;"><img src="./img/weight-warning.png"></div>
+	</div>
+	</div>
         <div id="footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
             <div id="navbar" data-role="navbar">
                 <ul>
@@ -221,9 +239,7 @@
     </div>
 
     <div id="caregiver-status-page" data-role="page">
-        <div class="ui-header header">
-            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-        </div>
+
         <div data-role="content" >
             <div class="row">
                 <div class="col-4 selected">
@@ -273,9 +289,7 @@
     </div>
 
     <div id="caregiver-status-page-weight" data-role="page">
-        <div class="ui-header header">
-            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-        </div>
+
         <div data-role="content" >
             <div class="row">
                 <div class="col-4 notSelected">
@@ -326,9 +340,7 @@
     </div>
 
     <div id="caregiver-status-page-blood-pressure" data-role="page">
-        <div class="ui-header header">
-            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-        </div>
+
         <div data-role="content" >
             <div class="row">
                 <div class="col-4 notSelected">
@@ -378,9 +390,7 @@
     </div>
 
     <div id="caregiver-journal-page" data-role="page">
-        <div class="ui-header header">
-            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-        </div>
+
         <div class="content">
             <ul class="content-scroll">
                 <li data-ng-repeat="(date,rems) in reminders">
@@ -443,14 +453,80 @@
     </div>
 
     <div id="caregiver-activities-page" data-role="page">
-        <div class="ui-header header">
-            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-        </div>
-        <div data-role="content" >
-            <h1>Activities Page</h1>
-            <div id="#caregiver-calendar" class="fc fc-unthemed fc-ltr">
+        <div class="content">
+            <ul class="sticky">
+                <li>
+                    <div id="latestActivitySticky" class="row {{nextActivity.urgencyType}} vertical-divider-noBg ">
+                        <div class="col-3">
+                            <div class="row">
 
+                            </div>
+                            <div class="row">
+
+                            </div>
+                            <div class="row">
+
+                            </div>
+                        </div>
+                        <div class="{{nextActivity.severityClass}}">
+                            <br>
+                            <div>
+                                <p class="card-message">{{nextActivity.message}}</p>
+                                <p class="card-description">{{nextActivity.description}}</p>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="card-time">{{nextActivity.hourFormatted}}</p>
+                                </div>
+                                <div class="col-6">
+
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div id="activitiesList" class="activity-list">
+                <ul>
+                    <li data-ng-repeat="activity in activities" ">
+                        <div class="row vertical-divider-noBg {{activity.urgencyType}}">
+                            <div class="col-3">
+                                <div class="row">
+
+                                </div>
+                                <div class="row">
+
+                                </div>
+                                <div class="row">
+
+                                </div>
+                            </div>
+                            <div class="{{activity.severityClass}}">
+                                <br>
+                                <div>
+                                    <p class="card-message">{{activity.message}}</p>
+                                    <p class="card-description">{{activity.description}}</p>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="card-time">{{activity.hourFormatted}}</p>
+                                    </div>
+                                    <div class="col-6">
+
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
             </div>
+
         </div>
         <div id="footerActivities" data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div id="navbarActivities" data-role="navbar">
@@ -522,10 +598,11 @@
         getReminders(userId);
     });
     $("#caregiver-activities-page").on("pageshow", function(e) {
-        $('#caregiver-calendar').fullCalendar({
-            // put your options and callbacks here
-        });
-
+        var userId = JSON.parse(window.localStorage.getItem("user")).id;
+        console.log(userId);
+        getActivities(userId);
+        var height = document.getElementById("latestActivitySticky").offsetHeight;
+        document.getElementById("activitiesList").style.marginTop = (0.1 * height + height) + 'px';
     });
 </script>
 

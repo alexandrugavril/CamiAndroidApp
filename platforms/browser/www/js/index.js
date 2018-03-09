@@ -117,6 +117,62 @@ function cancelReminder()
     });
 }
 
+function getRandomNumber(rangeInit, rangeFinal)
+{
+    return Math.floor(Math.random() * rangeFinal) + rangeInit;
+}
+
+function getActivities(userId)
+{
+    var d = new Date();
+    var dateOffset = 30*60*1000;
+
+    app.cami.pacient.nextActivity = {
+        severityClass: "high" + ' col-9',
+        hourFormatted: moment(d).format('HH:mm'),
+        urgencyType: "next-type",
+        date: d,
+        message: "Sticky",
+        description: "Sticky descr",
+        location: "Awesome location"
+    };
+
+    app.cami.pacient.activities = [];
+
+    for(var i = 0 ; i < 10; i++)
+    {
+        var groupDateFormatted = moment(d).format('ddd D MMM');
+        var hourFormatted = moment(d).format('HH:mm');
+        var urgencyType = "urgent-type";
+        var severity = "high";
+
+        if(i % 3 === 0)
+        {
+            urgencyType = "old-type";
+            severity = "low";
+            d.setDate(d.getDate() - getRandomNumber(1,30*60*1000*7));
+        }
+        if(i % 4 === 0)
+        {
+            severity = "none";
+            urgencyType = "future-type";
+        }
+
+        var activity = {
+            severityClass: severity + ' col-9',
+            hourFormatted: hourFormatted,
+            urgencyType: urgencyType,
+            date: d,
+            message: "Try this for a change",
+            description: "Awesome description",
+            location: "Awesome location"
+        };
+        app.cami.pacient.activities.push(activity);
+    }
+    app.cami.pacient.$apply();
+}
+
+
 function getReminders(userId)
 {
     $.ajax({
