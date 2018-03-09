@@ -156,12 +156,19 @@
                                 <hr class="line">
                             </div>
                         </div>
+
                         <div class="col s12 m7" data-ng-repeat="rem in rems">
                             <div class="row vertical-divider w3-container w3-border w3-round-xlarge">
                                 <div class="col-3">
-                                    <br>
-                                    <img class="card-type-image" src="{{rem.image}}">
-                                    <p class="card-time">{{rem.date}}</p>
+                                    <div>
+                                        <img class="card-type-image" src="{{rem.image}}">
+                                    </div>
+                                    <div class="centered">
+                                        <p class="card-time">{{rem.date}}</p>
+                                    </div>
+                                    <div>
+                                        <img class="status-type-image" src="{{rem.statusImage}}">
+                                    </div>
                                 </div>
                                 <div class="{{rem.severityClass}}">
                                     <br>
@@ -389,12 +396,19 @@
                                 <hr class="line">
                             </div>
                         </div>
+
                         <div class="col s12 m7" data-ng-repeat="rem in rems">
                             <div class="row vertical-divider w3-container w3-border w3-round-xlarge">
                                 <div class="col-3">
-                                    <br>
-                                    <img class="card-type-image" src="{{rem.image}}">
-                                    <p class="card-time">{{rem.date}}</p>
+                                    <div>
+                                        <img class="card-type-image" src="{{rem.image}}">
+                                    </div>
+                                    <div class="centered">
+                                        <p class="card-time">{{rem.date}}</p>
+                                    </div>
+                                    <div>
+                                        <img class="status-type-image" src="{{rem.statusImage}}">
+                                    </div>
                                 </div>
                                 <div class="{{rem.severityClass}}">
                                     <br>

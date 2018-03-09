@@ -48,43 +48,23 @@ function getImageForReminderType(type)
     }
 }
 
-function openTab(evt, tabName) {
-
-}
-
-function updateLogo(type, severity)
+function getImageForReminderStatus(status)
 {
-    var logo = document.getElementById("logo");
-    switch(type){
-        case ('medication'):
-            changeIcon(logo, 'img/pill-2-xxl.png');
-            break;
-        case ('appointment'):
-            changeIcon(logo, 'img/journal-menu.png');
-            break;
-        case ('weight'):
-            changeIcon(logo, 'img/weight-warning.png');
-            break;
-        case ('heart'):
-            changeIcon(logo, 'img/heart-ok.png');
-            break;
-        case ('steps'):
-            changeIcon(logo, 'img/steps-ok.png');
-            break;
-        default:
-            return "";
+    if(status !== undefined)
+    {
+        if(status)
+        {
+            return "img/acknowledged.png";
+        }
+        else{
+            return "img/notAcknowledged.png";
+        }
+    }
+    else{
+        return "img/null_acknowledged.png";
     }
 }
 
-function previousReminder()
-{
-    app.setCurrentReminder(app.currentReminder - 1);
-}
-
-function nextReminder()
-{
-    app.setCurrentReminder(app.currentReminder + 1);
-}
 
 function checkReminder()
 {
@@ -154,25 +134,24 @@ function getReminders(userId)
             app.cami.pacient.latestReminders = [];
 
             for (var i = 0; i < rems.length; i++) {
-                if (!(rems[i].acknowledged === true || rems[i].acknowledged === false)) {
-                    var timestamp = rems[i]['timestamp'];
-                    var t = new Date(timestamp*1000);
-                    var date = moment(t).format('ddd D MMM');
-                    rems[i].image = getImageForReminderType(rems[i]['type']);
-                    rems[i].date = moment(t).format('HH:mm');
-                    rems[i].severityClass = rems[i].severity + ' col-9';
-                    if(date in remsByDay)
-                    {
-                        remsByDay[date].push(rems[i]);
-                    }
-                    else {
-                        remsByDay[date] = [];
-                        remsByDay[date].push(rems[i]);
-                    }
-                    if(t > d)
-                    {
-                        app.cami.pacient.latestReminders.push(rems[i]);
-                    }
+                var timestamp = rems[i]['timestamp'];
+                var t = new Date(timestamp*1000);
+                var date = moment(t).format('ddd D MMM');
+                rems[i].image = getImageForReminderType(rems[i]['type']);
+                rems[i].date = moment(t).format('HH:mm');
+                rems[i].severityClass = rems[i].severity + ' col-9';
+                rems[i].statusImage = getImageForReminderStatus(rems[i].acknowledged);
+                if(date in remsByDay)
+                {
+                    remsByDay[date].push(rems[i]);
+                }
+                else {
+                    remsByDay[date] = [];
+                    remsByDay[date].push(rems[i]);
+                }
+                if(t > d && !(rems[i].acknowledged === true || rems[i].acknowledged === false))
+                {
+                    app.cami.pacient.latestReminders.push(rems[i]);
                 }
             }
             app.cami.pacient.reminders = remsByDay;
