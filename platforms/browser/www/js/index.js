@@ -190,6 +190,7 @@ function getReminders(userId)
 function logOff()
 {
     window.localStorage.removeItem("user");
+    location.reload();
     $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
 }
 
@@ -259,7 +260,7 @@ function checkLogin(u, p)
                             if(account_role === 'end_user')
                             {
                                 //registerNotifications();
-                                window.localStorage.setItem("user", JSON.stringify({'user': u, 'password': p}));
+                                window.localStorage.setItem("user", JSON.stringify({'user': u, 'password': p, 'id': users[0].id}));
                                 $.mobile.navigate("#enduser-page", { transition : "slide"});
                             }
                         }
@@ -271,7 +272,7 @@ function checkLogin(u, p)
                                 if(account_role === 'caregiver')
                                 {
                                     //registerNotifications();
-                                    window.localStorage.setItem("user",  JSON.stringify({'user': u, 'password': p}));
+                                    window.localStorage.setItem("user",  JSON.stringify({'user': u, 'password': p,'id': users[0].id}));
                                     $.mobile.navigate("#caregiver-page", { transition : "slide"});
                                 }
                             }

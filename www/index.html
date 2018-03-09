@@ -142,7 +142,7 @@
             <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
         </div>
         <div class="content">
-            <ul>
+            <ul class="content-scroll">
                 <li data-ng-repeat="(date,rems) in reminders">
                     <div class="roundedCard w3-container w3-border w3-round-xlarge">
                         <div class="row enduser-journal-dateholder">
@@ -383,7 +383,7 @@
             <h1>Doctor</h1>
         </div>
         <div class="content">
-            <ul>
+            <ul class="content-scroll">
                 <li data-ng-repeat="(date,rems) in reminders">
                     <div class="roundedCard w3-container w3-border w3-round-xlarge">
                         <div class="row enduser-journal-dateholder">
@@ -475,7 +475,6 @@
 <script type="text/javascript">
     var login = $("#loginForm");
     login.on("submit",handleLogin);
-
     $('#loginPage').on("pageshow", function(e) {
         if(checkIfUserAlreadyLogged())
         {
@@ -489,10 +488,14 @@
         }
     });
     $("#enduser-journal-page").on("pageshow", function(e) {
-        getReminders(app.user.id);
+        var userId = JSON.parse(window.localStorage.getItem("user")).id;
+        console.log(userId);
+        getReminders(userId);
     });
     $("#enduser-page").on("pageshow ", function(e) {
-        getReminders(app.user.id);
+        var userId = JSON.parse(window.localStorage.getItem("user")).id;
+        console.log(userId);
+        getReminders(userId);
     });
     $("#caregiver-status-page").on("pageshow", function(e) {
         var ctx = document.getElementById("caregiver-heart-rate-chart");
@@ -510,7 +513,9 @@
         app.plotBloodPressureChart(ctx, ctx2);
     });
     $("#caregiver-journal-page").on("pageshow", function(e) {
-        getReminders(app.user.id);
+        var userId = JSON.parse(window.localStorage.getItem("user")).id;
+        console.log(userId);
+        getReminders(userId);
     });
     $("#caregiver-activities-page").on("pageshow", function(e) {
         $('#caregiver-calendar').fullCalendar({
