@@ -53,6 +53,13 @@ h1 {
     color: #68a693
 }
 
+#toast-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .card-type-image {
     width: 50%;
     position: absolute;

@@ -223,7 +223,7 @@ function checkLogin(u, p)
     if(u !== '' && p !== '')
     {
         if (p !== 'imac') {
-            Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
+            Materialize.toast('Wrong Password!', 2000, 'rounded');// 4000 is the duration of the toast
         } else {
             $.getJSON("http://cami.vitaminsoftware.com:8008/api/v1/user/?username=" + u,
                 function (userJson) {
@@ -256,18 +256,18 @@ function checkLogin(u, p)
                                 }
                             }
                             else {
-                                Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
+                                Materialize.toast('Wrong Username!', 2000, 'rounded');// 4000 is the duration of the toast
                                 logOff();
                             }
                         }
                     }
                     else {
-                        Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
+                        Materialize.toast('Wrong Username!', 2000, 'rounded');// 4000 is the duration of the toast
                         logOff();
                     }
                 }).error(
                 function() {
-                    Materialize.toast('Login Failed!', 1000, 'rounded');// 4000 is the duration of the toast
+                    Materialize.toast('Connection failed! Please try again later.', 2000, 'rounded');// 4000 is the duration of the toast
                     logOff();
                 }
             );
