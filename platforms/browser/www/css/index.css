@@ -256,7 +256,7 @@ margin: .8em 30% .8em;
 
 .chart-container {
     border-color: black;
-    background: whitesmoke;
+    background: white;
     width:100%;
     height:100%;
     border-radius: 15px 15px 0px 0px;
@@ -310,7 +310,7 @@ margin: .8em 30% .8em;
 }
 
 .selected {
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 .content {
@@ -318,7 +318,21 @@ margin: .8em 30% .8em;
     margin-right: 2%;
     margin-top: 2%;
     margin-bottom: 2%;
+    height: 96%;
+    width: 96%;
 
+}
+
+#caregiver-status-page {
+    min-height: 100%; background-color:white;
+}
+
+#caregiver-status-page-weight {
+    min-height: 100%; background-color:white;
+}
+
+#caregiver-status-page-blood-pressure {
+    min-height: 100%; background-color:white;
 }
 
 .content-scroll {
