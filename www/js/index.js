@@ -122,11 +122,114 @@ function getRandomNumber(rangeInit, rangeFinal)
     return Math.floor(Math.random() * rangeFinal) + rangeInit;
 }
 
+var urgencyTypes = {
+    "next" : "next-type",
+    "old" :"old-type",
+    "future": "future-type"
+};
+
+function getActivityType(timestamp)
+{
+    var d = new Date();
+    var t = new Date(timestamp);
+    if(t > d)
+    {
+        return urgencyTypes.future;
+    }
+    if(t < d)
+    {
+        return urgencyTypes.old;
+    }
+}
+
 function getActivities(userId)
 {
     var d = new Date();
     var dateOffset = 30*60*1000;
+    var url = "http://cami.vitaminsoftware.com:8008/api/v1/activity/?order_by=-start";
 
+    $.ajax({
+        url: url,
+        dataType: "json",
+        type: 'GET',
+        success: function (data) {
+            var initActivities = data.activities;
+            console.log(initActivities);
+            var activities = [];
+            var currentDate = new Date();
+            var diff = -99999999999;
+            var nextActivity;
+            app.model.activities = [];
+            for(var actIdx in initActivities)
+            {
+                var activity = data.activities[actIdx];
+                activity.end = parseInt(activity.end * 1000);
+                var activityDate = new Date(activity.end );
+                var cdiff = currentDate - activityDate;
+                console.log(cdiff);
+                if(cdiff < 0)
+                {
+                    if(cdiff > diff)
+                    {
+                        console.log(cdiff);
+                        nextActivity = activity;
+                        diff = cdiff;
+                    }
+                }
+            }
+            console.log(nextActivity + " " + cdiff);
+            var activityDate = new Date(nextActivity.end);
+
+            app.model.nextActivity = {
+                severityClass: "high" + ' col-9',
+                dayWeek: moment(activityDate).format('ddd'),
+                day: moment(activityDate).format('DD'),
+                month: moment(activityDate).format('MMM').toUpperCase(),
+                hourFormatted: moment(activityDate).format('HH:mm'),
+                currentDate: "Today " + moment(new Date()).format("DD MMM"),
+                urgencyType: urgencyTypes.next,
+                date: new Date(nextActivity.end),
+                message: nextActivity.description,
+                description: nextActivity.title,
+                location: nextActivity.location
+            };
+
+
+            for(var actIdx in initActivities)
+            {
+                var activity = data.activities[actIdx];
+                var activityDate = new Date(activity.end);
+                console.log(activityDate);
+                console.log(getActivityType(activity.end));
+                var activityModel = {
+                    severityClass: "medium" + ' col-9',
+                    dayWeek: moment(activityDate).format('ddd'),
+                    day: moment(activityDate).format('DD'),
+                    month: moment(activityDate).format('MMM').toUpperCase(),
+                    hourFormatted: moment(activityDate).format('HH:mm'),
+                    currentDate: "Today " + moment(new Date()).format("DD MMM"),
+                    urgencyType: getActivityType(activity.end),
+                    date: new Date(activity.end),
+                    message: activity.description,
+                    description: activity.title,
+                    location: activity.location
+                };
+                app.model.activities.push(activityModel);
+
+            }
+            app.model.$apply();
+
+
+        },
+        error: function () {
+            alert("Cannot receive reminders. Check your internet connection!");
+            logOff();
+        }
+
+    });
+
+
+    /*
     app.model.nextActivity = {
         severityClass: "high" + ' col-9',
         dayWeek: moment(d).format('ddd'),
@@ -177,6 +280,7 @@ function getActivities(userId)
         app.model.activities.push(activity);
     }
     app.model.$apply();
+    */
 }
 
 
