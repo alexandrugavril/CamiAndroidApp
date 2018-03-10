@@ -1165,8 +1165,6 @@
         var ctx = document.getElementById("enduser-sleep-chart");
         app.plotSleepChart(ctx, userId);
     });
-x
-
     $("#caregiver-page").on("pageshow", function(e){
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
         console.log(userId);
