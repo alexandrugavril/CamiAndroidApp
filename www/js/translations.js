@@ -19,8 +19,8 @@ var translations ={
         back: "Înapoi",
         all_is_fine: "Totul este în regulă",
         steps: "Pași",
-        sleep: "Somn"
-
+        sleep: "Somn",
+        welcome: "Bine ați venit",
     },
     en : {
         no_new_reminders: "No new reminders!",
@@ -34,7 +34,7 @@ var translations ={
         home: "Home",
         status: "Status",
         journal: "Journal",
-        activities: "Activități",
+        activities: "Activities",
         logout: "Logout",
         username: "Username",
         password: "Password",
@@ -43,5 +43,6 @@ var translations ={
         all_is_fine: "All is fine",
         steps: "Steps",
         sleep: "Sleep",
+        welcome: "Welcome",
     }
 };

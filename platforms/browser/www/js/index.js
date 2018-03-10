@@ -304,10 +304,12 @@ function checkLogin(u, p)
                             if(profile.language in translations)
                             {
                                 app.model.translations = translations[profile.language];
+                                moment.locale(profile.language);
                                 console.log("Language: " + "ro");
                             }
                             else {
                                 app.model.translations = translations['ro'];
+                                moment.locale('ro');
                                 console.log("Language: ro");
                             }
                             app.model.$apply();
@@ -326,10 +328,12 @@ function checkLogin(u, p)
                                 if(profile.language in translations)
                                 {
                                     app.model.translations = translations[profile.language];
+                                    moment.locale(profile.language);
                                     console.log("Language: " + "ro");
                                 }
                                 else {
                                     app.model.translations = translations['ro'];
+                                    moment.locale('ro');
                                     console.log("Language: ro");
                                 }
                                 app.model.$apply();
