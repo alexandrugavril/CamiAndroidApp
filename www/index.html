@@ -152,6 +152,11 @@
                         </a>
                     </li>
                     <li>
+                        <a  href="#enduser-status-page" data-icon="star">
+                            {{translations.status}}
+                        </a>
+                    </li>
+                    <li>
                         <a id="enduser-logout-button" onclick="logOff()" href="#loginPage" data-icon="back">
                             {{translations.logout}}
                         </a>
@@ -219,13 +224,22 @@
                 </li>
             </ul>
         </div>
-        <div id="enduser-journal-footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
-            <div id="enduser-journal-navbar" data-role="navbar">
+        <div  data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
                 <ul>
-                    <li><a id="enduser-journal-home-button" href="#enduser-page" data-icon="home" >{{translations.home}}</a></li>
                     <li>
-                        <a id="enduser-journal-journal-button" href="#enduser-journal-page" data-icon="star" data-theme="b">
+                        <a id="enduser-journal-home-button" href="#enduser-page" data-icon="home" >
+                            {{translations.home}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#enduser-journal-page" data-icon="star" data-theme="b">
                         {{translations.journal}}
+                        </a>
+                    </li>
+                    <li>
+                        <a id="enduser-journal-journal-button" href="#enduser-status-page" data-icon="star">
+                            {{translations.status}}
                         </a>
                     </li>
                     <li><a id="enduser-journal-logout-button" onclick="logOff()" href="#loginPage" data-icon="back">{{translations.logout}}</a></li>
@@ -233,6 +247,356 @@
             </div>
         </div>
     </div><!-- /page  -->
+
+    <div id="enduser-status-page" class="status-page" data-role="page">
+        <div data-role="content" >
+            <div class="row" >
+                <div class="col-15 selected">
+                    <a href='#enduser-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#enduser-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+            <!-- Tab content -->
+            <div id="enduser-heartrate-chart-div" class="chart-container">
+                <h1>{{translations.heart_rate}}</h1>
+                <div class="row">
+                    <div class="col-6 horizontal-centered">
+                        <p>{{translations.latest_value}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p>{{latestHeartRateValue}}</p>
+                    </div>
+                </div>
+                <canvas id="enduser-heart-rate-chart">
+
+                </canvas>
+            </div>
+        </div>
+        <div  data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a  href="#enduser-page" data-icon="home" >
+                            {{translations.home}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#enduser-journal-page" data-icon="star" >
+                            {{translations.journal}}
+                        </a>
+                    </li>
+                    <li>
+                        <a  href="#enduser-status-page" data-icon="flat-menu" data-theme="b">
+                            {{translations.status}}
+                        </a>
+                    </li>
+                    <li><a  onclick="logOff()" href="#loginPage" data-icon="back">{{translations.logout}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="enduser-status-page-weight" class="status-page" data-role="page">
+
+        <div data-role="content" >
+            <div class="row">
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href="#enduser-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+
+            <div id="enduser-weight-chart-div" class="chart-container">
+                <h1>{{translations.weight}}</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <p>{{translations.latest_value}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p id="enduser-weight-value">{{latestWeightValue}}</p>
+
+                    </div>
+                </div>
+                <canvas id="enduser-weight-chart">
+
+                </canvas>
+            </div>
+
+        </div>
+        <div  data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a  href="#enduser-page" data-icon="home" >
+                            {{translations.home}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#enduser-journal-page" data-icon="star" >
+                            {{translations.journal}}
+                        </a>
+                    </li>
+                    <li>
+                        <a  href="#enduser-status-page" data-icon="flat-menu" data-theme="b">
+                            {{translations.status}}
+                        </a>
+                    </li>
+                    <li><a  onclick="logOff()" href="#loginPage" data-icon="back">{{translations.logout}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="enduser-status-page-blood-pressure" class="status-page" data-role="page">
+        <div data-role="content" >
+            <div class="row">
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#enduser-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href='#enduser-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+
+            <div id="enduser-blood-pressure-chart-div" class="chart-container">
+                <h1>{{translations.blood_pressure}}</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <p>{{translations.latest_value}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p>{{latestBloodPressureValue}}</p>
+
+                    </div>
+                </div>
+                <canvas id="enduser-blood-pressure-chart">
+
+                </canvas>
+            </div>
+        </div>
+        <div  data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a  href="#enduser-page" data-icon="home" >
+                            {{translations.home}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#enduser-journal-page" data-icon="star" >
+                            {{translations.journal}}
+                        </a>
+                    </li>
+                    <li>
+                        <a  href="#enduser-status-page" data-icon="flat-menu" data-theme="b">
+                            {{translations.status}}
+                        </a>
+                    </li>
+                    <li><a  onclick="logOff()" href="#loginPage" data-icon="back">{{translations.logout}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="enduser-status-page-steps" class="status-page" data-role="page">
+
+        <div data-role="content" >
+            <div class="row">
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#enduser-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href='#enduser-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+
+            <div id="enduser-steps-chart-div" class="chart-container">
+                <h1>{{translations.steps}}</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <p>{{translations.latest_value}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p >{{latestStepsValue}}</p>
+
+                    </div>
+                </div>
+                <canvas id="enduser-steps-chart">
+
+                </canvas>
+            </div>
+        </div>
+        <div  data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a  href="#enduser-page" data-icon="home" >
+                            {{translations.home}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#enduser-journal-page" data-icon="star" >
+                            {{translations.journal}}
+                        </a>
+                    </li>
+                    <li>
+                        <a  href="#enduser-status-page" data-icon="flat-menu" data-theme="b">
+                            {{translations.status}}
+                        </a>
+                    </li>
+                    <li><a  onclick="logOff()" href="#loginPage" data-icon="back">{{translations.logout}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="enduser-status-page-sleep" class="status-page" data-role="page">
+
+        <div data-role="content" >
+            <div class="row">
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#enduser-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href='#enduser-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+
+            <div id="enduser-sleep-chart-div" class="chart-container">
+                <h1>{{translations.sleep}}</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <p>{{translations.latest_value}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p id="latest-sleep-value">{{latestSleepValue}}</p>
+
+                    </div>
+                </div>
+                <canvas id="enduser-sleep-chart">
+
+                </canvas>
+            </div>
+
+        </div>
+        <div  data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a  href="#enduser-page" data-icon="home" >
+                            {{translations.home}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#enduser-journal-page" data-icon="star" >
+                            {{translations.journal}}
+                        </a>
+                    </li>
+                    <li>
+                        <a  href="#enduser-status-page" data-icon="flat-menu" data-theme="b">
+                            {{translations.status}}
+                        </a>
+                    </li>
+                    <li><a  onclick="logOff()" href="#loginPage" data-icon="back">{{translations.logout}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <div  id="caregiver-page" data-role="page">
         
@@ -277,7 +641,7 @@
         </div>
     </div>
 
-    <div id="caregiver-status-page" data-role="page">
+    <div id="caregiver-status-page" class="status-page" data-role="page">
 
         <div data-role="content" >
             <div class="row" >
@@ -335,8 +699,7 @@
             </div>
         </div>
     </div>
-
-    <div id="caregiver-status-page-weight" data-role="page">
+    <div id="caregiver-status-page-weight" class="status-page" data-role="page">
 
         <div data-role="content" >
             <div class="row">
@@ -396,8 +759,7 @@
             </div>
         </div>
     </div>
-
-    <div id="caregiver-status-page-blood-pressure" data-role="page">
+    <div id="caregiver-status-page-blood-pressure" class="status-page" data-role="page">
 
         <div data-role="content" >
             <div class="row">
@@ -456,7 +818,7 @@
             </div>
         </div>
     </div>
-    <div id="caregiver-status-page-steps" data-role="page">
+    <div id="caregiver-status-page-steps" class="status-page" data-role="page">
 
         <div data-role="content" >
             <div class="row">
@@ -515,7 +877,7 @@
             </div>
         </div>
     </div>
-    <div id="caregiver-status-page-sleep" data-role="page">
+    <div id="caregiver-status-page-sleep" class="status-page" data-role="page">
 
         <div data-role="content" >
             <div class="row">
@@ -574,6 +936,7 @@
             </div>
         </div>
     </div>
+
     <div id="caregiver-journal-page" data-role="page">
 
         <div class="content">
@@ -771,33 +1134,80 @@
         console.log(userId);
         getReminders(userId);
     });
+    $("#enduser-status-page").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        console.log(userId);
+        var ctx = document.getElementById("enduser-heart-rate-chart");
+        app.plotHeartRateChart(ctx, userId);
+    });
+    $("#enduser-status-page-weight").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        console.log(userId);
+
+        var ctx = document.getElementById("enduser-weight-chart");
+        app.plotWeightChart(ctx, userId);
+    });
+    $("#enduser-status-page-blood-pressure").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        console.log(userId);
+        var ctx = document.getElementById("enduser-blood-pressure-chart");
+        app.plotBloodPressureChart(ctx, userId);
+    });
+    $("#enduser-status-page-steps").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        console.log(userId);
+        var ctx = document.getElementById("enduser-steps-chart");
+        app.plotStepsChart(ctx, userId);
+    });
+    $("#enduser-status-page-sleep").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        console.log(userId);
+        var ctx = document.getElementById("enduser-sleep-chart");
+        app.plotSleepChart(ctx, userId);
+    });
+x
+
     $("#caregiver-page").on("pageshow", function(e){
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        console.log(userId);
+
         var ctx = document.getElementById("caregiver-heart-rate-chart");
-        app.plotHeartRateChart(ctx);
+        app.plotHeartRateChart(ctx, userId);
         ctx = document.getElementById("caregiver-weight-chart");
-        app.plotWeightChart(ctx);
+        app.plotWeightChart(ctx, userId);
         ctx = document.getElementById("caregiver-blood-pressure-chart");
-        app.plotBloodPressureChart(ctx);
+        app.plotBloodPressureChart(ctx, userId);
     });
     $("#caregiver-status-page").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        console.log(userId);
         var ctx = document.getElementById("caregiver-heart-rate-chart");
-        app.plotHeartRateChart(ctx);
+        app.plotHeartRateChart(ctx, userId);
     });
     $("#caregiver-status-page-weight").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        console.log(userId);
+
         var ctx = document.getElementById("caregiver-weight-chart");
-        app.plotWeightChart(ctx);
+        app.plotWeightChart(ctx, userId);
     });
     $("#caregiver-status-page-blood-pressure").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        console.log(userId);
         var ctx = document.getElementById("caregiver-blood-pressure-chart");
-        app.plotBloodPressureChart(ctx);
+        app.plotBloodPressureChart(ctx, userId);
     });
     $("#caregiver-status-page-steps").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        console.log(userId);
         var ctx = document.getElementById("caregiver-steps-chart");
-        app.plotStepsChart(ctx);
+        app.plotStepsChart(ctx, userId);
     });
     $("#caregiver-status-page-sleep").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        console.log(userId);
         var ctx = document.getElementById("caregiver-sleep-chart");
-        app.plotSleepChart(ctx);
+        app.plotSleepChart(ctx, userId);
     });
     $("#caregiver-journal-page").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).id;

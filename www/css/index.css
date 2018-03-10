@@ -435,11 +435,12 @@ margin: .8em 30% .8em;
     width: 96%;
 
 }
-
+.status-page {
+    min-height: 100%; background-color:white;
+}
 #caregiver-status-page {
     min-height: 100%; background-color:white;
 }
-
 #caregiver-status-page-weight {
     min-height: 100%; background-color:white;
 }

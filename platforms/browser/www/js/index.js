@@ -295,6 +295,7 @@ function checkLogin(u, p)
                     {
                         app.user = users[0];
 
+
                         var profile = users[0]['enduser_profile'];
 
                         if(profile)
@@ -313,7 +314,8 @@ function checkLogin(u, p)
                             if(account_role === 'end_user')
                             {
                                 //registerNotifications();
-                                window.localStorage.setItem("user", JSON.stringify({'user': u, 'password': p, 'id': users[0].id}));
+                                window.localStorage.setItem("user", JSON.stringify({'user': u, 'password': p,
+                                    'id': users[0].id, 'careId' : users[0].id}));
                                 $.mobile.navigate("#enduser-page", { transition : "slide"});
                             }
                         }
@@ -335,7 +337,12 @@ function checkLogin(u, p)
                                 if(account_role === 'caregiver')
                                 {
                                     //registerNotifications();
-                                    window.localStorage.setItem("user",  JSON.stringify({'user': u, 'password': p,'id': users[0].id}));
+
+                                    var atomsId = profile['caretaker'].split('/');
+                                    var careId = atomsId[atomsId.length - 2];
+                                    console.log("My careId: " + careId);
+                                    window.localStorage.setItem("user",  JSON.stringify({'user': u, 'password': p,
+                                        'id': users[0].id, 'careId' : careId}));
                                     $.mobile.navigate("#caregiver-page", { transition : "slide"});
                                 }
                             }
@@ -396,8 +403,9 @@ var app = {
     reminders: [],
     currentReminder: -1,
 
-    plotWeightChart: function(ctx, ctx2) {
-        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=weight&limit=7&order_by=-timestamp&user=2";
+    plotWeightChart: function(ctx, userId) {
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=weight&limit=7" +
+            "&order_by=-timestamp&user=" + userId;
         $.ajax({
             url: url,
             dataType: "json",
@@ -448,8 +456,9 @@ var app = {
             }
         });
     },
-    plotHeartRateChart: function(ctx) {
-        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=pulse&limit=7&order_by=-timestamp&user=2";
+    plotHeartRateChart: function(ctx, userId) {
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=pulse&limit=7&" +
+            "order_by=-timestamp&user=" + userId;
         $.ajax({
             url: url,
             dataType: "json",
@@ -500,8 +509,9 @@ var app = {
 
 
     },
-    plotBloodPressureChart: function(ctx) {
-        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=blood_pressure&limit=7&order_by=-timestamp&user=2";
+    plotBloodPressureChart: function(ctx, userId) {
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=blood_pressure&limit=7&" +
+            "order_by=-timestamp&user=" + userId;
         $.ajax({
             url: url,
             dataType: "json",
@@ -586,8 +596,9 @@ var app = {
         });
 
     },
-    plotStepsChart : function(ctx ) {
-        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=steps&limit=7&order_by=-timestamp&user=2";
+    plotStepsChart : function(ctx, userId) {
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=steps&limit=7&" +
+            "order_by=-timestamp&user=" + userId;
         $.ajax({
             url: url,
             dataType: "json",
@@ -636,8 +647,9 @@ var app = {
             }
         });
     },
-    plotSleepChart: function(ctx) {
-        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=sleep&limit=7&order_by=-timestamp&user=2";
+    plotSleepChart: function(ctx, userId) {
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=sleep&limit=7&" +
+            "order_by=-timestamp&user=" + userId;
         $.ajax({
             url: url,
             dataType: "json",
