@@ -18,6 +18,8 @@ var translations ={
         login: "Login",
         back: "Înapoi",
         all_is_fine: "Totul este în regulă",
+        steps: "Pași",
+        sleep: "Somn"
 
     },
     en : {
@@ -39,5 +41,7 @@ var translations ={
         login: "Login",
         back: "Back",
         all_is_fine: "All is fine",
+        steps: "Steps",
+        sleep: "Sleep",
     }
 };

@@ -248,16 +248,14 @@
             <div id="healthstatusmeasleftdr" class="col-6">
                 <div class="row" id="partborderrowleft" style="margin-bottom:5px">
                     <div class="col-4"><img src="./img/heart-ok.png" style="max-height:80%"></div>
-                    <div class="col-8"><strong>59</strong> bpm <br />{{translations.heart_rate}}</div>
-                    <div class="col-12" id="graphbt">Graph <br />Graph </div>
+                    <div class="col-8"><strong>{{latestHeartRateValue}}</strong> bpm <br />{{translations.heart_rate}}</div>
                 </div>
                 </div>
 
             <div id="healthstatusmeasrightdr" class="col-6">
                 <div class="row" id="partborderrowright" style="margin-bottom:5px">
                     <div class="col-4"><img src="./img/weight-warning.png" style="max-height:80%"></div>
-                    <div class="col-8"><strong>72.44</strong> kg <br /> {{translations.weight}}</div>
-                    <div class="col-12" id="graphbt1">Graph <br />Graph</div>
+                    <div class="col-8"><strong>{{latestWeightValue}}</strong> kg <br /> {{translations.weight}}</div>
                 </div>
             </div>
 
@@ -282,20 +280,30 @@
     <div id="caregiver-status-page" data-role="page">
 
         <div data-role="content" >
-            <div class="row">
-                <div class="col-4 selected">
+            <div class="row" >
+                <div class="col-15 selected">
                     <a href='#caregiver-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
                     </a>
                 </div>
-                <div class="col-4 notSelected">
+                <div class="col-15 notSelected">
                     <a href="#caregiver-status-page-weight" >
                         <img class="tabicon" src="img/icon-weight_400x400.png"/>
                     </a>
                 </div>
-                <div class="col-4 notSelected">
+                <div class="col-15 notSelected">
                     <a href='#caregiver-status-page-blood-pressure'>
                         <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
                     </a>
                 </div>
             </div>
@@ -307,8 +315,7 @@
                         <p>{{translations.latest_value}}</p>
                     </div>
                     <div class="col-6">
-                        <p id="latest-heartrate-value">?</p>
-
+                        <p id="latest-heartrate-value">{{latestHeartRateValue}}</p>
                     </div>
                 </div>
                 <canvas id="caregiver-heart-rate-chart">
@@ -333,19 +340,29 @@
 
         <div data-role="content" >
             <div class="row">
-                <div class="col-4 notSelected">
+                <div class="col-15 notSelected">
                     <a href='#caregiver-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
                     </a>
                 </div>
-                <div class="col-4 selected">
+                <div class="col-15 selected">
                     <a href="#caregiver-status-page-weight" >
                         <img class="tabicon" src="img/icon-weight_400x400.png"/>
                     </a>
                 </div>
-                <div class="col-4 notSelected">
+                <div class="col-15 notSelected">
                     <a href='#caregiver-status-page-blood-pressure'>
                         <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
                     </a>
                 </div>
             </div>
@@ -357,7 +374,7 @@
                         <p>{{translations.latest_value}}</p>
                     </div>
                     <div class="col-6">
-                        <p id="latest-weight-value">?</p>
+                        <p id="latest-weight-value">{{latestWeightValue}}</p>
 
                     </div>
                 </div>
@@ -384,19 +401,29 @@
 
         <div data-role="content" >
             <div class="row">
-                <div class="col-4 notSelected">
+                <div class="col-15 notSelected">
                     <a href='#caregiver-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
                     </a>
                 </div>
-                <div class="col-4 notSelected">
+                <div class="col-15 notSelected">
                     <a href="#caregiver-status-page-weight" >
                         <img class="tabicon" src="img/icon-weight_400x400.png"/>
                     </a>
                 </div>
-                <div class="col-4 selected">
+                <div class="col-15 selected">
                     <a href='#caregiver-status-page-blood-pressure'>
                         <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
                     </a>
                 </div>
             </div>
@@ -408,7 +435,7 @@
                         <p>{{translations.latest_value}}</p>
                     </div>
                     <div class="col-6">
-                        <p id="latest-blood-pressure-value">?</p>
+                        <p id="latest-blood-pressure-value">{{latestBloodPressureValue}}</p>
 
                     </div>
                 </div>
@@ -429,7 +456,124 @@
             </div>
         </div>
     </div>
+    <div id="caregiver-status-page-steps" data-role="page">
 
+        <div data-role="content" >
+            <div class="row">
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#caregiver-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href='#caregiver-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+
+            <div id="caregiver-steps-chart-div" class="chart-container">
+                <h1>{{translations.steps}}</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <p>{{translations.latest_value}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p id="latest-steps-value">{{latestStepsValue}}</p>
+
+                    </div>
+                </div>
+                <canvas id="caregiver-steps-chart">
+
+                </canvas>
+            </div>
+        </div>
+        <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="caregiver-status-page-sleep" data-role="page">
+
+        <div data-role="content" >
+            <div class="row">
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#caregiver-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href='#caregiver-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+
+            <div id="caregiver-sleep-chart-div" class="chart-container">
+                <h1>{{translations.sleep}}</h1>
+                <div class="row">
+                    <div class="col-6">
+                        <p>{{translations.latest_value}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p id="latest-sleep-value">{{latestSleepValue}}</p>
+
+                    </div>
+                </div>
+                <canvas id="caregiver-sleep-chart">
+
+                </canvas>
+            </div>
+        </div>
+        <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div id="caregiver-journal-page" data-role="page">
 
         <div class="content">
@@ -627,21 +771,33 @@
         console.log(userId);
         getReminders(userId);
     });
+    $("#caregiver-page").on("pageshow", function(e){
+        var ctx = document.getElementById("caregiver-heart-rate-chart");
+        app.plotHeartRateChart(ctx);
+        ctx = document.getElementById("caregiver-weight-chart");
+        app.plotWeightChart(ctx);
+        ctx = document.getElementById("caregiver-blood-pressure-chart");
+        app.plotBloodPressureChart(ctx);
+    });
     $("#caregiver-status-page").on("pageshow", function(e) {
         var ctx = document.getElementById("caregiver-heart-rate-chart");
-        var ctx2 = document.getElementById("latest-heartrate-value");
-        app.plotHeartRateChart(ctx, ctx2);
-        console.log(app.model.translations);
+        app.plotHeartRateChart(ctx);
     });
     $("#caregiver-status-page-weight").on("pageshow", function(e) {
         var ctx = document.getElementById("caregiver-weight-chart");
-        var ctx2 = document.getElementById("latest-weight-value");
-        app.plotWeightChart(ctx, ctx2);
+        app.plotWeightChart(ctx);
     });
     $("#caregiver-status-page-blood-pressure").on("pageshow", function(e) {
         var ctx = document.getElementById("caregiver-blood-pressure-chart");
-        var ctx2 = document.getElementById("latest-blood-pressure-value");
-        app.plotBloodPressureChart(ctx, ctx2);
+        app.plotBloodPressureChart(ctx);
+    });
+    $("#caregiver-status-page-steps").on("pageshow", function(e) {
+        var ctx = document.getElementById("caregiver-steps-chart");
+        app.plotStepsChart(ctx);
+    });
+    $("#caregiver-status-page-sleep").on("pageshow", function(e) {
+        var ctx = document.getElementById("caregiver-sleep-chart");
+        app.plotSleepChart(ctx);
     });
     $("#caregiver-journal-page").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).id;

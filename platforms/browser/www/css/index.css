@@ -447,6 +447,12 @@ margin: .8em 30% .8em;
 #caregiver-status-page-blood-pressure {
     min-height: 100%; background-color:white;
 }
+#caregiver-status-page-sleep {
+    min-height: 100%; background-color:white;
+}
+#caregiver-status-page-steps {
+    min-height: 100%; background-color:white;
+}
 
 #caregiver-activities-page {
     min-height: 100%; background-color:lightgray;
@@ -583,4 +589,33 @@ min-height: 408px;
 }
 #graphbt{
 text-align: center;
+}
+.col-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.col-15 {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 992px) {
+    .col-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: 1200px) {
+    .col-15 {
+        width: 20%;
+        float: left;
+    }
 }

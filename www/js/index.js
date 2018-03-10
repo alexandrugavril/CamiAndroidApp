@@ -418,8 +418,8 @@ var app = {
                     dataValues.push(pData[i].value_info.value);
                 }
                 var latestValue = pData[pData.length - 1].value_info.value;
-                ctx2.innerHTML = latestValue;
-
+                app.model.latestWeightValue = latestValue;
+                app.model.$apply();
                 var myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -448,7 +448,7 @@ var app = {
             }
         });
     },
-    plotHeartRateChart: function(ctx, ctx2) {
+    plotHeartRateChart: function(ctx) {
         var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=pulse&limit=7&order_by=-timestamp&user=2";
         $.ajax({
             url: url,
@@ -470,7 +470,8 @@ var app = {
                     dataValues.push(pData[i].value_info.value);
                 }
                 var latestValue = pData[pData.length - 1].value_info.value;
-                ctx2.innerHTML = latestValue;
+                app.model.latestHeartRateValue = latestValue;
+                app.model.$apply();
 
                 var myChart = new Chart(ctx, {
                     type: 'line',
@@ -499,7 +500,7 @@ var app = {
 
 
     },
-    plotBloodPressureChart: function(ctx, ctx2) {
+    plotBloodPressureChart: function(ctx) {
         var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=blood_pressure&limit=7&order_by=-timestamp&user=2";
         $.ajax({
             url: url,
@@ -531,7 +532,8 @@ var app = {
                     systolicValues.push(pData[i].value_info.systolic);
                 }
                 var latestValue = pData[pData.length - 1].value_info.systolic + "/" + pData[pData.length - 1].value_info.diastolic;
-                ctx2.innerHTML = latestValue;
+                app.model.latestBloodPressureValue = latestValue;
+                app.model.$apply();
 
 
                 var lineChartData = {
@@ -584,7 +586,106 @@ var app = {
         });
 
     },
+    plotStepsChart : function(ctx ) {
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=steps&limit=7&order_by=-timestamp&user=2";
+        $.ajax({
+            url: url,
+            dataType: "json",
+            type: 'GET',
+            success: function (data) {
+                var pData = data.measurements.reverse();
+                var labs = [];
+                var dataValues = [];
+                for (var i = 0; i < pData.length; i++) {
+                    var t = new Date(pData[i].timestamp*1000);
+                    var month = t.getMonth() + 1;
+                    if(month < 10)
+                    {
+                        month = "0" + month;
+                    }
+                    var formatted = t.getDate() + "/" + month;
+                    labs.push(formatted);
+                    dataValues.push(pData[i].value_info.value);
+                }
+                var latestValue = pData[pData.length - 1].value_info.value;
+                app.model.latestStepsValue = latestValue;
+                app.model.$apply();
 
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labs,
+                        datasets: [{
+                            label: app.model.translations.steps,
+                            data: dataValues,
+                            backgroundColor:'rgba(12,12, 255, 0.2)',
+                            borderColor:  'rgba(121,99,132,1)'
+
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: true,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+        });
+    },
+    plotSleepChart: function(ctx) {
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=sleep&limit=7&order_by=-timestamp&user=2";
+        $.ajax({
+            url: url,
+            dataType: "json",
+            type: 'GET',
+            success: function (data) {
+                var pData = data.measurements.reverse();
+                var labs = [];
+                var dataValues = [];
+                for (var i = 0; i < pData.length; i++) {
+                    var t = new Date(pData[i].timestamp*1000);
+                    var month = t.getMonth() + 1;
+                    if(month < 10)
+                    {
+                        month = "0" + month;
+                    }
+                    var formatted = t.getDate() + "/" + month;
+                    labs.push(formatted);
+                    dataValues.push(pData[i].value_info.value);
+                }
+                var latestValue = pData[pData.length - 1].value_info.value;
+                app.model.latestSleepValue = latestValue;
+                app.model.$apply();
+
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labs,
+                        datasets: [{
+                            label: app.model.translations.sleep,
+                            data: dataValues,
+                            backgroundColor:'rgba(255,12, 255, 0.2)',
+                            borderColor:  'rgba(255,99,132,1)'
+
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: true,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                }
+                            }]
+                        }
+                    }
+                });
+            }
+        });
+    },
     // Application Constructor
     initialize: function() {
         this.bindEvents();
