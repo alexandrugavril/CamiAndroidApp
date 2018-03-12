@@ -575,6 +575,23 @@ border-radius: 50%;
     background-color: lightgray;
 }
 
+.high-borders{
+    border: solid;
+    border-color: #d84315;
+}
+.medium-borders{
+    border: solid;
+    border-color: #f1c40f;
+}
+.low-borders{
+    border: solid;
+    border-color: #00a300;
+}
+.none-borders{
+    border: solid;
+    border-color: lightgray;
+}
+
 #afterhealthstatusbandr{
     max-height: 100%;
     position: fixed;

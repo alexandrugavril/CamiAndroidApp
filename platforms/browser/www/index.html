@@ -662,7 +662,7 @@
                     <div class="row" style="width: 104%; height:100%;">
                         <ul class="content-scroll" id="remscroll" >
                             <li class="selected" data-ng-repeat="rem in allReminders">
-                                <div class="row">
+                                <div class="row {{rem.severity + '-borders'}}">
                                     <div class="col-1">
                                     </div>
                                     <div class="col-2">
@@ -671,8 +671,8 @@
                                         </span>
                                     </div>
                                     <div class="col-3">
-                                        <span class="card-type-image center-type-image">
-                                            {{rem.dayMonth}}
+                                        <span class="card-type-image center-align center-type-image">
+                                            <strong>{{rem.dayMonth}}</strong>
                                         </span>
                                     </div>
 
