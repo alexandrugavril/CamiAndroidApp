@@ -350,59 +350,63 @@ function getUrgentAlert()
 }
 function registerNotifications()
 {
-    window.plugins.PushbotsPlugin.initialize("5a84222e1db2dc56731e6e63", {"android":{"sender_id":"716888555189"}});
-    window.plugins.PushbotsPlugin.on("registered", function(token){
+    if(window.plugins && window.plugins.PushbotsPlugin)
+    {
+        window.plugins.PushbotsPlugin.initialize("5a84222e1db2dc56731e6e63", {"android":{"sender_id":"716888555189"}});
+        window.plugins.PushbotsPlugin.on("registered", function(token){
 
-    });
-    window.plugins.PushbotsPlugin.on("user:ids", function(data){
-        var token = data['token'];
-        var userId = data['userId'];
-        var camiUserId = app.user['resource_uri'];
-        window.plugins.PushbotsPlugin.updateAlias(camiUserId);
-        $.ajax({
-            url: "http://cami.vitaminsoftware.com:8008/api/v1/pushnotificationdevice/",
-            type: 'POST',
-            beforeSend: function(request) {
-                request.setRequestHeader("Content-Type", 'application/json');
-            },
-            dataType: 'json',
-            data: JSON.stringify({
-                registration_id: camiUserId,
-                type: "GCM",
-                user: camiUserId,
-                other_info: "{}"
-            }),
-            success: function( data, textStatus, jQxhr ){
-                console.log("Registered user");
-            },
-            error: function( jqXhr, textStatus, errorThrown ){
-                console.log("Already registered");
-            }
         });
-    });
+        window.plugins.PushbotsPlugin.on("user:ids", function(data){
+            var token = data['token'];
+            var userId = data['userId'];
+            var camiUserId = app.user['resource_uri'];
+            window.plugins.PushbotsPlugin.updateAlias(camiUserId);
+            $.ajax({
+                url: "http://cami.vitaminsoftware.com:8008/api/v1/pushnotificationdevice/",
+                type: 'POST',
+                beforeSend: function(request) {
+                    request.setRequestHeader("Content-Type", 'application/json');
+                },
+                dataType: 'json',
+                data: JSON.stringify({
+                    registration_id: camiUserId,
+                    type: "GCM",
+                    user: camiUserId,
+                    other_info: "{}"
+                }),
+                success: function( data, textStatus, jQxhr ){
+                    console.log("Registered user");
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log("Already registered");
+                }
+            });
+        });
 
-    window.plugins.PushbotsPlugin.on("notification:received", function(data){
-        console.log("received:" + JSON.stringify(data));
-        window.plugins.PushbotsPlugin.incrementBadgeCountBy(1);
+        window.plugins.PushbotsPlugin.on("notification:received", function(data){
+            console.log("received:" + JSON.stringify(data));
+            window.plugins.PushbotsPlugin.incrementBadgeCountBy(1);
 
-        if(window.localStorage.getItem("user"))
-        {
-            var userId = JSON.parse(window.localStorage.getItem("user")).careId;
-            var careId = JSON.parse(window.localStorage.getItem("user")).id;
-            console.log(careId);
-            getReminders(careId);
-            getUrgentAlert();
-        }
-        window.plugins.PushbotsPlugin.done(data.pb_n_id);
-    });
+            if(window.localStorage.getItem("user"))
+            {
+                var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+                var careId = JSON.parse(window.localStorage.getItem("user")).id;
+                console.log(careId);
+                getReminders(careId);
+                getUrgentAlert();
+            }
+            window.plugins.PushbotsPlugin.done(data.pb_n_id);
+        });
 
-    window.plugins.PushbotsPlugin.on("notification:clicked", function(data){
-        // var userToken = data.token;
-        // var userId = data.userId;
-        window.plugins.PushbotsPlugin.decrementBadgeCountBy(1);
+        window.plugins.PushbotsPlugin.on("notification:clicked", function(data){
+            // var userToken = data.token;
+            // var userId = data.userId;
+            window.plugins.PushbotsPlugin.decrementBadgeCountBy(1);
 
-        console.log("clicked:" + JSON.stringify(data));
-    });
+            console.log("clicked:" + JSON.stringify(data));
+        });
+    }
+
 }
 
 function handleLogin() {

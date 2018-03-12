@@ -192,17 +192,13 @@
                             <div class="row vertical-divider w3-container w3-border w3-round-xlarge">
                                 <div class="col-3">
                                     <div>
-                                        <!--
                                         <img class="card-type-image" src="{{rem.image}}">
-                                        -->
                                     </div>
                                     <div class="centered">
                                         <p class="card-time">{{rem.date}}</p>
                                     </div>
                                     <div>
-                                        <!--
                                         <img class="status-type-image" src="{{rem.statusImage}}">
-                                        -->
                                     </div>
                                 </div>
                                 <div class="{{rem.severityClass}}">
@@ -642,13 +638,13 @@
                         </div>
                     </div>
                 </div>
-                <div id="urgentStatus" ng-if="urgentReminder !== undefined" class="col-12" >
-                    <div class="row alert {{urgentReminder.severity+'Severity'}}">
-                        <div class="col-2"><img src="{{urgentReminder.image}}" class="tabicon homeicon"></div>
-                        <div class="col-10 center-text white-text"><strong>{{urgentReminder.message}}</strong></div>
+                <div id="urgentStatus" ng-if="latestReminders.length > 0" class="col-12" onclick="checkReminder()">
+                    <div class="row alert {{latestReminders[0].severity+'Severity'}}">
+                        <div class="col-2"><img src="{{latestReminders[0].image}}" class="tabicon homeicon"></div>
+                        <div class="col-10 center-text white-text"><strong>{{latestReminders[0].message}}</strong></div>
                     </div>
                 </div>
-                <div id="noUrgentStatus" ng-if="urgentReminder === undefined" class="col-12" >
+                <div id="noUrgentStatus" ng-if="latestReminders.length == 0" class="col-12" >
                     <div class="row alert noneSeverity">
                         <h5 style="color:grey">
                             {{translations.all_is_fine}}
@@ -995,7 +991,6 @@
     </div>
 
     <div id="caregiver-journal-page" data-role="page">
-
         <div class="content">
             <ul class="content-scroll">
                 <li data-ng-repeat="(date,rems) in reminders">
@@ -1011,7 +1006,6 @@
                                 <hr class="line">
                             </div>
                         </div>
-
                         <div class="col s12 m7" data-ng-repeat="rem in rems">
                             <div class="row vertical-divider w3-container w3-border w3-round-xlarge">
                                 <div class="col-3">
@@ -1038,9 +1032,7 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </li>
             </ul>
         </div>
@@ -1236,54 +1228,48 @@
         app.plotStepsChart(ctx, userId);
 
         var careId = JSON.parse(window.localStorage.getItem("user")).id;
-        console.log(careId);
         getReminders(careId);
         getUrgentAlert();
-
-
     });
     $("#caregiver-status-page").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
-        console.log(userId);
         var ctx = document.getElementById("caregiver-heart-rate-chart");
         app.plotHeartRateChart(ctx, userId);
     });
     $("#caregiver-status-page-weight").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
-        console.log(userId);
-
         var ctx = document.getElementById("caregiver-weight-chart");
         app.plotWeightChart(ctx, userId);
     });
     $("#caregiver-status-page-blood-pressure").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
-        console.log(userId);
         var ctx = document.getElementById("caregiver-blood-pressure-chart");
         app.plotBloodPressureChart(ctx, userId);
     });
     $("#caregiver-status-page-steps").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
-        console.log(userId);
         var ctx = document.getElementById("caregiver-steps-chart");
         app.plotStepsChart(ctx, userId);
     });
     $("#caregiver-status-page-sleep").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
-        console.log(userId);
         var ctx = document.getElementById("caregiver-sleep-chart");
         app.plotSleepChart(ctx, userId);
     });
     $("#caregiver-journal-page").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).id;
-        console.log(userId);
         getReminders(userId);
     });
     $("#caregiver-activities-page").on("pageshow", function(e) {
+        if(!app.activityLoaded)
+        {
+            var height = document.getElementById("latestActivitySticky").offsetHeight;
+            document.getElementById("activitiesList").style.marginTop = (2 * height) + 'px';
+            app.activityLoaded = true;
+        }
         var userId = JSON.parse(window.localStorage.getItem("user")).id;
-        console.log(userId);
         getActivities(userId);
-        var height = document.getElementById("latestActivitySticky").offsetHeight;
-        document.getElementById("activitiesList").style.marginTop = (2 * height) + 'px';
+
     });
 </script>
 
