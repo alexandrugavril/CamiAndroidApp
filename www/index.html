@@ -615,13 +615,13 @@
                         <div id="healthstatusmeasleftdr" class="col-6 ">
                             <div class="row ">
                                 <div class="col-4"><img src="./img/heart.png" class="tabicon"></div>
-                                <div class="col-8 center-text"><strong>{{latestHeartRateValue}}</strong> bpm{{translations.heart_rate}}</div>
+                                <div class="col-8 center-text"><strong>{{latestHeartRateValue}}</strong> bpm</div>
                             </div>
                         </div>
                         <div id="healthstatusmeasrightdr" class="col-6 ">
                             <div class="row ">
                                 <div class="col-4"><img src="./img/icon-weight_400x400.png" class="tabicon homeicon"></div>
-                                <div class="col-8 center-text "><strong>{{latestWeightValue}}</strong> kg {{translations.weight}}</div>
+                                <div class="col-8 center-text "><strong>{{latestWeightValue}}</strong> kg </div>
                             </div>
                         </div>
                     </div>
@@ -631,25 +631,25 @@
                         <div id="healthstatusmeasleftdr2" class="col-6">
                             <div class="row " id="partborderrowleft2" >
                                 <div class="col-4"><img src="./img/steps-ok.png" class="tabicon"></div>
-                                <div class="col-8 center-text"><strong>{{latestStepsValue}}</strong> steps{{translations.steps}}</div>
+                                <div class="col-8 center-text"><strong>{{latestStepsValue}}</strong> steps</div>
                             </div>
                         </div>
                         <div id="healthstatusmeasrightdr2" class="col-6 ">
                             <div class="row " id="partborderrowright2" >
                                 <div class="col-4"><img src="./img/sleep-ok.png" class="tabicon homeicon"></div>
-                                <div class="col-8 center-text "><strong>{{latestSleepValue}}</strong> min {{translations.sleep}}</div>
+                                <div class="col-8 center-text "><strong>{{latestSleepValue}}</strong> min </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div id="urgentStatus" ng-if="urgentReminder !== undefined" class="col-12" >
-                    <div id="urgentStatusAlert" class="row alert">
-                        <div class="col-2"><img src="./img/heart-alert.png" class="tabicon homeicon"></div>
+                    <div class="row alert {{urgentReminder.severity+'Severity'}}">
+                        <div class="col-2"><img src="{{urgentReminder.image}}" class="tabicon homeicon"></div>
                         <div class="col-10 center-text white-text"><strong>{{urgentReminder.message}}</strong></div>
                     </div>
                 </div>
                 <div id="noUrgentStatus" ng-if="urgentReminder === undefined" class="col-12" >
-                    <div style="width: 100%; max-height: 40%; text-align:center;" >
+                    <div class="row alert noneSeverity">
                         <h5 style="color:grey">
                             {{translations.all_is_fine}}
                         </h5>
@@ -662,45 +662,23 @@
                     </h5>
                 </div>
 
-                <div class="row" style="width: 100%; height:100%">
-                    <ul class="content-scroll" id="remscroll">
-                        <li class="selected">Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Test</li>
-                        <li>Lasts</li>
+                <div class="row" style="width: 104%; height:100%">
+                    <ul class="content-scroll" id="remscroll" >
+                        <li class="selected" data-ng-repeat="rem in allReminders">
+                            <div class="row">
+                                <div class="col-1">
+                                </div>
+                                <div class="col-2">
+                                    <img class="card-type-image" src="{{rem.image}}"/>
+                                </div>
+                                <div class="col-3">
+                                    {{rem.dayMonth}}
+                                </div>
+                                <div class="col-6">
+                                    {{rem.description}}
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -1244,8 +1222,9 @@
     });
     $("#caregiver-page").on("pageshow", function(e){
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
-        console.log(userId);
         getUrgentAlert();
+
+
 
         var ctx = document.getElementById("caregiver-heart-rate-chart");
         app.plotHeartRateChart(ctx, userId);
@@ -1257,6 +1236,10 @@
         app.plotSleepChart(ctx, userId);
         ctx = document.getElementById("caregiver-steps-chart");
         app.plotStepsChart(ctx, userId);
+
+        var careId = JSON.parse(window.localStorage.getItem("user")).id;
+        console.log(careId);
+        getReminders(careId);
 
     });
     $("#caregiver-status-page").on("pageshow", function(e) {

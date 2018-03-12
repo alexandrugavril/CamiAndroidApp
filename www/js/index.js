@@ -299,6 +299,7 @@ function getReminders(userId)
             var dateOffset = 30*60*1000;
             d.setTime(d.getTime() - dateOffset);
             app.model.latestReminders = [];
+            app.model.allReminders = [];
 
             for (var i = 0; i < rems.length; i++) {
                 var timestamp = rems[i]['timestamp'];
@@ -306,6 +307,7 @@ function getReminders(userId)
                 var date = moment(t).format('ddd D MMM');
                 rems[i].image = getImageForReminderType(rems[i]['type']);
                 rems[i].date = moment(t).format('HH:mm');
+                rems[i].dayMonth = moment(t).format('DD/MM');
                 rems[i].severityClass = rems[i].severity + ' col-9';
                 rems[i].statusImage = getImageForReminderStatus(rems[i].acknowledged);
                 if(date in remsByDay)
@@ -320,6 +322,7 @@ function getReminders(userId)
                 {
                     app.model.latestReminders.push(rems[i]);
                 }
+                app.model.allReminders.push(rems[i]);
             }
             app.model.reminders = remsByDay;
             app.model.$apply();
@@ -341,7 +344,8 @@ function logOff()
 }
 function getUrgentAlert()
 {
-    app.model.urgentReminder = {"message":"test"};
+    if(app.model.latestReminders && app.model.latestReminders.length > 0)
+        app.model.urgentReminder = app.model.latestReminders[0];
     app.model.$apply();
 }
 function registerNotifications()
