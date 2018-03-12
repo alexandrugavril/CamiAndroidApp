@@ -440,12 +440,14 @@ function checkLogin(u, p)
                             if(profile.language in translations)
                             {
                                 app.model.translations = translations[profile.language];
+                                window.localStorage.setItem('translations', JSON.stringify(translations[profile.language]));
                                 moment.locale(profile.language);
                                 console.log("Language: " + "ro");
                             }
                             else
                             {
                                 app.model.translations = translations['ro'];
+                                window.localStorage.setItem('translations', JSON.stringify(translations['ro']));
                                 moment.locale('ro');
                                 console.log("Language: ro");
                             }
@@ -465,11 +467,13 @@ function checkLogin(u, p)
                                 if(profile.language in translations)
                                 {
                                     app.model.translations = translations[profile.language];
+                                    window.localStorage.setItem('translations', JSON.stringify(translations[profile.language]));
                                     moment.locale(profile.language);
                                     console.log("Language: " + "ro");
                                 }
                                 else {
                                     app.model.translations = translations['ro'];
+                                    window.localStorage.setItem('translations', JSON.stringify(translations['ro']));
                                     moment.locale('ro');
                                     console.log("Language: ro");
                                 }
@@ -535,6 +539,29 @@ function createElementFromHTML(htmlString) {
 
     // Change this to div.childNodes to support multiple top-level nodes
     return div.firstChild;
+}
+
+function updateTranslations()
+{
+    var translations = JSON.parse(window.localStorage.getItem('translations'));
+    if(translations)
+    {
+        app.model.translations = translations;
+        app.model.$apply();
+    }
+}
+
+function checkAlreadyLogged() {
+    if(checkIfUserAlreadyLogged())
+    {
+        var user = window.localStorage.getItem("user");
+        console.log(user);
+        user = JSON.parse(user);
+        if(user !== null && user !== undefined)
+        {
+            checkLogin(user['user'], user['password']);
+        }
+    }
 }
 
 var app = {

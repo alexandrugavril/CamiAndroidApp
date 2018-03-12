@@ -45,7 +45,7 @@
     </script>
 
 </head>
-<body ng-controller="AppController">
+<body ng-controller="AppController" onload="updateTranslations()">
 <div id="app">
     <div id="loginPage" data-role="page">
         <div class="content">
@@ -654,32 +654,31 @@
                 </div>
                 <div class="row" id="scrollrowpr">
                     <div style="width: 100%; max-height: 40%; text-align:center;" >
-                    <h5 style="color:grey">
-                        Latest Journal Entries
-                    </h5>
+                        <h5 style="color:grey">
+                            Latest Journal Entries
+                        </h5>
+                    </div>
 
+                    <div class="row" style="width: 104%; height:100%;">
+                        <ul class="content-scroll" id="remscroll" >
+                            <li class="selected" data-ng-repeat="rem in allReminders">
+                                <div class="row">
+                                    <div class="col-1">
+                                    </div>
+                                    <div class="col-2">
+                                        <img class="card-type-image" src="{{rem.image}}"/>
+                                    </div>
+                                    <div class="col-3">
+                                        {{rem.dayMonth}}
+                                    </div>
+                                    <div class="col-6">
+                                        {{rem.description}}
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div class="row" style="width: 104%; height:99%">
-                    <ul class="content-scroll" id="remscroll" >
-                        <li class="selected" data-ng-repeat="rem in allReminders">
-                            <div class="row">
-                                <div class="col-1">
-                                </div>
-                                <div class="col-2">
-                                    <img class="card-type-image" src="{{rem.image}}"/>
-                                </div>
-                                <div class="col-3">
-                                    {{rem.dayMonth}}
-                                </div>
-                                <div class="col-6">
-                                    {{rem.description}}
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             </div>
 	    </div>
         <div id="footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
@@ -1163,16 +1162,7 @@
     var login = $("#loginForm");
     login.on("submit",handleLogin);
     $('#loginPage').on("pageshow", function(e) {
-        if(checkIfUserAlreadyLogged())
-        {
-            var user = window.localStorage.getItem("user");
-            console.log(user);
-            user = JSON.parse(user);
-            if(user !== null && user !== undefined)
-            {
-                checkLogin(user['user'], user['password']);
-            }
-        }
+        checkAlreadyLogged();
     });
     $("#enduser-journal-page").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).id;
@@ -1277,3 +1267,4 @@
 
 </body>
 </html>
+                                                                                                                                                                                                                                                                                                          
