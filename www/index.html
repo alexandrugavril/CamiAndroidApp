@@ -87,49 +87,7 @@
                 {{translations.back}}
             </a>
         </div>
-        <div class="content" ng-if="latestReminders.length > 0">
-            <ul id="enduser-latest-reminders" data-indicators="true" data-role="listview" style="overflow-y:scroll; margin: 0 !important;" >
-                <li>
-                    <div class="row">
-                        <div class="col-4 left-border"></div>
-                        <div class="col-4">
-                            <img class="enduser-latest-reminder-img" src="{{latestReminders[0].image}}"/>
-                        </div>
-                        <div class="col-4 right-border"></div>
-                    </div>
-                    <div class="latest-reminder-container half-height">
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col-10 latest-reminder-content1">{{latestReminders[0].description}}</div>
-                            <div class="col-1"></div>
-                        </div>
-                        <hr/>
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col-10 latest-reminder-content2">{{latestReminders[0].message}}</div>
-                            <div class="col-1"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div id="checkReminderBtn" onclick="checkReminder()" class="btn-reminder">
-                                    <i class="fa fa-check"></i>
-                                    <br>
-                                    Check
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div id="cancelReminderBtn" onclick="cancelReminder()" class="btn-reminder">
-                                    <i class="fa fa-times"></i>
-                                    <br>
-                                    Cancel
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="content" ng-if="latestReminders.length == 0">
+        <div class="content">
             <div class="row" id="afterhealthstatusbandr2">
                 <div class="col-12" >
                     <div class="row">
@@ -188,11 +146,55 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <h1>
+            <div class="row" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
+                <div style="width: 100%; max-height: 45%; margin-top:1%; text-align:center;" >
+                    <h2 style="color:grey">
                         {{translations.no_new_reminders}}
-                    </h1>
+                    </h2>
+                </div>
+            </div>
+            <div class="row" ng-if="latestReminders.length > 0">
+                <div class="col-12">
+                    <ul id="enduser-latest-reminders" data-indicators="true" data-role="listview" style="overflow-y:scroll; margin: 0 !important;" >
+                        <li>
+                            <div class="row">
+                                <div class="col-4 left-border"></div>
+                                <div class="col-4">
+                                    <img class="enduser-latest-reminder-img" src="{{latestReminders[0].image}}"/>
+                                </div>
+                                <div class="col-4 right-border"></div>
+                            </div>
+                            <div class="latest-reminder-container half-height">
+                                <div class="row">
+                                    <div class="col-1"></div>
+                                    <div class="col-10 latest-reminder-content1">{{latestReminders[0].description}}</div>
+                                    <div class="col-1"></div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-1"></div>
+                                    <div class="col-10 latest-reminder-content2">{{latestReminders[0].message}}</div>
+                                    <div class="col-1"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div id="checkReminderBtn" onclick="checkReminder()" class="btn-reminder">
+                                            <i class="fa fa-check"></i>
+                                            <br>
+                                            Check
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div id="cancelReminderBtn" onclick="cancelReminder()" class="btn-reminder">
+                                            <i class="fa fa-times"></i>
+                                            <br>
+                                            Cancel
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
