@@ -28,21 +28,21 @@ function changeIcon(domImg,srcImage)
     img.src = srcImage;
 }
 
-function getImageForReminderType(type)
+function getImageForReminderType(type, severity)
 {
     switch(type) {
         case ('medication'):
             return 'img/pill-2-xxl.png';
         case ('appointment'):
-            return 'img/journal-menu.png';
+            return 'img/journal-menu-' + severity + '.png';
         case ('weight'):
-            return 'img/weight-warning.png';
+            return 'img/weight-' + severity + '.png';
         case ('heart'):
-            return 'img/heart-ok.png';
+            return 'img/heart-' + severity + '.png';
         case ('steps'):
-            return 'img/steps-ok.png';
+            return 'img/steps-'+ severity +'.png';
         case ('exercise'):
-            return 'img/steps-ok.png';
+            return 'img/exercise-' + severity + '.png';
         default:
             return "";
     }
@@ -305,7 +305,7 @@ function getReminders(userId)
                 var timestamp = rems[i]['timestamp'];
                 var t = new Date(timestamp*1000);
                 var date = moment(t).format('ddd D MMM');
-                rems[i].image = getImageForReminderType(rems[i]['type']);
+                rems[i].image = getImageForReminderType(rems[i]['type'], rems[i].severity);
                 rems[i].date = moment(t).format('HH:mm');
                 rems[i].dayMonth = moment(t).format('DD/MM');
                 rems[i].severityClass = rems[i].severity + ' col-9';
