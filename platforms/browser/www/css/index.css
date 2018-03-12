@@ -364,6 +364,7 @@ margin: .8em 30% .8em;
 
 .enduser-latest-reminder-img{
     border-radius: 50%;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
     display: block;
