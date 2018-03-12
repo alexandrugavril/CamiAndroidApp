@@ -600,10 +600,10 @@
             <div class="row" id="afterhealthstatusbandr">
                 <div class="col-12" >
                     <div class="row">
-                        <div style="width: 100%; max-height: 40%; text-align:center;" >
-                            <h5 style="color:grey">
+                        <div style="width: 100%; max-height: 40%; margin-top:1%; text-align:center;" >
+                            <h2 style="color:grey">
                                 {{translations.welcome}}
-                            </h5>
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -611,14 +611,14 @@
                     <div class="row">
                         <div id="healthstatusmeasleftdr" class="col-6 ">
                             <div class="row ">
-                                <div class="col-4"><img src="./img/heart.png" class="tabicon"></div>
-                                <div class="col-8 center-text"><strong>{{latestHeartRateValue}}</strong> bpm</div>
+                                <div class="col-4"><img src="./img/heart.png" class="card-type-image center-type-image"></div>
+                                <div class="col-8"><span class="card-type-image center-type-image">{{latestHeartRateValue}} bpm</span> </div>
                             </div>
                         </div>
                         <div id="healthstatusmeasrightdr" class="col-6 ">
                             <div class="row ">
-                                <div class="col-4"><img src="./img/icon-weight_400x400.png" class="tabicon homeicon"></div>
-                                <div class="col-8 center-text "><strong>{{latestWeightValue}}</strong> kg </div>
+                                <div class="col-4 "><img src="./img/icon-weight_400x400.png" class="card-type-image center-type-image"></div>
+                                <div class="col-8"><span class="card-type-image center-type-image">{{latestWeightValue}} kg</span></div>
                             </div>
                         </div>
                     </div>
@@ -627,14 +627,14 @@
                     <div class="row">
                         <div id="healthstatusmeasleftdr2" class="col-6">
                             <div class="row " id="partborderrowleft2" >
-                                <div class="col-4"><img src="./img/steps-ok.png" class="tabicon"></div>
-                                <div class="col-8 center-text"><strong>{{latestStepsValue}}</strong> steps</div>
+                                <div class="col-4"><img src="./img/steps-ok.png" class="card-type-image center-type-image"></div>
+                                <div class="col-8"><span class="card-type-image center-type-image">{{latestStepsValue}} steps</span></div>
                             </div>
                         </div>
                         <div id="healthstatusmeasrightdr2" class="col-6 ">
                             <div class="row " id="partborderrowright2" >
-                                <div class="col-4"><img src="./img/sleep-ok.png" class="tabicon homeicon"></div>
-                                <div class="col-8 center-text "><strong>{{latestSleepValue}}</strong> min </div>
+                                <div class="col-4"><img src="./img/sleep-ok.png" class="card-type-image center-type-image"></div>
+                                <div class="col-8"><span class="card-type-image center-type-image">{{latestSleepValue}} min</span></div>
                             </div>
                         </div>
                     </div>
@@ -648,7 +648,9 @@
                 <div id="noUrgentStatus" ng-if="latestReminders.length == 0" class="col-12" >
                     <div class="row alert noneSeverity">
                         <h5 style="color:grey">
-                            {{translations.all_is_fine}}
+                            <span class="card-type-image center-type-image">
+                                {{translations.all_is_fine}}
+                            </span>
                         </h5>
                     </div>
                 </div>
@@ -660,7 +662,7 @@
                     </div>
 
                     <div class="row" style="width: 104%; height:100%;">
-                        <ul class="content-scroll" id="remscroll" >
+                        <ul class="content-scroll" id="remscroll" style="background-color: lightgray" >
                             <li class="selected" data-ng-repeat="rem in allReminders">
                                 <div class="row {{rem.severity + '-borders'}}">
                                     <div class="col-1">
@@ -1272,4 +1274,4 @@
 
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                            

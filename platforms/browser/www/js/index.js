@@ -602,6 +602,7 @@ var app = {
                         datasets: [{
                             label: 'Weight',
                             data: dataValues,
+                            pointHitRadius: 15,
                             backgroundColor:
                                 'rgba(122,122, 132, 0.2)'
                             ,
@@ -610,6 +611,7 @@ var app = {
                         }]
                     },
                     options: {
+
                         maintainAspectRatio: true,
                         scales: {
                             yAxes: [{
@@ -655,6 +657,7 @@ var app = {
                         labels: labs,
                         datasets: [{
                             label: 'Heart Rate',
+                            pointHitRadius: 15,
                             data: dataValues,
                             backgroundColor:'rgba(255,99, 132, 0.2)',
                             borderColor:  'rgba(255,99,132,1)'
@@ -845,6 +848,7 @@ var app = {
                     data: {
                         labels: labs,
                         datasets: [{
+                            pointHitRadius: 15,
                             label: app.model.translations.sleep,
                             data: dataValues,
                             backgroundColor:'rgba(255,12, 255, 0.2)',
