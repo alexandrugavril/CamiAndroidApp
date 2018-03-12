@@ -103,14 +103,20 @@
                         <div class="col-6 ">
                             <div class="row ">
                                 <div class="col-4"><img src="./img/heart.png" class="card-type-image center-type-image"></div>
-                                <div class="col-8"><span class="card-type-image center-type-image">{{latestHeartRateValue}} bpm</span> </div>
+                                <div class="col-8"><span class="card-type-image center-type-image pacient-text">{{latestHeartRateValue}} bpm</span> </div>
                             </div>
                         </div>
                         <div  class="col-6 ">
                             <div class="row ">
                                 <div class="col-4 "><img src="./img/icon-weight_400x400.png" class="card-type-image center-type-image"></div>
-                                <div class="col-8"><span class="card-type-image center-type-image">{{latestWeightValue}} kg</span></div>
+                                <div class="col-8"><span class="card-type-image center-type-image pacient-text">{{latestWeightValue}} kg</span></div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" >
+                    <div class="row">
+                        <div style="width: 100%; max-height: 45%; margin-top:1%; text-align:center;" >
                         </div>
                     </div>
                 </div>
@@ -119,14 +125,20 @@
                         <div  class="col-6">
                             <div class="row ">
                                 <div class="col-4"><img src="./img/steps-ok.png" class="card-type-image center-type-image"></div>
-                                <div class="col-8"><span class="card-type-image center-type-image">{{latestStepsValue}} steps</span></div>
+                                <div class="col-8"><span class="card-type-image center-type-image pacient-text">{{latestStepsValue}} steps</span></div>
                             </div>
                         </div>
                         <div  class="col-6 ">
                             <div class="row "  >
                                 <div class="col-4"><img src="./img/sleep-ok.png" class="card-type-image center-type-image"></div>
-                                <div class="col-8"><span class="card-type-image center-type-image">{{latestSleepValue}} min</span></div>
+                                <div class="col-8"><span class="card-type-image center-type-image pacient-text">{{latestSleepValue}} min</span></div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" >
+                    <div class="row">
+                        <div style="width: 100%; max-height: 45%; margin-top:1%; text-align:center;" >
                         </div>
                     </div>
                 </div>
@@ -137,7 +149,7 @@
                         <div id="healthstatusmeasrightdr3" class="col-6 ">
                             <div class="row " id="partborderrowright3" >
                                 <div class="col-4"><img src="./img/blood-pressure-icon.png" class="card-type-image center-type-image"></div>
-                                <div class="col-8"><span class="card-type-image center-type-image">{{latestBloodPressureValue}} mmHg</span></div>
+                                <div class="col-8"><span class="card-type-image center-type-image pacient-text">{{latestBloodPressureValue}} mmHg</span></div>
                             </div>
                         </div>
                         <div class="col-3 ">
@@ -145,7 +157,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
                 <div style="width: 100%; max-height: 45%; margin-top:1%; text-align:center;" >
                     <h2 style="color:grey">
@@ -153,6 +164,7 @@
                     </h2>
                 </div>
             </div>
+            <br>
             <div class="row" ng-if="latestReminders.length > 0">
                 <div class="col-12">
                     <ul id="enduser-latest-reminders" data-indicators="true" data-role="listview" style="overflow-y:scroll; margin: 0 !important;" >

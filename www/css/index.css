@@ -59,7 +59,12 @@ h1 {
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
+
+}
+
+.pacient-text {
     font-weight: bolder;
+    font-size: large;
 }
 
 .card-type-image {
@@ -609,6 +614,7 @@ border-radius: 50%;
 #afterhealthstatusbandr2{
     margin-top: -3%;
     max-height: 45%;
+    height: 45%;
     width: 110%;
     overflow: hidden;
     background-color: #eeeeee;
