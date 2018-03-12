@@ -660,6 +660,7 @@
                     <h5 style="color:grey">
                         Latest Journal Entries
                     </h5>
+
                 </div>
 
                 <div class="row" style="width: 104%; height:100%">
@@ -681,6 +682,7 @@
                         </li>
                     </ul>
                 </div>
+            </div>
             </div>
 	    </div>
         <div id="footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
@@ -1222,10 +1224,6 @@
     });
     $("#caregiver-page").on("pageshow", function(e){
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
-        getUrgentAlert();
-
-
-
         var ctx = document.getElementById("caregiver-heart-rate-chart");
         app.plotHeartRateChart(ctx, userId);
         ctx = document.getElementById("caregiver-weight-chart");
@@ -1240,6 +1238,8 @@
         var careId = JSON.parse(window.localStorage.getItem("user")).id;
         console.log(careId);
         getReminders(careId);
+        getUrgentAlert();
+
 
     });
     $("#caregiver-status-page").on("pageshow", function(e) {

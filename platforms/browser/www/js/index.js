@@ -44,7 +44,7 @@ function getImageForReminderType(type)
         case ('exercise'):
             return 'img/steps-ok.png';
         default:
-            return ""
+            return "";
     }
 }
 
@@ -380,6 +380,29 @@ function registerNotifications()
             }
         });
     });
+
+    window.plugins.PushbotsPlugin.on("notification:received", function(data){
+        console.log("received:" + JSON.stringify(data));
+        window.plugins.PushbotsPlugin.incrementBadgeCountBy(1);
+
+        if(window.localStorage.getItem("user"))
+        {
+            var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+            var careId = JSON.parse(window.localStorage.getItem("user")).id;
+            console.log(careId);
+            getReminders(careId);
+            getUrgentAlert();
+        }
+        window.plugins.PushbotsPlugin.done(data.pb_n_id);
+    });
+
+    window.plugins.PushbotsPlugin.on("notification:clicked", function(data){
+        // var userToken = data.token;
+        // var userId = data.userId;
+        window.plugins.PushbotsPlugin.decrementBadgeCountBy(1);
+
+        console.log("clicked:" + JSON.stringify(data));
+    });
 }
 
 function handleLogin() {
@@ -406,10 +429,7 @@ function checkLogin(u, p)
                     if(users && users.length > 0)
                     {
                         app.user = users[0];
-
-
                         var profile = users[0]['enduser_profile'];
-
                         if(profile)
                         {
                             var account_role = profile['account_role'];
@@ -419,7 +439,8 @@ function checkLogin(u, p)
                                 moment.locale(profile.language);
                                 console.log("Language: " + "ro");
                             }
-                            else {
+                            else
+                            {
                                 app.model.translations = translations['ro'];
                                 moment.locale('ro');
                                 console.log("Language: ro");
@@ -427,7 +448,7 @@ function checkLogin(u, p)
                             app.model.$apply();
                             if(account_role === 'end_user')
                             {
-                                //registerNotifications();
+                                registerNotifications();
                                 window.localStorage.setItem("user", JSON.stringify({'user': u, 'password': p,
                                     'id': users[0].id, 'careId' : users[0].id}));
                                 $.mobile.navigate("#enduser-page", { transition : "slide"});
@@ -452,8 +473,7 @@ function checkLogin(u, p)
                                 var account_role = profile['account_role'];
                                 if(account_role === 'caregiver')
                                 {
-                                    //registerNotifications();
-
+                                    registerNotifications();
                                     var atomsId = profile['caretaker'].split('/');
                                     var careId = atomsId[atomsId.length - 2];
                                     console.log("My careId: " + careId);
