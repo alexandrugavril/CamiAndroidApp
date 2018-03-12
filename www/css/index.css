@@ -215,7 +215,12 @@ h1 {
 
 .card-time {
     text-align: left;
-    font-size:130%;
+    font-size:150%;
+    width: 100%;
+}
+
+.card-time-translate {
+    transform: translate(-15%, -50%);
 }
 
 .date-p {

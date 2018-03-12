@@ -581,6 +581,9 @@ var app = {
                 var pData = data.measurements.reverse();
                 var labs = [];
                 var dataValues = [];
+                var minVal = 999;
+                var maxVal = 0;
+                var padding = 2;
                 for (var i = 0; i < pData.length; i++) {
                     var t = new Date(pData[i].timestamp*1000);
                     var month = t.getMonth() + 1;
@@ -591,6 +594,14 @@ var app = {
                     var formatted = t.getDate() + "/" + month;
                     labs.push(formatted);
                     dataValues.push(pData[i].value_info.value);
+                    if(pData[i].value_info.value < minVal)
+                    {
+                        minVal = pData[i].value_info.value;
+                    }
+                    if(pData[i].value_info.value > maxVal)
+                    {
+                        maxVal = pData[i].value_info.value;
+                    }
                 }
                 var latestValue = pData[pData.length - 1].value_info.value;
                 app.model.latestWeightValue = latestValue;
@@ -617,6 +628,8 @@ var app = {
                             yAxes: [{
                                 ticks: {
                                     beginAtZero: false,
+                                    min: Math.round(minVal - padding),
+                                    max: Math.round(maxVal + padding)
                                 }
                             }]
                         }
@@ -636,6 +649,9 @@ var app = {
                 var pData = data.measurements.reverse();
                 var labs = [];
                 var dataValues = [];
+                var minVal = 999;
+                var maxVal = 0;
+                var padding = 2;
                 for (var i = 0; i < pData.length; i++) {
                     var t = new Date(pData[i].timestamp*1000);
                     var month = t.getMonth() + 1;
@@ -646,6 +662,14 @@ var app = {
                     var formatted = t.getDate() + "/" + month;
                     labs.push(formatted);
                     dataValues.push(pData[i].value_info.value);
+                    if(pData[i].value_info.value < minVal)
+                    {
+                        minVal = pData[i].value_info.value;
+                    }
+                    if(pData[i].value_info.value > maxVal)
+                    {
+                        maxVal = pData[i].value_info.value;
+                    }
                 }
                 var latestValue = pData[pData.length - 1].value_info.value;
                 app.model.latestHeartRateValue = latestValue;
@@ -669,6 +693,9 @@ var app = {
                         scales: {
                             yAxes: [{
                                 ticks: {
+                                    beginAtZero: false,
+                                    min: Math.round(minVal - padding),
+                                    max: Math.round(maxVal + padding)
                                 }
                             }]
                         }
@@ -828,6 +855,10 @@ var app = {
                 var pData = data.measurements.reverse();
                 var labs = [];
                 var dataValues = [];
+                var minVal = 999;
+                var maxVal = 0;
+                var padding = 10;
+
                 for (var i = 0; i < pData.length; i++) {
                     var t = new Date(pData[i].timestamp*1000);
                     var month = t.getMonth() + 1;
@@ -838,6 +869,14 @@ var app = {
                     var formatted = t.getDate() + "/" + month;
                     labs.push(formatted);
                     dataValues.push(pData[i].value_info.value);
+                    if(pData[i].value_info.value < minVal)
+                    {
+                        minVal = pData[i].value_info.value;
+                    }
+                    if(pData[i].value_info.value > maxVal)
+                    {
+                        maxVal = pData[i].value_info.value;
+                    }
                 }
                 var latestValue = pData[pData.length - 1].value_info.value;
                 app.model.latestSleepValue = latestValue;
@@ -849,6 +888,7 @@ var app = {
                         labels: labs,
                         datasets: [{
                             pointHitRadius: 15,
+                            scale: 10,
                             label: app.model.translations.sleep,
                             data: dataValues,
                             backgroundColor:'rgba(255,12, 255, 0.2)',
@@ -857,10 +897,20 @@ var app = {
                         }]
                     },
                     options: {
+                        layout: {
+                            padding: {
+                                left: 5,
+                                right: 5,
+                                top: 5,
+                                bottom: 5
+                            }
+                        },
                         maintainAspectRatio: true,
                         scales: {
                             yAxes: [{
                                 ticks: {
+                                    min: Math.round(minVal - padding),
+                                    max: Math.round(maxVal + padding)
                                 }
                             }]
                         }
