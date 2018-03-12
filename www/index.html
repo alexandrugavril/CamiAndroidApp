@@ -130,6 +130,64 @@
             </ul>
         </div>
         <div class="content" ng-if="latestReminders.length == 0">
+            <div class="row" id="afterhealthstatusbandr2">
+                <div class="col-12" >
+                    <div class="row">
+                        <div style="width: 100%; max-height: 45%; margin-top:1%; text-align:center;" >
+                            <h2 style="color:grey">
+                                {{translations.welcome}}
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" >
+                    <div class="row">
+                        <div class="col-6 ">
+                            <div class="row ">
+                                <div class="col-4"><img src="./img/heart.png" class="card-type-image center-type-image"></div>
+                                <div class="col-8"><span class="card-type-image center-type-image">{{latestHeartRateValue}} bpm</span> </div>
+                            </div>
+                        </div>
+                        <div  class="col-6 ">
+                            <div class="row ">
+                                <div class="col-4 "><img src="./img/icon-weight_400x400.png" class="card-type-image center-type-image"></div>
+                                <div class="col-8"><span class="card-type-image center-type-image">{{latestWeightValue}} kg</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  class="col-12" >
+                    <div class="row">
+                        <div  class="col-6">
+                            <div class="row ">
+                                <div class="col-4"><img src="./img/steps-ok.png" class="card-type-image center-type-image"></div>
+                                <div class="col-8"><span class="card-type-image center-type-image">{{latestStepsValue}} steps</span></div>
+                            </div>
+                        </div>
+                        <div  class="col-6 ">
+                            <div class="row "  >
+                                <div class="col-4"><img src="./img/sleep-ok.png" class="card-type-image center-type-image"></div>
+                                <div class="col-8"><span class="card-type-image center-type-image">{{latestSleepValue}} min</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" >
+                    <div class="row">
+                        <div class="col-3 ">
+                        </div>
+                        <div id="healthstatusmeasrightdr3" class="col-6 ">
+                            <div class="row " id="partborderrowright3" >
+                                <div class="col-4"><img src="./img/blood-pressure-icon.png" class="card-type-image center-type-image"></div>
+                                <div class="col-8"><span class="card-type-image center-type-image">{{latestBloodPressureValue}} mmHg</span></div>
+                            </div>
+                        </div>
+                        <div class="col-3 ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-12">
                     <h1>
@@ -628,7 +686,7 @@
                         <div id="healthstatusmeasleftdr2" class="col-6">
                             <div class="row " id="partborderrowleft2" >
                                 <div class="col-4"><img src="./img/steps-ok.png" class="card-type-image center-type-image"></div>
-                                <div class="col-8"><span class="card-type-image center-type-image">{{latestStepsValue}} steps</span></div>
+                                <div class="col-8"><span class="card-type-image center-type-image">{{latestStepsValue}} {{translations.steps.toLowerCase()}}</span></div>
                             </div>
                         </div>
                         <div id="healthstatusmeasrightdr2" class="col-6 ">
@@ -639,6 +697,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12" >
+                    <div class="row">
+                        <div class="col-3 ">
+                        </div>
+                        <div id="healthstatusmeasrightdr4" class="col-6 ">
+                            <div class="row " id="partborderrowright4" >
+                                <div class="col-4"><img src="./img/blood-pressure-icon.png" class="card-type-image center-type-image"></div>
+                                <div class="col-8"><span class="card-type-image center-type-image">{{latestBloodPressureValue}} mmHg</span></div>
+                            </div>
+                        </div>
+                        <div class="col-3 ">
+                        </div>
+                    </div>
+                </div>
+
                 <div id="urgentStatus" ng-if="latestReminders.length > 0" class="col-12" onclick="checkReminder()">
                     <div class="row alert {{latestReminders[0].severity+'Severity'}}">
                         <div class="col-2"><img src="{{latestReminders[0].image}}" class="tabicon homeicon"></div>
@@ -1182,6 +1255,19 @@
         var userId = JSON.parse(window.localStorage.getItem("user")).id;
         console.log(userId);
         getReminders(userId);
+
+        userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        var ctx = document.getElementById("enduser-heart-rate-chart");
+        app.plotHeartRateChart(ctx, userId);
+        ctx = document.getElementById("enduser-weight-chart");
+        app.plotWeightChart(ctx, userId);
+        ctx = document.getElementById("enduser-blood-pressure-chart");
+        app.plotBloodPressureChart(ctx, userId);
+        ctx = document.getElementById("enduser-steps-chart");
+        app.plotStepsChart(ctx, userId);
+        ctx = document.getElementById("enduser-sleep-chart");
+        app.plotSleepChart(ctx, userId);
+
     });
     $("#enduser-status-page").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
