@@ -339,7 +339,11 @@ function logOff()
     location.reload();
     $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
 }
-
+function getUrgentAlert()
+{
+    app.model.urgentReminder = {"message":"test"};
+    app.model.$apply();
+}
 function registerNotifications()
 {
     window.plugins.PushbotsPlugin.initialize("5a84222e1db2dc56731e6e63", {"android":{"sender_id":"716888555189"}});
