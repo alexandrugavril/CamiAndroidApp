@@ -708,7 +708,6 @@ text-align: center;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    display:none;
 }
 .card-type-image {
     width: 20%;
@@ -717,7 +716,5 @@ text-align: center;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    display:none;
 }
-
 }
