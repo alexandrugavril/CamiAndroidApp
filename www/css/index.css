@@ -700,3 +700,24 @@ text-align: center;
     max-height: 72%;
   width:100%;
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+.status-type-image{
+    width: 20%;
+    position: absolute;
+    bottom: 5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display:none;
+}
+.card-type-image {
+    width: 20%;
+    position: absolute;
+    top: 5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display:none;
+}
+
+}
