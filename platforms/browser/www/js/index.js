@@ -292,6 +292,7 @@ function getReminders(userId)
         type: 'GET',
         success: function (data) {
             var rems = data.objects;
+            console.log(rems);
             var cnt = 0;
             var nCnt = 0;
             var remsByDay = {};
@@ -352,7 +353,7 @@ function registerNotifications()
 {
     if(window.plugins && window.plugins.PushbotsPlugin)
     {
-        window.plugins.PushbotsPlugin.initialize("5a84222e1db2dc56731e6e63", {"android":{"sender_id":"716888555189"}});
+        window.plugins.PushbotsPlugin.initialize("5ab360061db2dc58e27048a0", {"android":{"sender_id":"716888555189"}});
         window.plugins.PushbotsPlugin.on("registered", function(token){
 
         });
