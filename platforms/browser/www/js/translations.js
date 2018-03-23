@@ -21,6 +21,7 @@ var translations ={
         steps: "Pași",
         sleep: "Somn",
         welcome: "Bine ați venit",
+        latest_journal_entries: "Ultimele Evenimente"
     },
     en : {
         no_new_reminders: "No new reminders!",
@@ -44,8 +45,10 @@ var translations ={
         steps: "Steps",
         sleep: "Sleep",
         welcome: "Welcome",
+        latest_journal_entries: "Latest Journal Entries"
+
     },
-    da : {
+    dk : {
         no_new_reminders: "Ingen nye påmindelser",
         heart_rate: "Puls",
         weight: "Vægt",
@@ -67,6 +70,7 @@ var translations ={
         steps: "Skridt",
         sleep: "Søvn",
         welcome: "Velkommen",
+        latest_journal_entries: "Seneste journalindlæg"
     }
 
 };
