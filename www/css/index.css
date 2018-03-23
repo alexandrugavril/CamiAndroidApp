@@ -53,6 +53,14 @@ h1 {
     color: #68a693
 }
 
+.button-type-image{
+    margin-left:20%!important;
+    margin-top: 0!important;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+}
+
 .center-type-image{
     position:relative;
     top:50%!important;
@@ -411,6 +419,28 @@ margin: .8em 30% .8em;
     text-align:center;
     color: white;
 }
+
+#urgentStatus {
+    margin:0;
+    border:0;
+    padding:0;
+    max-width:100%;
+    min-width:100%;
+    display: flex;
+    align-items: center;
+}
+
+.urgent-reminder-button{
+    margin:0;
+    border:0;
+    padding:0;
+    max-width:100%;
+    min-width:100%;
+
+    display: flex;
+    align-items: center;
+}
+
 .latest-reminder-button {
     height: 100px;
     width: 100px;
