@@ -1366,7 +1366,7 @@
             document.getElementById("activitiesList").style.marginTop = (2 * height) + 'px';
             app.activityLoaded = true;
         }
-        var userId = JSON.parse(window.localStorage.getItem("user")).id;
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
         getActivities(userId);
 
     });

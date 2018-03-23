@@ -146,8 +146,8 @@ function getActivities(userId)
 {
     var d = new Date();
     var dateOffset = 30*60*1000;
-    var url = "http://cami.vitaminsoftware.com:8008/api/v1/activity/?order_by=-start";
-
+    var url = "http://cami.vitaminsoftware.com:8008/api/v1/activity/?order_by=-start&user=" + userId;
+    console.log("UserID:" + userId);
     $.ajax({
         url: url,
         dataType: "json",
@@ -163,8 +163,8 @@ function getActivities(userId)
             for(var actIdx in initActivities)
             {
                 var activity = data.activities[actIdx];
-                activity.end = parseInt(activity.end * 1000);
-                var activityDate = new Date(activity.end );
+                activity.start = parseInt(activity.start * 1000);
+                var activityDate = new Date(activity.start );
                 var cdiff = currentDate - activityDate;
                 console.log(cdiff);
                 if(cdiff < 0)
@@ -178,7 +178,7 @@ function getActivities(userId)
                 }
             }
             console.log(nextActivity + " " + cdiff);
-            var activityDate = new Date(nextActivity.end);
+            var activityDate = new Date(nextActivity.start);
 
             app.model.nextActivity = {
                 severityClass: "high" + ' col-9',
@@ -188,7 +188,7 @@ function getActivities(userId)
                 hourFormatted: moment(activityDate).format('HH:mm'),
                 currentDate: "Today " + moment(new Date()).format("DD MMM"),
                 urgencyType: urgencyTypes.next,
-                date: new Date(nextActivity.end),
+                date: new Date(nextActivity.start),
                 message: nextActivity.description,
                 description: nextActivity.title,
                 location: nextActivity.location
@@ -198,9 +198,9 @@ function getActivities(userId)
             for(var actIdx in initActivities)
             {
                 var activity = data.activities[actIdx];
-                var activityDate = new Date(activity.end);
+                var activityDate = new Date(activity.start);
                 console.log(activityDate);
-                console.log(getActivityType(activity.end));
+                console.log(getActivityType(activity.start));
                 var activityModel = {
                     severityClass: "medium" + ' col-9',
                     dayWeek: moment(activityDate).format('ddd'),
@@ -208,8 +208,8 @@ function getActivities(userId)
                     month: moment(activityDate).format('MMM').toUpperCase(),
                     hourFormatted: moment(activityDate).format('HH:mm'),
                     currentDate: "Today " + moment(new Date()).format("DD MMM"),
-                    urgencyType: getActivityType(activity.end),
-                    date: new Date(activity.end),
+                    urgencyType: getActivityType(activity.start),
+                    date: new Date(activity.start),
                     message: activity.description,
                     description: activity.title,
                     location: activity.location
@@ -217,6 +217,7 @@ function getActivities(userId)
                 app.model.activities.push(activityModel);
 
             }
+            app.model.activities.reverse();
             app.model.$apply();
 
 
