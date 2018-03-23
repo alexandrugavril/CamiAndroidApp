@@ -50,7 +50,7 @@ function getImageForReminderType(type, severity)
 
 function getImageForReminderStatus(status)
 {
-    if(status !== undefined)
+    if(status !== null && status !== undefined)
     {
         if(status)
         {
@@ -61,7 +61,7 @@ function getImageForReminderStatus(status)
         }
     }
     else{
-        return "img/null_acknowledged.png";
+        return "img/unknown.png";
     }
 }
 
