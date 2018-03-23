@@ -613,7 +613,7 @@ var app = {
                     data: {
                         labels: labs,
                         datasets: [{
-                            label: 'Weight',
+                            label: app.model.translations.weight + " (kg)",
                             data: dataValues,
                             pointHitRadius: 15,
                             backgroundColor:
@@ -682,7 +682,7 @@ var app = {
                     data: {
                         labels: labs,
                         datasets: [{
-                            label: 'Heart Rate',
+                            label: app.model.translations.heart_rate + " (bpm)",
                             pointHitRadius: 15,
                             data: dataValues,
                             backgroundColor:'rgba(255,99, 132, 0.2)',
@@ -748,14 +748,14 @@ var app = {
                 var lineChartData = {
                     labels: labs,
                     datasets: [{
-                        label: "Diastolic",
+                        label: app.model.translations.diastolic,
                         backgroundColor: backgroundColorD,
                         borderColor: borderColorD,
                         fill: false,
                         data: diastolicValues,
                         yAxisID: "y-axis-1",
                     }, {
-                        label: "Systolic",
+                        label: app.model.translations.systolic + " (mmHg)",
                         backgroundColor: backgroundColorS,
                         borderColor: borderColorS,
                         fill: false,
@@ -891,7 +891,7 @@ var app = {
                         datasets: [{
                             pointHitRadius: 15,
                             scale: 10,
-                            label: app.model.translations.sleep,
+                            label: app.model.translations.sleep + " (min)",
                             data: dataValues,
                             backgroundColor:'rgba(255,12, 255, 0.2)',
                             borderColor:  'rgba(255,99,132,1)'

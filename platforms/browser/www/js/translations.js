@@ -27,7 +27,7 @@ var translations ={
         heart_rate: "Heart Rate",
         weight: "Weight",
         blood_pressure: "Blood Pressure",
-        diastolic: "Diastolica",
+        diastolic: "Diastolic",
         systolic: "Systolic",
         latest_value: "Latest Value:",
         next: "Next",
