@@ -796,28 +796,64 @@ var app = {
 
     },
     plotStepsChart : function(ctx, userId) {
-        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=steps&limit=7&" +
-            "order_by=-timestamp&user=" + userId;
+        var dataDict = {};
+        for( var i = 6 ; i >= 0; i--)
+        {
+            var t = new Date(Date.now());
+            t.setDate(t.getDate() - i);
+            var month = t.getMonth() + 1;
+            if(month < 10)
+            {
+                month = "0" + month;
+            }
+            var formatted = t.getDate() + "/" + month;
+            dataDict[formatted] = 0;
+        }
+        var timestamp = new Date(Date.now());
+        timestamp.setDate(timestamp.getDate() - 6);
+        timestamp = Math.round(timestamp.getTime() / 1000);
+
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=steps" +
+            "&order_by=-timestamp&value_info__start_timestamp__gte=" + timestamp + "&limit=1000&user=" + userId;
+
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=steps" +
+            "&order_by=-timestamp&value_info__start_timestamp__gte=" + timestamp + "&limit=1000&user=" + userId;
+        console.log(url);
         $.ajax({
             url: url,
             dataType: "json",
             type: 'GET',
             success: function (data) {
                 var pData = data.measurements.reverse();
-                var labs = [];
-                var dataValues = [];
-                for (var i = 0; i < pData.length; i++) {
-                    var t = new Date(pData[i].timestamp*1000);
-                    var month = t.getMonth() + 1;
+                console.log(pData);
+                for (var i = 0 ; i < pData.length; i++)
+                {
+                    var date = new Date(pData[i].timestamp*1000);
+                    var month = date.getMonth() + 1;
                     if(month < 10)
                     {
                         month = "0" + month;
                     }
-                    var formatted = t.getDate() + "/" + month;
-                    labs.push(formatted);
-                    dataValues.push(pData[i].value_info.value);
+                    var formatted = date.getDate() + "/" + month;
+
+                    if(formatted in dataDict)
+                    {
+                        dataDict[formatted] += pData[i].value_info.value;
+                    }
                 }
-                var latestValue = pData[pData.length - 1].value_info.value;
+                console.log(dataDict);
+
+
+                var labs = [];
+                var dataValues = [];
+                var latestValue = 0;
+
+                for(var key in dataDict){
+                    labs.push(key);
+                    dataValues.push(dataDict[key]);
+                    latestValue = dataDict[key];
+                }
+
                 app.model.latestStepsValue = latestValue;
                 app.model.$apply();
 
