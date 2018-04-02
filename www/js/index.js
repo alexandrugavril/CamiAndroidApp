@@ -340,9 +340,17 @@ function getReminders(userId)
 
 function logOff()
 {
+    var user = window.localStorage.getItem("user");
     window.localStorage.removeItem("user");
     location.reload();
-    $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
+    $.mobile.navigate("#login-page", { transition : "slide"});
+    console.log(user);
+    user = JSON.parse(user);
+    if(user !== null && user !== undefined) {
+        var form = $("#loginForm");
+        $("#username", form).val(user['user']);
+        $("#password", form).val(user['password']);
+    }
 }
 function getUrgentAlert()
 {
@@ -561,6 +569,9 @@ function checkAlreadyLogged() {
         user = JSON.parse(user);
         if(user !== null && user !== undefined)
         {
+            var form = $("#loginForm");
+            $("#username", form).val(user['user']);
+            $("#password", form).val(user['password']);
             checkLogin(user['user'], user['password']);
         }
     }
