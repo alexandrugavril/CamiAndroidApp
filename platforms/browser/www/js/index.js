@@ -496,6 +496,8 @@ function checkLogin(u, p)
                                 registerNotifications();
                                 window.localStorage.setItem("user", JSON.stringify({'user': u, 'password': p,
                                     'id': users[0].id, 'careId' : users[0].id}));
+                                window.localStorage.setItem("lastLoggedUser", JSON.stringify({'user': u, 'password': p,
+                                    'id': users[0].id, 'careId' : users[0].id}));
                                 $.mobile.navigate("#enduser-page", { transition : "slide"});
                             }
                         }
@@ -525,6 +527,8 @@ function checkLogin(u, p)
                                     var careId = atomsId[atomsId.length - 2];
                                     console.log("My careId: " + careId);
                                     window.localStorage.setItem("user",  JSON.stringify({'user': u, 'password': p,
+                                        'id': users[0].id, 'careId' : careId}));
+                                    window.localStorage.setItem("lastLoggedUser", JSON.stringify({'user': u, 'password': p,
                                         'id': users[0].id, 'careId' : careId}));
                                     $.mobile.navigate("#caregiver-page", { transition : "slide"});
                                 }
@@ -598,11 +602,20 @@ function checkAlreadyLogged() {
         user = JSON.parse(user);
         if(user !== null && user !== undefined)
         {
-            var form = $("#loginForm");
-            $("#username", form).val(user['user']);
-            $("#password", form).val(user['password']);
             checkLogin(user['user'], user['password']);
         }
+    }
+    else {
+        var lastLoggedUser = window.localStorage.getItem("lastLoggedUser");
+        if(lastLoggedUser !== undefined)
+        {
+            console.log(lastLoggedUser);
+            lastLoggedUser = JSON.parse(lastLoggedUser);
+            var form = $("#loginForm");
+            $("#username", form).val(lastLoggedUser['user']);
+            $("#password", form).val(lastLoggedUser['password']);
+        }
+
     }
 }
 
