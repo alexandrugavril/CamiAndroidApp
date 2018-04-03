@@ -24,6 +24,7 @@ var translations ={
         latest_journal_entries: "Ultimele Evenimente"
     },
     en : {
+        check: "Acknowledge",
         no_new_reminders: "No new reminders!",
         heart_rate: "Heart Rate",
         weight: "Weight",

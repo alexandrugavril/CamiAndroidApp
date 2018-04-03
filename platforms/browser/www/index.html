@@ -11,7 +11,7 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="css/materialize.min.css">
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="res/fontawesome-free-5.0.9/fontawesome-free-5.0.9/web-fonts-with-css/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/fullcalendar.print.css"/>
     <link rel="stylesheet" href="css/fullcalendar.min.cs.css"/>
     <link rel="stylesheet" href="css/flickity.css" media="screen">
@@ -85,9 +85,7 @@
 
     <div id="enduser-page" data-role="page">
         <div id="enduser-journal-header-page" class="ui-header header">
-            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >
-                {{translations.back}}
-            </a>
+            <br/>
         </div>
         <div class="content" ng-if="latestReminders.length > 0">
             <ul  id="enduser-latest-reminders" data-indicators="true" data-role="listview" style="overflow-y:scroll;overflow-x:hidden; margin: 0 !important;" >
@@ -236,10 +234,8 @@
     </div><!-- /page  -->
 
     <div id="enduser-journal-page" data-role="page">
-        <div id="enduser-journal-header" class="ui-header header">
-            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >
-                {{translations.back}}
-            </a>
+        <div id="enduser-journal-header-page" class="ui-header header">
+            <br/>
         </div>
         <div class="content">
             <ul class="content-scroll">
@@ -280,6 +276,9 @@
                                         <p class="card-time">{{rem.message}}</p>
                                     </div>
                                     <br>
+                                    <button class="header" style="float:right; margin-bottom:1%;" ng-if="rem.isToday;" id="{{rem.id}}" onclick="blabla(this.id)">
+                                        <i class="fa fa-eye white-text" style="font-size:80%;width:100%;text-align:center"> {{rem.check}}</i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1241,9 +1240,6 @@
     </div>
 
     <div id="caregiver-about-page" data-role="page">
-        <div class="ui-header header">
-            <a href="#loginPage" class="backButton" onclick="logOff()" data-role="button" data-icon="arrow-l" data-inline="true" >Back</a>
-        </div>
         <div data-role="content"  class="big-text">
             <h2>Privacy Policy</h2>
             <p>...</p>

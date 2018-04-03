@@ -464,6 +464,8 @@ margin: .8em 30% .8em;
 .backButton {
     color: white;
 }
+
+
 .header {
     background-color: #2c3e50;
 }
@@ -633,7 +635,7 @@ border-radius: 50%;
 }
 .none-borders{
     border: solid;
-    border-color: lightgray;
+    border-color: gray;
 }
 
 #afterhealthstatusbandr{

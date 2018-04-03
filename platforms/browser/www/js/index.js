@@ -17,6 +17,28 @@
  * under the License.
  */
 
+function blabla(id)
+{
+    console.log("Check:" + id);
+    var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + id + "/";
+    $.ajax({
+        url : url,
+        data : JSON.stringify({'acknowledged': true}),
+        type : 'PATCH',
+        contentType : 'application/json',
+        success: function () {
+            console.log("Checked");
+            location.reload();
+
+        },
+        error: function () {
+            alert("Reminder was not acknowledged.");
+            location.reload();
+
+        }
+    });
+}
+
 function changeIcon(domImg,srcImage)
 {
     var img = new Image();
@@ -64,6 +86,7 @@ function getImageForReminderStatus(status)
         return "img/unknown.png";
     }
 }
+
 
 
 function checkReminder()
@@ -307,11 +330,17 @@ function getReminders(userId)
                 var timestamp = rems[i]['timestamp'];
                 var t = new Date(timestamp*1000);
                 var date = moment(t).format('ddd D MMM');
+                var today = moment(Date.now()).format('ddd D MMM');
                 rems[i].image = getImageForReminderType(rems[i]['type'], rems[i].severity);
                 rems[i].date = moment(t).format('HH:mm');
                 rems[i].dayMonth = moment(t).format('DD/MM');
                 rems[i].severityClass = rems[i].severity + ' col-9';
                 rems[i].statusImage = getImageForReminderStatus(rems[i].acknowledged);
+                rems[i].check = app.model.translations.check;
+
+                var isNotAck = !(rems[i].acknowledged === true || rems[i].acknowledged === false);
+                rems[i].isToday = today === date && isNotAck;
+                console.log(rems[i].check);
                 if(date in remsByDay)
                 {
                     remsByDay[date].push(rems[i]);
@@ -340,9 +369,17 @@ function getReminders(userId)
 
 function logOff()
 {
+    var user = window.localStorage.getItem("user");
     window.localStorage.removeItem("user");
     location.reload();
-    $.mobile.navigate("#login-page", { transition : "slide", info: "Login Failed"});
+    $.mobile.navigate("#login-page", { transition : "slide"});
+    console.log(user);
+    user = JSON.parse(user);
+    if(user !== null && user !== undefined) {
+        var form = $("#loginForm");
+        $("#username", form).val(user['user']);
+        $("#password", form).val(user['password']);
+    }
 }
 function getUrgentAlert()
 {
@@ -561,6 +598,9 @@ function checkAlreadyLogged() {
         user = JSON.parse(user);
         if(user !== null && user !== undefined)
         {
+            var form = $("#loginForm");
+            $("#username", form).val(user['user']);
+            $("#password", form).val(user['password']);
             checkLogin(user['user'], user['password']);
         }
     }

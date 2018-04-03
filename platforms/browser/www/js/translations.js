@@ -24,6 +24,7 @@ var translations ={
         latest_journal_entries: "Ultimele Evenimente"
     },
     en : {
+        check: "Acknowledge",
         no_new_reminders: "No new reminders!",
         heart_rate: "Heart Rate",
         weight: "Weight",
@@ -71,6 +72,30 @@ var translations ={
         sleep: "Søvn",
         welcome: "Velkommen",
         latest_journal_entries: "Seneste journalindlæg"
+    },
+    pl: {
+        no_new_reminders: "Nie masz nowych powiadomień!",
+        heart_rate: "Tętno",
+        weight: "Waga",
+        blood_pressure: "Ciśnienie",
+        diastolic: "Rozkurczowe",
+        systolic: "Skurczowe",
+        latest_value: "Ostatni pomiar:",
+        next: "Dalej",
+        home: "Strona Główna",
+        status: "Status",
+        journal: "Dziennik",
+        activities: "Aktywności",
+        logout: "Wyloguj",
+        username: "Nazwa użytkownika",
+        password: "Hasło",
+        login: "Zaloguj",
+        back: "Wróć",
+        all_is_fine: "Wszystko jest w porządku",
+        steps: "Kroki",
+        sleep: "Sen",
+        welcome: "Witaj",
+        latest_journal_entries: "Najnowsze wpisy do dziennika"
     }
 
 };
