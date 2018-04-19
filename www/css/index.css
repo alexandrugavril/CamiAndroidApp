@@ -70,9 +70,21 @@ h1 {
 
 }
 
+
+
+.pacient-icon {
+    width: 1.5em!important;
+    border-radius: 50%;
+    font-size: x-large!important;
+    color: whitesmoke;
+    line-height: 1.5em!important;
+    text-align: center;
+    background-color: #2C3E50!important;
+}
+
 .pacient-text {
-    font-weight: bolder;
-    font-size: large;
+    font-weight: bolder!important;
+    font-size: large!important;
 }
 
 .card-type-image {
