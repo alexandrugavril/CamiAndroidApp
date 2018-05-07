@@ -17,9 +17,8 @@
  * under the License.
  */
 
-function blabla(id)
+function acknowledgeReminder(id)
 {
-    console.log("Check:" + id);
     var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + id + "/";
     $.ajax({
         url : url,
@@ -27,9 +26,7 @@ function blabla(id)
         type : 'PATCH',
         contentType : 'application/json',
         success: function () {
-            console.log("Checked");
             location.reload();
-
         },
         error: function () {
             alert("Reminder was not acknowledged.");
@@ -91,7 +88,6 @@ function getImageForReminderStatus(status)
 
 function checkReminder()
 {
-    console.log("Check: " + app.model.latestReminders[0]);
     var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + app.model.latestReminders[0].id + "/";
     $.ajax({
         url : url,
@@ -99,7 +95,6 @@ function checkReminder()
         type : 'PATCH',
         contentType : 'application/json',
         success: function () {
-            console.log("Checked");
             location.reload();
 
         },
@@ -120,7 +115,6 @@ function checkIfUserAlreadyLogged()
 
 function cancelReminder()
 {
-    console.log("Cancel: " + app.model.latestReminders[0]);
     var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + app.model.latestReminders[0].id + "/";
     $.ajax({
         url : url,
@@ -128,7 +122,6 @@ function cancelReminder()
         type : 'PATCH',
         contentType : 'application/json',
         success: function () {
-            console.log("Canceled");
             location.reload();
 
         },
@@ -170,14 +163,12 @@ function getActivities(userId)
     var d = new Date();
     var dateOffset = 30*60*1000;
     var url = "http://cami.vitaminsoftware.com:8008/api/v1/activity/?order_by=-start&user=" + userId;
-    console.log("UserID:" + userId);
     $.ajax({
         url: url,
         dataType: "json",
         type: 'GET',
         success: function (data) {
             var initActivities = data.activities;
-            console.log(initActivities);
             var activities = [];
             var currentDate = new Date();
             var diff = -99999999999;
@@ -189,18 +180,15 @@ function getActivities(userId)
                 activity.start = parseInt(activity.start * 1000);
                 var activityDate = new Date(activity.start );
                 var cdiff = currentDate - activityDate;
-                console.log(cdiff);
                 if(cdiff < 0)
                 {
                     if(cdiff > diff)
                     {
-                        console.log(cdiff);
                         nextActivity = activity;
                         diff = cdiff;
                     }
                 }
             }
-            console.log(nextActivity + " " + cdiff);
             var activityDate = new Date(nextActivity.start);
 
             app.model.nextActivity = {
@@ -222,8 +210,6 @@ function getActivities(userId)
             {
                 var activity = data.activities[actIdx];
                 var activityDate = new Date(activity.start);
-                console.log(activityDate);
-                console.log(getActivityType(activity.start));
                 var activityModel = {
                     severityClass: "medium" + ' col-9',
                     dayWeek: moment(activityDate).format('ddd'),
@@ -251,60 +237,6 @@ function getActivities(userId)
         }
 
     });
-
-
-    /*
-    app.model.nextActivity = {
-        severityClass: "high" + ' col-9',
-        dayWeek: moment(d).format('ddd'),
-        day: moment(d).format('DD'),
-        month: moment(d).format('MMM').toUpperCase(),
-        hourFormatted: moment(d).format('HH:mm'),
-        currentDate: "Today " + moment(new Date()).format("DD MMM"),
-        urgencyType: "next-type",
-        date: d,
-        message: "Sticky",
-        description: "Sticky descr",
-        location: "Awesome location"
-    };
-
-    app.model.activities = [];
-
-    for(var i = 0 ; i < 10; i++)
-    {
-        var groupDateFormatted = moment(d).format('ddd D MMM');
-        var hourFormatted = moment(d).format('HH:mm');
-        var urgencyType = "old-type";
-        var severity = "high";
-
-        if(i % 3 === 0)
-        {
-            urgencyType = "old-type";
-            severity = "low";
-            d.setDate(d.getDate() - getRandomNumber(1,30*60*1000*7));
-        }
-        if(i % 4 === 0)
-        {
-            severity = "none";
-            urgencyType = "future-type";
-        }
-
-        var activity = {
-            severityClass: severity + ' col-9',
-            dayWeek: moment(d).format('ddd'),
-            day: moment(d).format('DD'),
-            month: moment(d).format('MMM'),
-            hourFormatted: hourFormatted,
-            urgencyType: urgencyType,
-            date: d,
-            message: "Try this for a change",
-            description: "Awesome description",
-            location: "Awesome location"
-        };
-        app.model.activities.push(activity);
-    }
-    app.model.$apply();
-    */
 }
 
 
@@ -316,7 +248,6 @@ function getReminders(userId)
         type: 'GET',
         success: function (data) {
             var rems = data.objects;
-            console.log(rems);
             var cnt = 0;
             var nCnt = 0;
             var remsByDay = {};
@@ -340,7 +271,6 @@ function getReminders(userId)
 
                 var isNotAck = !(rems[i].acknowledged === true || rems[i].acknowledged === false);
                 rems[i].isToday = today === date && isNotAck;
-                console.log(rems[i].check);
                 if(date in remsByDay)
                 {
                     remsByDay[date].push(rems[i]);
@@ -373,7 +303,6 @@ function logOff()
     window.localStorage.removeItem("user");
     location.reload();
     $.mobile.navigate("#login-page", { transition : "slide"});
-    console.log(user);
     user = JSON.parse(user);
     if(user !== null && user !== undefined) {
         var form = $("#loginForm");
@@ -423,14 +352,12 @@ function registerNotifications()
         });
 
         window.plugins.PushbotsPlugin.on("notification:received", function(data){
-            console.log("received:" + JSON.stringify(data));
             window.plugins.PushbotsPlugin.incrementBadgeCountBy(1);
 
             if(window.localStorage.getItem("user"))
             {
                 var userId = JSON.parse(window.localStorage.getItem("user")).careId;
                 var careId = JSON.parse(window.localStorage.getItem("user")).id;
-                console.log(careId);
                 getReminders(careId);
                 getUrgentAlert();
             }
@@ -441,8 +368,6 @@ function registerNotifications()
             // var userToken = data.token;
             // var userId = data.userId;
             window.plugins.PushbotsPlugin.decrementBadgeCountBy(1);
-
-            console.log("clicked:" + JSON.stringify(data));
         });
     }
 
@@ -481,14 +406,12 @@ function checkLogin(u, p)
                                 app.model.translations = translations[profile.language];
                                 window.localStorage.setItem('translations', JSON.stringify(translations[profile.language]));
                                 moment.locale(profile.language);
-                                console.log("Language: " + "ro");
                             }
                             else
                             {
                                 app.model.translations = translations['ro'];
                                 window.localStorage.setItem('translations', JSON.stringify(translations['ro']));
                                 moment.locale('ro');
-                                console.log("Language: ro");
                             }
                             app.model.$apply();
                             if(account_role === 'end_user')
@@ -510,13 +433,11 @@ function checkLogin(u, p)
                                     app.model.translations = translations[profile.language];
                                     window.localStorage.setItem('translations', JSON.stringify(translations[profile.language]));
                                     moment.locale(profile.language);
-                                    console.log("Language: " + "ro");
                                 }
                                 else {
                                     app.model.translations = translations['ro'];
                                     window.localStorage.setItem('translations', JSON.stringify(translations['ro']));
                                     moment.locale('ro');
-                                    console.log("Language: ro");
                                 }
                                 app.model.$apply();
                                 var account_role = profile['account_role'];
@@ -525,7 +446,6 @@ function checkLogin(u, p)
                                     registerNotifications();
                                     var atomsId = profile['caretaker'].split('/');
                                     var careId = atomsId[atomsId.length - 2];
-                                    console.log("My careId: " + careId);
                                     window.localStorage.setItem("user",  JSON.stringify({'user': u, 'password': p,
                                         'id': users[0].id, 'careId' : careId}));
                                     window.localStorage.setItem("lastLoggedUser", JSON.stringify({'user': u, 'password': p,
@@ -598,7 +518,6 @@ function checkAlreadyLogged() {
     if(checkIfUserAlreadyLogged())
     {
         var user = window.localStorage.getItem("user");
-        console.log(user);
         user = JSON.parse(user);
         if(user !== null && user !== undefined)
         {
@@ -609,7 +528,6 @@ function checkAlreadyLogged() {
         var lastLoggedUser = window.localStorage.getItem("lastLoggedUser");
         if(lastLoggedUser !== undefined)
         {
-            console.log(lastLoggedUser);
             lastLoggedUser = JSON.parse(lastLoggedUser);
             var form = $("#loginForm");
             $("#username", form).val(lastLoggedUser['user']);
@@ -624,7 +542,104 @@ var app = {
     user: {},
     reminders: [],
     currentReminder: -1,
+    severities: {
+        mediumHigh: "mediumHighSeverity",
+        high: "highSeverity",
+        medium: "mediumSeverity",
+        low: "lowSeverity",
+        none: "noneSeverity"
+    },
+    userProfile: {
+        height: 187,
+        bmi: {
+            low: 18.5,
+            medium: 25,
+            high: 30
+        },
+        systolicBP: {
+            min: 95,
+            max: 130
+        },
+        diastolicBP: {
+            min:55,
+            max: 90
+        },
+        heartRate: {
+            min: 60,
+            max: 100
+        },
+        steps: {
+            min: 5500,
+            max: 10000
+        },
+        sleep: {
+            min: 420,
+            max: 540
+        }
+    },
+    getWeightSeverity: function(value) {
+        var height = this.userProfile.height;
 
+        var BMI = Math.round(value / Math.pow(height, 2) * 10000);
+        var output = Math.round(BMI * 100) / 100;
+        if (output < this.userProfile.bmi.low){
+            return this.severities.medium;
+        }
+        else if (output >= this.userProfile.bmi.low && output <= this.userProfile.bmi.medium) {
+            return this.severities.low;
+        }
+        else if (output >= this.userProfile.bmi.medium && output <= this.userProfile.bmi.high) {
+            return this.severities.mediumHigh;
+        }
+        else if (output > this.userProfile.bmi.high){
+            return this.severities.high;
+        }
+        return this.severities.none;
+    },
+    getHeartRateSeverity: function(value) {
+        if (value < this.userProfile.heartRate.min){
+            return this.severities.high;
+        }
+        else if (value >= this.userProfile.heartRate.min && value <= this.userProfile.heartRate.max) {
+            return this.severities.low;
+        }
+        else if (value > this.userProfile.heartRate.max) {
+            return this.severities.high;
+        }
+        return this.severities.none;
+    },
+    getBloodPressureSeverity: function(valueSist, valueDiast) {
+        if (valueSist >= this.userProfile.systolicBP.min && valueSist <= this.userProfile.systolicBP.max &&
+            valueDiast >= this.userProfile.diastolicBP.min && valueDiast <= this.userProfile.diastolicBP.max)
+        {
+            return this.severities.low;
+        }
+        return this.severities.high;
+    },
+    getStepsSeverity: function(value) {
+        if (value < this.userProfile.steps.min){
+            return this.severities.high;
+        }
+        else if (value >= this.userProfile.steps.min && value <= this.userProfile.steps.max) {
+            return this.severities.low;
+        }
+        else if (value > this.userProfile.steps.max) {
+            return this.severities.high;
+        }
+        return this.severities.none;
+    },
+    getSleepSeverity: function(value) {
+        if (value < this.userProfile.sleep.min){
+            return this.severities.high;
+        }
+        else if (value >= this.userProfile.sleep.min && value <= this.userProfile.sleep.max) {
+            return this.severities.low;
+        }
+        else if (value > this.userProfile.sleep.max) {
+            return this.severities.high;
+        }
+        return this.severities.none;
+    },
     plotWeightChart: function(ctx, userId) {
         var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=weight&limit=7" +
             "&order_by=-timestamp&user=" + userId;
@@ -660,6 +675,7 @@ var app = {
                 }
                 var latestValue = pData[pData.length - 1].value_info.value;
                 app.model.latestWeightValue = latestValue;
+                app.model.latestWeightSeverity = app.getWeightSeverity(latestValue);
                 app.model.$apply();
                 var myChart = new Chart(ctx, {
                     type: 'line',
@@ -728,6 +744,7 @@ var app = {
                 }
                 var latestValue = pData[pData.length - 1].value_info.value;
                 app.model.latestHeartRateValue = latestValue;
+                app.model.latestHeartRateSeverity = app.getHeartRateSeverity(latestValue);
                 app.model.$apply();
 
                 var myChart = new Chart(ctx, {
@@ -795,6 +812,8 @@ var app = {
                 }
                 var latestValue = pData[pData.length - 1].value_info.systolic + "/" + pData[pData.length - 1].value_info.diastolic;
                 app.model.latestBloodPressureValue = latestValue;
+                app.model.latestBloodPressureSeverity = app.getBloodPressureSeverity(pData[pData.length - 1].value_info.systolic,
+                    pData[pData.length - 1].value_info.diastolic);
                 app.model.$apply();
 
 
@@ -871,14 +890,12 @@ var app = {
 
         var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=steps" +
             "&order_by=-timestamp&value_info__start_timestamp__gte=" + timestamp + "&limit=1000&user=" + userId;
-        console.log(url);
         $.ajax({
             url: url,
             dataType: "json",
             type: 'GET',
             success: function (data) {
                 var pData = data.measurements.reverse();
-                console.log(pData);
                 for (var i = 0 ; i < pData.length; i++)
                 {
                     var date = new Date(pData[i].timestamp*1000);
@@ -894,20 +911,16 @@ var app = {
                         dataDict[formatted] += pData[i].value_info.value;
                     }
                 }
-                console.log(dataDict);
-
-
                 var labs = [];
                 var dataValues = [];
                 var latestValue = 0;
-
                 for(var key in dataDict){
                     labs.push(key);
                     dataValues.push(dataDict[key]);
                     latestValue = dataDict[key];
                 }
-
                 app.model.latestStepsValue = latestValue;
+                app.model.latestStepsSeverity = app.getStepsSeverity(latestValue);
                 app.model.$apply();
 
                 var myChart = new Chart(ctx, {
@@ -970,6 +983,7 @@ var app = {
                     }
                 }
                 var latestValue = pData[pData.length - 1].value_info.value;
+                app.model.latestSleepSeverity = app.getSleepSeverity(latestValue);
                 app.model.latestSleepValue = latestValue;
                 app.model.$apply();
 

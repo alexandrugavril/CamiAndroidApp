@@ -667,30 +667,34 @@ border-style: solid;
 border-radius: 50%;
 }
 
+.mediumHighSeverity{
+    background-color: #FFC0CB!important;
+}
+
 .highSeverity{
-    background-color: #d84315;
+    background-color: #FF0000!important;
 }
 .mediumSeverity{
-    background-color: #f1c40f;
+    background-color: #E4E132!important;
 }
 .lowSeverity{
-    background-color: #00a300;
+    background-color: #6DAB3C!important;
 }
 .noneSeverity{
-    background-color: lightgray;
+    background-color: lightgray!important;
 }
 
 .high-borders{
     border: solid;
-    border-color: #d84315;
+    border-color: #FF0000;
 }
 .medium-borders{
     border: solid;
-    border-color: #f1c40f;
+    border-color: #E4E132;
 }
 .low-borders{
     border: solid;
-    border-color: #00a300;
+    border-color: #6DAB3C;
 }
 .none-borders{
     border: solid;
