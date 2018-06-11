@@ -190,35 +190,29 @@ h1 {
 .sticky {
     position: fixed;
     top: 0%;
-    min-width:96%;
+    min-width:100%;
     z-index: 3;
 }
 
 .row.vertical-divider-noBg {
     overflow: hidden;
+    padding-left:0!important;
+    padding-right:0!important;
 }
 
 .row.vertical-divider-noBg > div[class^="high col"] {
-    padding-bottom: 100px;
-    margin-bottom: -100px;
     border-left: 3px solid red;
 }
 
 .row.vertical-divider-noBg > div[class^="medium col"] {
-    padding-bottom: 100px;
-    margin-bottom: -100px;
     border-left: 3px solid orange;
 }
 
 .row.vertical-divider-noBg > div[class^="low col"] {
-    padding-bottom: 100px;
-    margin-bottom: -100px;
     border-left: 3px solid green;
 }
 
 .row.vertical-divider-noBg > div[class^="none col"] {
-    padding-bottom: 100px;
-    margin-bottom: -100px;
     border-left: 3px solid gray;
 }
 
@@ -232,6 +226,8 @@ h1 {
 .row.vertical-divider {
     overflow: hidden;
     background-color: white;
+    padding-left:0!important;
+    padding-right:0!important;
 }
 
 .row.vertical-divider > div[class^="high col"] {
@@ -279,10 +275,16 @@ h1 {
 }
 
 .card-time {
-    text-align: center;
-    font-size:2.5vmax;
+     text-align: center;
+     font-size:2.5vmax;
+     width: 100%;
+     left:0px;
+ }
+
+.activity-time {
+    text-align: left;
+    font-size:150%;
     width: 100%;
-    left:0px;
 }
 
 .card-time-translate {
@@ -325,6 +327,17 @@ margin: .8em 30% .8em;
     font-weight:bold;
     font-size: 150%;
 }
+
+.activity-message{
+    font-weight:bold;
+    font-size: 150%;
+}
+
+.activity-description{
+    font-weight: normal;
+    font-size: 120%;
+}
+
 .card-description{
     font-weight: normal;
     font-size: 120%;
@@ -606,7 +619,7 @@ margin: .8em 30% .8em;
 }
 
 #caregiver-activities-page {
-    max-height: 100%; background-color:lightgray;
+   background-color:lightgray;
 }
 
 .content-scroll {
