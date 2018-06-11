@@ -327,9 +327,12 @@ margin: .8em 30% .8em;
 
 .card-message {
     font-weight:bold;
-    font-size: 150%;
+    font-size: 3.5vmax;
 }
-
+.card-description{
+    font-weight: normal;
+    font-size: 2.5vmax;
+}
 .activity-message{
     font-weight:bold;
     font-size: 150%;
@@ -340,10 +343,7 @@ margin: .8em 30% .8em;
     font-size: 120%;
 }
 
-.card-description{
-    font-weight: normal;
-    font-size: 120%;
-}
+
 .login-form {
     margin: 5vmax;
     max-width: 90vmax;
