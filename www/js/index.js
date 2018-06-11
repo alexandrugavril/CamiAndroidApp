@@ -353,6 +353,7 @@ function registerNotifications()
 
         window.plugins.PushbotsPlugin.on("notification:received", function(data){
             window.plugins.PushbotsPlugin.incrementBadgeCountBy(1);
+            location.reload();
 
             if(window.localStorage.getItem("user"))
             {

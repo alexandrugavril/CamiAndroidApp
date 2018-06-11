@@ -60,7 +60,7 @@
                 <div class="col-3"></div>
             </div>
 
-            <form id="loginForm">
+            <form id="loginForm" class="login-form">
                 <div data-role="fieldcontain" class="ui-hide-label">
                     <label for="username">Username:</label>
                     <input type="text" name="username" id="username" value="" placeholder="Username" />
@@ -84,7 +84,7 @@
     </div><!-- /page  -->
 
     <div id="enduser-page" data-role="page">
-        <div id="enduser-journal-header-page" class="ui-header header">
+        <div id="enduser-journal-header-pagex" class="ui-header header">
             <br/>
         </div>
         <div class="content" ng-if="latestReminders.length > 0">
@@ -127,83 +127,84 @@
         </div>
 
         <div class="content" ng-if="latestReminders.length <= 0">
-            <div class="row" id="afterhealthstatusbandr2">
-                <div class="col-12" >
-                    <div class="row">
-                        <div style="width: 100%; max-height: 45%; margin-top:1%; text-align:center;" >
-                            <h2 style="color:grey">
-                                {{translations.welcome}}
-                            </h2>
+            <div class="statusbar">
+                <br/>
+                <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
+                    <div class="text-center center-type-image">
+                        <h2 style="font-weight:bold;color:grey">
+                            {{translations.welcome}}
+                        </h2>
+                    </div>
+                </div>
+                <br/>
+                <div class="welcome-page-icons" style="height: 100%">
+                    <div class="row no-bottom-margin">
+                        <div class="col-15 center-text">
+                            <span class="fa fa-heartbeat  center-type-image pacient-icon-2 {{latestHeartRateSeverity}}"></span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class="fa fa-balance-scale  center-type-image pacient-icon-2 {{latestWeightSeverity}}"></span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class="fa fa-stethoscope center-type-image pacient-icon-2 {{latestBloodPressureSeverity}}"></span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class="fa fa-street-view  center-type-image pacient-icon-2 {{latestStepsSeverity}}"></span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class="fa fa-bed  center-type-image pacient-icon-2 {{latestSleepSeverity}}"></span>
+                        </div>
+                    </div>
+                    <div class="row small-bottom-margin">
+                        <div class="col-15 center-text">
+                            <span class=" center-type-image pacient-text-2a ">{{latestHeartRateValue}}</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" center-type-image pacient-text-2a">{{latestWeightValue}}</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" center-type-image pacient-text-2a">{{latestBloodPressureValue}}</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" center-type-image pacient-text-2a">{{latestStepsValue}}</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" center-type-image pacient-text-2a">{{latestSleepValue}}</span>
+                        </div>
+                    </div>
+                    <div class="row no-bottom-margin">
+                        <div class="col-15 center-text">
+                            <span class=" pacient-text-2b">bpm</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" pacient-text-2b">kg</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" pacient-text-2b">mmHg</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" pacient-text-2b">steps</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" pacient-text-2b">min</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-12" >
-                    <div class="row">
-                        <div class="col-6 ">
-                            <div class="row ">
-                                <div class="col-4 pacient-icon-div"><span class="fa fa-heartbeat card-type-image center-type-image pacient-icon {{latestHeartRateSeverity}}"></span></div>
-                                <div class="col-8"><span class="card-type-image center-type-image pacient-text ">{{latestHeartRateValue}} bpm</span> </div>
-                            </div>
-                        </div>
-                        <div  class="col-6 ">
-                            <div class="row ">
-                                <div class="col-4 pacient-icon-div"><span class="fa fa-balance-scale card-type-image center-type-image pacient-icon {{latestWeightSeverity}}"></span></div>
-                                <div class="col-8"><span class="card-type-image center-type-image pacient-text">{{latestWeightValue}} kg</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12" >
-                    <div class="row">
-                        <div style="width: 100%; max-height: 45%; margin-top:1%; text-align:center;" >
-                        </div>
-                    </div>
-                </div>
-                <div  class="col-12" >
-                    <div class="row">
-                        <div  class="col-6">
-                            <div class="row ">
-                                <div class="col-4 pacient-icon-div"><span class="fa fa-street-view card-type-image center-type-image pacient-icon {{latestStepsSeverity}}"></span></div>
-                                <div class="col-8"><span class="card-type-image center-type-image pacient-text">{{latestStepsValue}} steps</span></div>
-                            </div>
-                        </div>
-                        <div  class="col-6 ">
-                            <div class="row "  >
-                                <div class="col-4 pacient-icon-div"><span class="fa fa-bed card-type-image center-type-image pacient-icon {{latestSleepSeverity}}"></span></div>
-                                <div class="col-8"><span class="card-type-image center-type-image pacient-text">{{latestSleepValue}} min</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12" >
-                    <div class="row">
-                        <div style="width: 100%; max-height: 45%; margin-top:1%; text-align:center;" >
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12" >
-                    <div class="row">
-                        <div class="col-3 ">
-                        </div>
-                        <div id="healthstatusmeasrightdr3" class="col-6 ">
-                            <div class="row " id="partborderrowright3" >
-                                <div class="col-4 pacient-icon-div"><span class="fa fa-stethoscope card-type-image center-type-image pacient-icon {{latestBloodPressureSeverity}}"></span></div>
-                                <div class="col-8"><span class="card-type-image center-type-image pacient-text">{{latestBloodPressureValue}} mmHg</span></div>
-                            </div>
-                        </div>
-                        <div class="col-3 ">
-                        </div>
-                    </div>
-                </div>
+                <br/>
+
             </div>
-            <div class="row" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
-                <div style="width: 100%; max-height: 45%; margin-top:1%; text-align:center;" >
-                    <h2 style="color:grey">
+            <div class="header">
+                <br/>
+            </div>
+            <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
+                <div class="text-center center-type-image">
+                    <h2 style="font-weight:lighter;color:grey">
                         {{translations.no_new_reminders}}
                     </h2>
                 </div>
             </div>
         </div>
+
 
         <div id="enduser-footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
             <div id="enduser-navbar" data-role="navbar">
@@ -232,7 +233,6 @@
             </div>
         </div>
     </div><!-- /page  -->
-
     <div id="enduser-journal-page" data-role="page">
         <div id="enduser-journal-header-page" class="ui-header header">
             <br/>
@@ -252,39 +252,35 @@
                                 <hr class="line">
                             </div>
                         </div>
-
                         <div class="col s12 m7" data-ng-repeat="rem in rems">
                             <div class="row vertical-divider w3-container w3-border w3-round-xlarge">
                                 <div class="col-3">
                                     <div>
-                                        <img class="card-type-image" src="{{rem.image}}">
-                                    </div>
-                                    <div class="centered">
-                                        <p class="card-time">{{rem.date}}</p>
+                                        <img class="card-type-image journal-icon" src="{{rem.image}}">
                                     </div>
                                     <div>
-                                        <img class="status-type-image" src="{{rem.statusImage}}">
+                                        <span class="card-time card-type-image center-type-image ">
+                                            <strong>{{rem.date}}</strong>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <img class="status-type-image journal-icon" src="{{rem.statusImage}}">
                                     </div>
                                 </div>
                                 <div class="{{rem.severityClass}}">
                                     <br>
                                     <div>
-                                        <p class="card-time">{{rem.description}}</p>
+                                        <p class="card-time card-description">{{rem.description}}</p>
                                     </div>
                                     <hr>
                                     <div>
-                                        <p class="card-time">{{rem.message}}</p>
+                                        <p class="card-time card-description">{{rem.message}}</p>
                                     </div>
                                     <br>
-                                    <div class="ack-button" style="width:80%;margin-bottom:5%;"  ng-if="rem.isToday;" id="{{rem.id}}" onclick="acknowledgeReminder(this.id)">
-                                        <i class="fa fa-eye white-text" style="font-size:100%;width:100%;text-align:center"> {{rem.check}}</i>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </li>
             </ul>
         </div>
@@ -311,10 +307,38 @@
             </div>
         </div>
     </div><!-- /page  -->
-
     <div id="enduser-status-page" class="status-page" data-role="page">
-        <div data-role="content" >
-            <div class="row" >
+
+        <div data-role="content" class="tab-content">
+            <div class="row tab-panel row-panel-normal" >
+                <div class="col-15 selected">
+                    <a href='#enduser-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#enduser-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tab-panel row-panel-mobile-landscape" >
                 <div class="col-15 selected">
                     <a href='#enduser-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
@@ -343,47 +367,34 @@
             </div>
             <!-- Tab content -->
             <div id="enduser-heartrate-chart-div" class="chart-container">
-                <h1>{{translations.heart_rate}}</h1>
-                <div class="row">
-                    <div class="col-6 horizontal-centered">
-                        <p>{{translations.latest_value}}</p>
-                    </div>
-                    <div class="col-6">
-                        <p>{{latestHeartRateValue}}</p>
-                    </div>
+                <h1 class="col-md-12">{{translations.heart_rate}}</h1>
+                <div class="col-6 horizontal-centered landscape-mobile-left">
+                    <p>{{translations.latest_value}}</p>
+                </div>
+                <div class="col-6 landscape-mobile-right">
+                    <p>{{latestHeartRateValue}} bpm</p>
                 </div>
                 <canvas id="enduser-heart-rate-chart">
 
                 </canvas>
             </div>
         </div>
-        <div  data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+        <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li>
-                        <a  href="#enduser-page" data-icon="home" >
-                            {{translations.home}}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#enduser-journal-page" data-icon="star" >
-                            {{translations.journal}}
-                        </a>
-                    </li>
-                    <li>
-                        <a  href="#enduser-status-page" data-icon="flat-menu" data-theme="b">
-                            {{translations.status}}
-                        </a>
-                    </li>
-                    <li><a  onclick="logOff()" href="#loginPage" data-icon="back">{{translations.logout}}</a></li>
+                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div id="enduser-status-page-weight" class="status-page" data-role="page">
 
-        <div data-role="content" >
-            <div class="row">
+        <div data-role="content" class="tab-content">
+            <div class="row tab-panel row-panel-normal" >
                 <div class="col-15 notSelected">
                     <a href='#enduser-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
@@ -411,49 +422,63 @@
                 </div>
             </div>
 
+            <div class="tab-panel row-panel-mobile-landscape" >
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href="#enduser-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+            <!-- Tab content -->
             <div id="enduser-weight-chart-div" class="chart-container">
-                <h1>{{translations.weight}}</h1>
-                <div class="row">
-                    <div class="col-6">
-                        <p>{{translations.latest_value}}</p>
-                    </div>
-                    <div class="col-6">
-                        <p id="enduser-weight-value">{{latestWeightValue}}</p>
-
-                    </div>
+                <h1 class="col-md-12">{{translations.weight}}</h1>
+                <div class="col-6 horizontal-centered landscape-mobile-left">
+                    <p>{{translations.latest_value}}</p>
+                </div>
+                <div class="col-6 landscape-mobile-right">
+                    <p>{{latestWeightValue}} kg</p>
                 </div>
                 <canvas id="enduser-weight-chart">
 
                 </canvas>
             </div>
-
         </div>
-        <div  data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+        <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li>
-                        <a  href="#enduser-page" data-icon="home" >
-                            {{translations.home}}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#enduser-journal-page" data-icon="star" >
-                            {{translations.journal}}
-                        </a>
-                    </li>
-                    <li>
-                        <a  href="#enduser-status-page" data-icon="flat-menu" data-theme="b">
-                            {{translations.status}}
-                        </a>
-                    </li>
-                    <li><a  onclick="logOff()" href="#loginPage" data-icon="back">{{translations.logout}}</a></li>
+                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div id="enduser-status-page-blood-pressure" class="status-page" data-role="page">
-        <div data-role="content" >
-            <div class="row">
+
+        <div data-role="content" class="tab-content">
+            <div class="row tab-panel row-panel-normal" >
                 <div class="col-15 notSelected">
                     <a href='#enduser-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
@@ -481,49 +506,63 @@
                 </div>
             </div>
 
+            <div class="tab-panel row-panel-mobile-landscape" >
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#enduser-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href='#enduser-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+            <!-- Tab content -->
             <div id="enduser-blood-pressure-chart-div" class="chart-container">
-                <h1>{{translations.blood_pressure}}</h1>
-                <div class="row">
-                    <div class="col-6">
-                        <p>{{translations.latest_value}}</p>
-                    </div>
-                    <div class="col-6">
-                        <p>{{latestBloodPressureValue}}</p>
-
-                    </div>
+                <h1 class="col-md-12">{{translations.blood_pressure}}</h1>
+                <div class="col-6 horizontal-centered landscape-mobile-left">
+                    <p>{{translations.latest_value}}</p>
+                </div>
+                <div class="col-6 landscape-mobile-right">
+                    <p>{{latestBloodPressureValue}} mmHg</p>
                 </div>
                 <canvas id="enduser-blood-pressure-chart">
 
                 </canvas>
             </div>
         </div>
-        <div  data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+        <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li>
-                        <a  href="#enduser-page" data-icon="home" >
-                            {{translations.home}}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#enduser-journal-page" data-icon="star" >
-                            {{translations.journal}}
-                        </a>
-                    </li>
-                    <li>
-                        <a  href="#enduser-status-page" data-icon="flat-menu" data-theme="b">
-                            {{translations.status}}
-                        </a>
-                    </li>
-                    <li><a  onclick="logOff()" href="#loginPage" data-icon="back">{{translations.logout}}</a></li>
+                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div id="enduser-status-page-steps" class="status-page" data-role="page">
 
-        <div data-role="content" >
-            <div class="row">
+        <div data-role="content" class="tab-content">
+            <div class="row tab-panel row-panel-normal" >
                 <div class="col-15 notSelected">
                     <a href='#enduser-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
@@ -551,49 +590,63 @@
                 </div>
             </div>
 
+            <div class="tab-panel row-panel-mobile-landscape" >
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#enduser-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href='#enduser-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+            <!-- Tab content -->
             <div id="enduser-steps-chart-div" class="chart-container">
-                <h1>{{translations.steps}}</h1>
-                <div class="row">
-                    <div class="col-6">
-                        <p>{{translations.latest_value}}</p>
-                    </div>
-                    <div class="col-6">
-                        <p >{{latestStepsValue}}</p>
-
-                    </div>
+                <h1 class="col-md-12">{{translations.steps}}</h1>
+                <div class="col-6 horizontal-centered landscape-mobile-left">
+                    <p>{{translations.latest_value}}</p>
+                </div>
+                <div class="col-6 landscape-mobile-right">
+                    <p>{{latestStepsValue}} steps</p>
                 </div>
                 <canvas id="enduser-steps-chart">
 
                 </canvas>
             </div>
         </div>
-        <div  data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+        <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li>
-                        <a  href="#enduser-page" data-icon="home" >
-                            {{translations.home}}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#enduser-journal-page" data-icon="star" >
-                            {{translations.journal}}
-                        </a>
-                    </li>
-                    <li>
-                        <a  href="#enduser-status-page" data-icon="flat-menu" data-theme="b">
-                            {{translations.status}}
-                        </a>
-                    </li>
-                    <li><a  onclick="logOff()" href="#loginPage" data-icon="back">{{translations.logout}}</a></li>
+                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div id="enduser-status-page-sleep" class="status-page" data-role="page">
 
-        <div data-role="content" >
-            <div class="row">
+        <div data-role="content" class="tab-content">
+            <div class="row tab-panel row-panel-normal" >
                 <div class="col-15 notSelected">
                     <a href='#enduser-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
@@ -621,156 +674,142 @@
                 </div>
             </div>
 
+            <div class="tab-panel row-panel-mobile-landscape" >
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#enduser-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#enduser-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href='#enduser-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+            <!-- Tab content -->
             <div id="enduser-sleep-chart-div" class="chart-container">
-                <h1>{{translations.sleep}}</h1>
-                <div class="row">
-                    <div class="col-6">
-                        <p>{{translations.latest_value}}</p>
-                    </div>
-                    <div class="col-6">
-                        <p>{{latestSleepValue}}</p>
-
-                    </div>
+                <h1 class="col-md-12">{{translations.sleep}}</h1>
+                <div class="col-6 horizontal-centered landscape-mobile-left">
+                    <p>{{translations.latest_value}}</p>
+                </div>
+                <div class="col-6 landscape-mobile-right">
+                    <p>{{latestSleepValue}} min</p>
                 </div>
                 <canvas id="enduser-sleep-chart">
 
                 </canvas>
             </div>
-
         </div>
-        <div  data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
+        <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li>
-                        <a  href="#enduser-page" data-icon="home" >
-                            {{translations.home}}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#enduser-journal-page" data-icon="star" >
-                            {{translations.journal}}
-                        </a>
-                    </li>
-                    <li>
-                        <a  href="#enduser-status-page" data-icon="flat-menu" data-theme="b">
-                            {{translations.status}}
-                        </a>
-                    </li>
-                    <li><a  onclick="logOff()" href="#loginPage" data-icon="back">{{translations.logout}}</a></li>
+                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div  id="caregiver-page" data-role="page">
-        <div data-role="content" >
-            <div class="row" id="afterhealthstatusbandr">
-                <div class="col-12" >
-                    <div class="row">
-                        <div class="welcome-message">
-                            <h2 style="color:grey">
-                                {{translations.welcome}}
-                            </h2>
+    <div id="caregiver-page" data-role="page">
+        <div class="content" ng-if="latestReminders.length <= 0">
+            <div class="header">
+                <br/>
+            </div>
+            <div class="statusbar">
+                <br/>
+                <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
+                    <div class="text-center center-type-image">
+                        <h2 style="font-weight:bold;color:grey">
+                            {{translations.welcome}}
+                        </h2>
+                    </div>
+                </div>
+                <br/>
+                <div class="welcome-page-icons" style="height: 100%">
+                    <div class="row no-bottom-margin">
+                        <div class="col-15 center-text">
+                            <span class="fa fa-heartbeat  center-type-image pacient-icon-2 {{latestHeartRateSeverity}}"></span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class="fa fa-balance-scale  center-type-image pacient-icon-2 {{latestWeightSeverity}}"></span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class="fa fa-stethoscope center-type-image pacient-icon-2 {{latestBloodPressureSeverity}}"></span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class="fa fa-street-view  center-type-image pacient-icon-2 {{latestStepsSeverity}}"></span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class="fa fa-bed  center-type-image pacient-icon-2 {{latestSleepSeverity}}"></span>
+                        </div>
+                    </div>
+                    <div class="row small-bottom-margin">
+                        <div class="col-15 center-text">
+                            <span class=" center-type-image pacient-text-2a ">{{latestHeartRateValue}}</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" center-type-image pacient-text-2a">{{latestWeightValue}}</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" center-type-image pacient-text-2a">{{latestBloodPressureValue}}</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" center-type-image pacient-text-2a">{{latestStepsValue}}</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" center-type-image pacient-text-2a">{{latestSleepValue}}</span>
+                        </div>
+                    </div>
+                    <div class="row no-bottom-margin">
+                        <div class="col-15 center-text">
+                            <span class=" pacient-text-2b">bpm</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" pacient-text-2b">kg</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" pacient-text-2b">mmHg</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" pacient-text-2b">steps</span>
+                        </div>
+                        <div class="col-15 center-text">
+                            <span class=" pacient-text-2b">min</span>
                         </div>
                     </div>
                 </div>
-                <div id="healthstatusmeasdr" class="col-12" >
-                    <div class="row">
-                        <div id="healthstatusmeasleftdr" class="col-6 ">
-                            <div class="row ">
-                                <div class="col-4"><img src="./img/heart.png" class="card-type-image center-type-image"></div>
-                                <div class="col-8"><span class="card-type-image center-type-image">{{latestHeartRateValue}} bpm</span> </div>
-                            </div>
-                        </div>
-                        <div id="healthstatusmeasrightdr" class="col-6 ">
-                            <div class="row ">
-                                <div class="col-4 "><img src="./img/icon-weight_400x400.png" class="card-type-image center-type-image"></div>
-                                <div class="col-8"><span class="card-type-image center-type-image">{{latestWeightValue}} kg</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="healthstatusmeasdr2" class="col-12" >
-                    <div class="row">
-                        <div id="healthstatusmeasleftdr2" class="col-6">
-                            <div class="row " id="partborderrowleft2" >
-                                <div class="col-4"><img src="./img/steps-ok.png" class="card-type-image center-type-image"></div>
-                                <div class="col-8"><span class="card-type-image center-type-image">{{latestStepsValue}} {{translations.steps.toLowerCase()}}</span></div>
-                            </div>
-                        </div>
-                        <div id="healthstatusmeasrightdr2" class="col-6 ">
-                            <div class="row " id="partborderrowright2" >
-                                <div class="col-4"><img src="./img/sleep-ok.png" class="card-type-image center-type-image"></div>
-                                <div class="col-8"><span class="card-type-image center-type-image">{{latestSleepValue}} min</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12" >
-                    <div class="row">
-                        <div class="col-3 ">
-                        </div>
-                        <div id="healthstatusmeasrightdr4" class="col-6 ">
-                            <div class="row " id="partborderrowright4" >
-                                <div class="col-4"><img src="./img/blood-pressure-icon.png" class="card-type-image center-type-image"></div>
-                                <div class="col-8"><span class="card-type-image center-type-image">{{latestBloodPressureValue}} mmHg</span></div>
-                            </div>
-                        </div>
-                        <div class="col-3 ">
-                        </div>
-                    </div>
-                </div>
+                <br/>
 
-                <div id="urgentStatus" ng-if="latestReminders.length > 0" class="col-12" >
-                    <button onclick="checkReminder()" class="row  {{latestReminders[0].severity+'Severity'}} urgent-reminder-button">
-                        <div class="col-2"><img src="{{latestReminders[0].image}}" class="card-type-image button-type-image"></div>
-                        <div class="col-10 center-text white-text"><strong>{{latestReminders[0].message}}</strong></div>
-                    </button>
-                </div>
-
-                <div id="noUrgentStatus" ng-if="latestReminders.length == 0" class="col-12" >
-                    <div class="row alert noneSeverity">
-                        <h5 style="color:grey">
-                            <span class="card-type-image center-type-image">
-                                {{translations.all_is_fine}}
-                            </span>
-                        </h5>
-                    </div>
-                </div>
-                <div class="row" id="scrollrowpr">
-                    <div style="width: 100%; max-height: 40%; text-align:center;" >
-                        <h5 style="color:grey">
-                            {{translations.latest_journal_entries}}
-                        </h5>
-                    </div>
-
-                    <div class="row" style="width: 104%; height:100%;">
-                        <ul class="content-scroll" id="remscroll" style="background-color: lightgray" >
-                            <li class="selected" data-ng-repeat="rem in allReminders">
-                                <div class="row {{rem.severity + '-borders'}}">
-                                    <div class="col-1">
-                                    </div>
-                                    <div class="col-2">
-                                        <span>
-                                            <img class="card-type-image center-type-image" src="{{rem.image}}"/>
-                                        </span>
-                                    </div>
-                                    <div class="col-3">
-                                        <span class="card-type-image center-align center-type-image">
-                                            <strong>{{rem.dayMonth}}</strong>
-                                        </span>
-                                    </div>
-
-                                    <div class="col-6">
-                                        {{rem.description}}
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="header">
+                <br/>
+            </div>
+            <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
+                <div class="text-center center-type-image">
+                    <h2 style="font-weight:lighter;color:grey">
+                        {{translations.no_new_reminders}}
+                    </h2>
                 </div>
             </div>
-	    </div>
+        </div>
         <div id="footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
             <div id="navbar" data-role="navbar">
                 <ul>
@@ -783,11 +822,38 @@
             </div>
         </div>
     </div>
-
     <div id="caregiver-status-page" class="status-page" data-role="page">
 
-        <div data-role="content" >
-            <div class="row" >
+        <div data-role="content" class="tab-content">
+            <div class="row tab-panel row-panel-normal" >
+                <div class="col-15 selected">
+                    <a href='#caregiver-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#caregiver-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tab-panel row-panel-mobile-landscape" >
                 <div class="col-15 selected">
                     <a href='#caregiver-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
@@ -816,21 +882,19 @@
             </div>
             <!-- Tab content -->
             <div id="caregiver-heartrate-chart-div" class="chart-container">
-                <h1>{{translations.heart_rate}}</h1>
-                <div class="row">
-                    <div class="col-6 horizontal-centered">
-                        <p>{{translations.latest_value}}</p>
-                    </div>
-                    <div class="col-6">
-                        <p id="latest-heartrate-value">{{latestHeartRateValue}} bpm</p>
-                    </div>
+                <h1 class="col-md-12">{{translations.heart_rate}}</h1>
+                <div class="col-6 horizontal-centered landscape-mobile-left">
+                    <p>{{translations.latest_value}}</p>
+                </div>
+                <div class="col-6 landscape-mobile-right">
+                    <p id="latest-heartrate-value">{{latestHeartRateValue}} bpm</p>
                 </div>
                 <canvas id="caregiver-heart-rate-chart">
 
                 </canvas>
             </div>
         </div>
-        <div  data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
+        <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
                     <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
@@ -844,8 +908,8 @@
     </div>
     <div id="caregiver-status-page-weight" class="status-page" data-role="page">
 
-        <div data-role="content" >
-            <div class="row">
+        <div data-role="content" class="tab-content">
+            <div class="row tab-panel row-panel-normal" >
                 <div class="col-15 notSelected">
                     <a href='#caregiver-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
@@ -873,25 +937,49 @@
                 </div>
             </div>
 
+            <div class="tab-panel row-panel-mobile-landscape" >
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href="#caregiver-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+            <!-- Tab content -->
             <div id="caregiver-weight-chart-div" class="chart-container">
-                <h1>{{translations.weight}}</h1>
-                <div class="row">
-                    <div class="col-6">
-                        <p>{{translations.latest_value}}</p>
-                    </div>
-                    <div class="col-6">
-                        <p id="latest-weight-value">{{latestWeightValue}} kg</p>
-
-                    </div>
+                <h1 class="col-md-12">{{translations.weight}}</h1>
+                <div class="col-6 horizontal-centered landscape-mobile-left">
+                    <p>{{translations.latest_value}}</p>
+                </div>
+                <div class="col-6 landscape-mobile-right">
+                    <p id="latest-weight-value">{{latestWeightValue}} kg</p>
                 </div>
                 <canvas id="caregiver-weight-chart">
 
                 </canvas>
             </div>
-
         </div>
-        <div id="footerStatus" data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
-            <div id="navbarStatus" data-role="navbar">
+        <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
+            <div data-role="navbar">
                 <ul>
                     <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
                     <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
@@ -904,8 +992,8 @@
     </div>
     <div id="caregiver-status-page-blood-pressure" class="status-page" data-role="page">
 
-        <div data-role="content" >
-            <div class="row">
+        <div data-role="content" class="tab-content">
+            <div class="row tab-panel row-panel-normal" >
                 <div class="col-15 notSelected">
                     <a href='#caregiver-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
@@ -933,16 +1021,41 @@
                 </div>
             </div>
 
+            <div class="tab-panel row-panel-mobile-landscape" >
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#caregiver-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href='#caregiver-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+            <!-- Tab content -->
             <div id="caregiver-blood-pressure-chart-div" class="chart-container">
-                <h1>{{translations.blood_pressure}}</h1>
-                <div class="row">
-                    <div class="col-6">
-                        <p>{{translations.latest_value}}</p>
-                    </div>
-                    <div class="col-6">
-                        <p id="latest-blood-pressure-value">{{latestBloodPressureValue}} mmHg</p>
-
-                    </div>
+                <h1 class="col-md-12">{{translations.blood_pressure}}</h1>
+                <div class="col-6 horizontal-centered landscape-mobile-left">
+                    <p>{{translations.latest_value}}</p>
+                </div>
+                <div class="col-6 landscape-mobile-right">
+                    <p id="latest-blood-pressure-value">{{latestBloodPressureValue}} mmHg</p>
                 </div>
                 <canvas id="caregiver-blood-pressure-chart">
 
@@ -963,8 +1076,8 @@
     </div>
     <div id="caregiver-status-page-steps" class="status-page" data-role="page">
 
-        <div data-role="content" >
-            <div class="row">
+        <div data-role="content" class="tab-content">
+            <div class="row tab-panel row-panel-normal" >
                 <div class="col-15 notSelected">
                     <a href='#caregiver-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
@@ -992,16 +1105,41 @@
                 </div>
             </div>
 
+            <div class="tab-panel row-panel-mobile-landscape" >
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#caregiver-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href='#caregiver-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+            <!-- Tab content -->
             <div id="caregiver-steps-chart-div" class="chart-container">
-                <h1>{{translations.steps}}</h1>
-                <div class="row">
-                    <div class="col-6">
-                        <p>{{translations.latest_value}}</p>
-                    </div>
-                    <div class="col-6">
-                        <p id="latest-steps-value">{{latestStepsValue}} steps</p>
-
-                    </div>
+                <h1 class="col-md-12">{{translations.steps}}</h1>
+                <div class="col-6 horizontal-centered landscape-mobile-left">
+                    <p>{{translations.latest_value}}</p>
+                </div>
+                <div class="col-6 landscape-mobile-right">
+                    <p id="latest-steps-value">{{latestStepsValue}} steps</p>
                 </div>
                 <canvas id="caregiver-steps-chart">
 
@@ -1022,8 +1160,8 @@
     </div>
     <div id="caregiver-status-page-sleep" class="status-page" data-role="page">
 
-        <div data-role="content" >
-            <div class="row">
+        <div data-role="content" class="tab-content">
+            <div class="row tab-panel row-panel-normal" >
                 <div class="col-15 notSelected">
                     <a href='#caregiver-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
@@ -1051,16 +1189,41 @@
                 </div>
             </div>
 
+            <div class="tab-panel row-panel-mobile-landscape" >
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#caregiver-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 selected">
+                    <a href='#caregiver-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+            <!-- Tab content -->
             <div id="caregiver-sleep-chart-div" class="chart-container">
-                <h1>{{translations.sleep}}</h1>
-                <div class="row">
-                    <div class="col-6">
-                        <p>{{translations.latest_value}}</p>
-                    </div>
-                    <div class="col-6">
-                        <p id="latest-sleep-value">{{latestSleepValue}} min</p>
-
-                    </div>
+                <h1 class="col-md-12">{{translations.sleep}}</h1>
+                <div class="col-6 horizontal-centered landscape-mobile-left">
+                    <p>{{translations.latest_value}}</p>
+                </div>
+                <div class="col-6 landscape-mobile-right">
+                    <p id="latest-sleep-value">{{latestSleepValue}} min</p>
                 </div>
                 <canvas id="caregiver-sleep-chart">
 
@@ -1100,25 +1263,25 @@
                             <div class="row vertical-divider w3-container w3-border w3-round-xlarge">
                                 <div class="col-3">
                                     <div>
-                                        <img class="card-type-image" src="{{rem.image}}">
+                                        <img class="card-type-image journal-icon" src="{{rem.image}}">
                                     </div>
                                     <div>
-                                        <span class="card-time card-type-image center-type-image card-time-translate">
+                                        <span class="card-time card-type-image center-type-image ">
                                             <strong>{{rem.date}}</strong>
                                         </span>
                                     </div>
                                     <div>
-                                        <img class="status-type-image" src="{{rem.statusImage}}">
+                                        <img class="status-type-image journal-icon" src="{{rem.statusImage}}">
                                     </div>
                                 </div>
                                 <div class="{{rem.severityClass}}">
                                     <br>
                                     <div>
-                                        <p class="card-time">{{rem.description}}</p>
+                                        <p class="card-time card-description">{{rem.description}}</p>
                                     </div>
                                     <hr>
                                     <div>
-                                        <p class="card-time">{{rem.message}}</p>
+                                        <p class="card-time card-description">{{rem.message}}</p>
                                     </div>
                                     <br>
                                 </div>
@@ -1168,13 +1331,13 @@
                                 </div>
                             </div>
                             <div>
-                                <p class="card-message">{{nextActivity.message}}</p>
-                                <p class="card-description">{{nextActivity.description}}</p>
+                                <p class="activity-message">{{nextActivity.message}}</p>
+                                <p class="activity-description">{{nextActivity.description}}</p>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-6">
-                                    <p class="card-time">{{nextActivity.hourFormatted}}</p>
+                                    <p class="activity-time">{{nextActivity.hourFormatted}}</p>
                                 </div>
                                 <div class="col-6">
 
@@ -1188,7 +1351,7 @@
 
             <div id="activitiesList" class="activity-list">
                 <ul>
-                    <li data-ng-repeat="activity in activities" ">
+                    <li data-ng-repeat="activity in activities">
                         <div class="row vertical-divider-noBg {{activity.urgencyType}}">
                             <div class="col-3 {{activity.urgencyType}}-color">
                                 <br>
@@ -1205,13 +1368,13 @@
                             <div class="{{activity.severityClass}}">
                                 <br>
                                 <div>
-                                    <p class="card-message">{{activity.message}}</p>
-                                    <p class="card-description">{{activity.description}}</p>
+                                    <p class="activity-message">{{activity.message}}</p>
+                                    <p class="activity-description">{{activity.description}}</p>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-6">
-                                        <p class="card-time">{{activity.hourFormatted}}</p>
+                                        <p class="activity-time">{{activity.hourFormatted}}</p>
                                     </div>
                                     <div class="col-6">
 
@@ -1220,7 +1383,6 @@
                                 <br>
                             </div>
                         </div>
-
                     </li>
                 </ul>
             </div>

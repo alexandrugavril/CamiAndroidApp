@@ -67,28 +67,65 @@ h1 {
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
-
 }
 
-
+.center-text{
+    text-align:center!important;
+}
+.small-bottom-margin{
+    margin-bottom:8px!important;
+}
+.no-bottom-margin{
+    margin-bottom:0!important;
+}
 
 .pacient-icon {
-    width: 1.5em!important;
+    width: 4vmax!important;
     border-radius: 50%;
-    font-size: x-large!important;
+    font-size: 2.5vmax!important;
     color: whitesmoke;
-    line-height: 1.5em!important;
+    line-height: 4vmax!important;
     text-align: center;
     background-color: #2C3E50!important;
 }
 
+.pacient-icon-2 {
+    width: 5vmax!important;
+    border-radius: 50%;
+    font-size: 3.5vmax!important;
+    color: whitesmoke;
+    line-height: 5vmax!important;
+    text-align: center;
+    background-color: #2C3E50!important;
+    margin-top: 0.5vmax;
+}
+
 .pacient-text {
     font-weight: bolder!important;
-    font-size: large!important;
+    font-size: 2.5vmax;!important;
+}
+
+.pacient-text-2a {
+    font-weight: bolder!important;
+    font-size: 2vmax;!important;
+    text-align: center!important;
+    line-height: 2.5vmax!important;
+}
+.pacient-text-2b {
+    margin-top: 1vmax;
+    font-style: italic!important;
+    font-size: 2vmax;!important;
+    text-align: center!important;
+    line-height: 2.5vmax!important;
+}
+
+.journal-icon {
+    left: 0 !important;
+    right: 0!important;
 }
 
 .card-type-image {
-    width: 50%;
+    width: 4vmax;
     position: absolute;
     top: 5%;
     display: block;
@@ -125,12 +162,13 @@ h1 {
     background-color: #67a592;
     opacity: 0.5;
 }
+
 .future-type-font-color {
     color: white;
 }
 
 .status-type-image{
-    width: 50%;
+    width: 4vmax;
     position: absolute;
     bottom: 5%;
     display: block;
@@ -139,47 +177,44 @@ h1 {
 }
 
 .date-holder {
-    text-align: center;
+    text-align: center!important;
     vertical-align:middle;
 }
 
 .activity-list {
     position:relative;
     z-index: 2;
+    width:100%!important;
+    overflow-x: hidden;
 }
 
 .sticky {
     position: fixed;
-    top: 0%;
-    min-width:96%;
+    top: 0;
+    width:100%!important;
+    overflow-x: hidden;
     z-index: 3;
 }
 
 .row.vertical-divider-noBg {
     overflow: hidden;
+    padding-left:0!important;
+    padding-right:0!important;
 }
 
 .row.vertical-divider-noBg > div[class^="high col"] {
-    padding-bottom: 100px;
-    margin-bottom: -100px;
     border-left: 3px solid red;
 }
 
 .row.vertical-divider-noBg > div[class^="medium col"] {
-    padding-bottom: 100px;
-    margin-bottom: -100px;
     border-left: 3px solid orange;
 }
 
 .row.vertical-divider-noBg > div[class^="low col"] {
-    padding-bottom: 100px;
-    margin-bottom: -100px;
     border-left: 3px solid green;
 }
 
 .row.vertical-divider-noBg > div[class^="none col"] {
-    padding-bottom: 100px;
-    margin-bottom: -100px;
     border-left: 3px solid gray;
 }
 
@@ -193,6 +228,8 @@ h1 {
 .row.vertical-divider {
     overflow: hidden;
     background-color: white;
+    padding-left:0!important;
+    padding-right:0!important;
 }
 
 .row.vertical-divider > div[class^="high col"] {
@@ -240,6 +277,13 @@ h1 {
 }
 
 .card-time {
+     text-align: center;
+     font-size:2.5vmax;
+     width: 100%;
+     left:0px;
+ }
+
+.activity-time {
     text-align: left;
     font-size:150%;
     width: 100%;
@@ -254,7 +298,9 @@ h1 {
     text-align: center;
     font-weight: bold;
 }
-
+.welcome-page-icons{
+    height: 5vmax;
+}
 .icon-row {
     height: 100%; width: 100%; object-fit: contain;
 }
@@ -281,16 +327,30 @@ margin: .8em 30% .8em;
 
 .card-message {
     font-weight:bold;
-    font-size: 150%;
+    font-size: 3.5vmax;
 }
 .card-description{
+    font-weight: normal;
+    font-size: 2.5vmax;
+}
+.activity-message{
+    font-weight:bold;
+    font-size: 150%;
+}
+
+.activity-description{
     font-weight: normal;
     font-size: 120%;
 }
 
+
+.login-form {
+    margin: 5vmax;
+    max-width: 90vmax;
+}
 .reminder-logo {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 15vmax;
+    max-height: 15vmax;
     margin-top: auto;
     margin-bottom:auto;
     margin-left: auto;
@@ -406,12 +466,14 @@ margin: .8em 30% .8em;
     background: #2C3E50;
 }
 
+.holder{
+    width:100%;
+    margin:0 auto;
+}
 
 .chart-container {
     border-color: black;
     background: white;
-    width:100%;
-    height:100%;
     border-radius: 15px 15px 0px 0px;
 }
 
@@ -537,37 +599,29 @@ margin: .8em 30% .8em;
     background-color: white;
 }
 
-.content {
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    height: 96%;
-    width: 96%;
-
-}
 .status-page {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
+    width:100%;
 }
 #caregiver-status-page {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
 }
 #caregiver-status-page-weight {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
 }
 
 #caregiver-status-page-blood-pressure {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
 }
 #caregiver-status-page-sleep {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
 }
 #caregiver-status-page-steps {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
 }
 
 #caregiver-activities-page {
-    min-height: 100%; background-color:lightgray;
+   background-color:lightgray;
 }
 
 .content-scroll {
@@ -590,6 +644,9 @@ margin: .8em 30% .8em;
     opacity: 0.5;
 }
 
+.row-panel-mobile-landscape{
+    display:none!important;
+}
 
 /* Darker background on mouse-over */
 .btn:hover {
@@ -701,6 +758,11 @@ border-radius: 50%;
     border-color: gray;
 }
 
+.tab-panel{
+    display:grid;
+    align-items: center;
+}
+
 #afterhealthstatusbandr{
     max-height: 100%;
     position: fixed;
@@ -709,11 +771,10 @@ border-radius: 50%;
     overflow: hidden;
     background-color: #eeeeee;
 }
-#afterhealthstatusbandr2{
-    margin-top: -3%;
-    max-height: 45%;
-    height: 45%;
-    width: 110%;
+.statusbar{
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
     background-color: #eeeeee;
 }
@@ -807,23 +868,6 @@ text-align: center;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .status-type-image{
-        width: 20%;
-        position: absolute;
-        bottom: 5%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .card-type-image {
-        width: 20%;
-        position: absolute;
-        top: 5%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     .welcome-message {
         margin-top: 5%;
         width: 100%;
@@ -836,4 +880,43 @@ text-align: center;
         max-height: 90%;
         width:100%;
     }
+
+    .tab-content{
+        padding:1% 10% 0 10%;
+    }
 }
+.landscape-mobile-left{
+    float:left
+}
+.landscape-mobile-right{
+    float:right;
+}
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+    .row-panel-mobile-landscape{
+        display:grid!important;
+        width: 85.3vh!important;
+        left: 0!important;
+        top: 0!important;
+        position: absolute!important;
+    }
+    .row-panel-normal{
+        display:none!important;
+    }
+    .chart-container{
+        width: 55vw!important;
+        left: 25vw!important;
+        top: 0!important;
+        position: absolute!important;
+    }
+
+    .col-15 {
+        position: relative;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .ui-footer{
+        height: 15vh!important;
+    }
+
+}
+

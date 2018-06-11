@@ -1,5 +1,6 @@
 var translations ={
     ro : {
+        check: "Validare",
         no_new_reminders: "Nu aveți nicio notificare!",
         heart_rate: "Puls",
         weight: "Greutate",
@@ -50,6 +51,7 @@ var translations ={
 
     },
     dk : {
+        check: "Anerkende",
         no_new_reminders: "Ingen nye påmindelser",
         heart_rate: "Puls",
         weight: "Vægt",
@@ -74,6 +76,7 @@ var translations ={
         latest_journal_entries: "Seneste journalindlæg"
     },
     pl: {
+        check: "Uznać",
         no_new_reminders: "Nie masz nowych powiadomień!",
         heart_rate: "Tętno",
         weight: "Waga",
