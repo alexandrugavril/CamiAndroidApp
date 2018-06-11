@@ -253,39 +253,35 @@
                                 <hr class="line">
                             </div>
                         </div>
-
                         <div class="col s12 m7" data-ng-repeat="rem in rems">
                             <div class="row vertical-divider w3-container w3-border w3-round-xlarge">
                                 <div class="col-3">
                                     <div>
-                                        <img class="card-type-image" src="{{rem.image}}">
-                                    </div>
-                                    <div class="centered">
-                                        <p class="card-time">{{rem.date}}</p>
+                                        <img class="card-type-image journal-icon" src="{{rem.image}}">
                                     </div>
                                     <div>
-                                        <img class="status-type-image" src="{{rem.statusImage}}">
+                                        <span class="card-time card-type-image center-type-image ">
+                                            <strong>{{rem.date}}</strong>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <img class="status-type-image journal-icon" src="{{rem.statusImage}}">
                                     </div>
                                 </div>
                                 <div class="{{rem.severityClass}}">
                                     <br>
                                     <div>
-                                        <p class="card-time">{{rem.description}}</p>
+                                        <p class="card-time card-description">{{rem.description}}</p>
                                     </div>
                                     <hr>
                                     <div>
-                                        <p class="card-time">{{rem.message}}</p>
+                                        <p class="card-time card-description">{{rem.message}}</p>
                                     </div>
                                     <br>
-                                    <div class="ack-button" style="width:80%;margin-bottom:5%;"  ng-if="rem.isToday;" id="{{rem.id}}" onclick="acknowledgeReminder(this.id)">
-                                        <i class="fa fa-eye white-text" style="font-size:100%;width:100%;text-align:center"> {{rem.check}}</i>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
                 </li>
             </ul>
         </div>
