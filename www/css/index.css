@@ -67,7 +67,6 @@ h1 {
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
-
 }
 
 .center-text{
@@ -297,7 +296,7 @@ h1 {
     font-weight: bold;
 }
 .welcome-page-icons{
-    height: 5vh;
+    height: 5vmax;
 }
 .icon-row {
     height: 100%; width: 100%; object-fit: contain;
@@ -880,7 +879,12 @@ text-align: center;
         padding:1% 10% 0 10%;
     }
 }
-
+.landscape-mobile-left{
+    float:left
+}
+.landscape-mobile-right{
+    float:right;
+}
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
     .row-panel-mobile-landscape{
         display:grid!important;
@@ -893,12 +897,12 @@ text-align: center;
         display:none!important;
     }
     .chart-container{
-        width: 50%!important;
-        left: 25%!important;
+        width: 55vw!important;
+        left: 25vw!important;
         top: 0!important;
         position: absolute!important;
-        height:10px!important;
     }
+
     .col-15 {
         position: relative;
         padding-right: 0;
@@ -907,11 +911,6 @@ text-align: center;
     .ui-footer{
         height: 15vh!important;
     }
-    .landscape-mobile-left{
-        float:left
-    }
-    .landscape-mobile-right{
-        float:right;
-    }
+
 }
 
