@@ -341,10 +341,13 @@ margin: .8em 30% .8em;
     font-weight: normal;
     font-size: 120%;
 }
-
+.login-form {
+    margin: 5vmax;
+    max-width: 90vmax;
+}
 .reminder-logo {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 15vmax;
+    max-height: 15vmax;
     margin-top: auto;
     margin-bottom:auto;
     margin-left: auto;
