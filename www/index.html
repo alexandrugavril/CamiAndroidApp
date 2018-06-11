@@ -382,10 +382,10 @@
         <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
-                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
-                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
-                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#enduser-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#enduser-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#enduser-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#enduser-activities-page" data-icon="grid">{{translations.activities}}</a></li>
                     <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
@@ -466,10 +466,10 @@
         <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
-                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
-                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
-                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#enduser-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#enduser-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#enduser-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#enduser-activities-page" data-icon="grid">{{translations.activities}}</a></li>
                     <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
@@ -550,10 +550,10 @@
         <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
-                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
-                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
-                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#enduser-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#enduser-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#enduser-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#enduser-activities-page" data-icon="grid">{{translations.activities}}</a></li>
                     <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
@@ -634,10 +634,10 @@
         <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
-                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
-                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
-                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#enduser-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#enduser-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#enduser-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#enduser-activities-page" data-icon="grid">{{translations.activities}}</a></li>
                     <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
@@ -718,10 +718,10 @@
         <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
-                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
-                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
-                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#enduser-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#enduser-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
+                    <li><a href="#enduser-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#enduser-activities-page" data-icon="grid">{{translations.activities}}</a></li>
                     <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
@@ -729,6 +729,46 @@
     </div>
 
     <div id="caregiver-page" data-role="page">
+
+        <div class="content" ng-if="latestReminders.length > 0">
+            <ul  id="caregiver-latest-reminders" data-indicators="true" data-role="listview" style="overflow-y:scroll;overflow-x:hidden; margin: 0 !important;" >
+                <li>
+                    <div class="row">
+                        <div class="col-4 left-border"></div>
+                        <div class="col-4">
+                            <img class="enduser-latest-reminder-img" src="{{latestReminders[0].image}}"/>
+                        </div>
+                        <div class="col-4 right-border"></div>
+                    </div>
+                    <div class="latest-reminder-container half-height">
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-10 latest-reminder-content1">{{latestReminders[0].description}}</div>
+                            <div class="col-1"></div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-10 latest-reminder-content2">{{latestReminders[0].message}}</div>
+                            <div class="col-1"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type='image' src="img/ok.png"
+                                       class="btn-reminder"
+                                       onclick="checkReminder()" />
+                            </div>
+                            <div class="col-6">
+                                <input type='image' src="img/cross-flat.png"
+                                       class="btn-reminder"
+                                       onclick="cancelReminder()" />
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
         <div class="content" ng-if="latestReminders.length <= 0">
             <div class="header">
                 <br/>
