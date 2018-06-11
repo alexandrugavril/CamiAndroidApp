@@ -724,47 +724,7 @@
     </div>
 
     <div id="caregiver-page" data-role="page">
-
-        <div class="content" ng-if="latestReminders.length > 0">
-            <ul  id="caregiver-latest-reminders" data-indicators="true" data-role="listview" style="overflow-y:scroll;overflow-x:hidden; margin: 0 !important;" >
-                <li>
-                    <div class="row">
-                        <div class="col-4 left-border"></div>
-                        <div class="col-4">
-                            <img class="enduser-latest-reminder-img" src="{{latestReminders[0].image}}"/>
-                        </div>
-                        <div class="col-4 right-border"></div>
-                    </div>
-                    <div class="latest-reminder-container half-height">
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col-10 latest-reminder-content1">{{latestReminders[0].description}}</div>
-                            <div class="col-1"></div>
-                        </div>
-                        <hr/>
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col-10 latest-reminder-content2">{{latestReminders[0].message}}</div>
-                            <div class="col-1"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <input type='image' src="img/ok.png"
-                                       class="btn-reminder"
-                                       onclick="checkReminder()" />
-                            </div>
-                            <div class="col-6">
-                                <input type='image' src="img/cross-flat.png"
-                                       class="btn-reminder"
-                                       onclick="cancelReminder()" />
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <div class="content" ng-if="latestReminders.length <= 0">
+        <div class="content">
             <div class="header">
                 <br/>
             </div>
@@ -837,12 +797,54 @@
             <div class="header">
                 <br/>
             </div>
-            <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
-                <div class="text-center center-type-image">
-                    <h2 style="font-weight:lighter;color:grey">
-                        {{translations.no_new_reminders}}
-                    </h2>
+            <div id="urgentStatus" ng-if="latestReminders.length > 0" class="col-12" >
+                <button onclick="checkReminder()" class="row  {{latestReminders[0].severity+'Severity'}} urgent-reminder-button">
+                    <div class="col-2"><img src="{{latestReminders[0].image}}" class="card-type-image button-type-image"></div>
+                    <div class="col-10 center-text white-text"><strong>{{latestReminders[0].message}}</strong></div>
+                </button>
+            </div>
+            <div id="noUrgentStatus" ng-if="latestReminders.length == 0">
+                <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
+                    <div class="text-center center-type-image">
+                        <h2 style="font-weight:lighter;color:grey">
+                            {{translations.all_is_fine}}
+                        </h2>
+                    </div>
                 </div>
+            </div>
+            <div class="header">
+                <br/>
+            </div>
+            <div>
+                <div style="width: 100%;text-align:center; background-color: #eeeeee" >
+                    <h4 style="font-weight:lighter;color:grey">
+                        {{translations.latest_journal_entries}}
+                    </h4>
+                </div>
+                <ul class="content-scroll" id="remscroll" style="background-color: lightgray" >
+                    <li class="selected" data-ng-repeat="rem in allReminders">
+                        <div class="row {{rem.severity + '-borders'}} row-latest-journal">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-2">
+                                <span class="latest-journal-icon">
+                                    <img class="latest-journal-icon center-type-image" src="{{rem.image}}"/>
+                                </span>
+                            </div>
+                            <div class="col-3">
+                                    <span class="card-type-image center-align center-type-image">
+                                        <strong>{{rem.dayMonth}}</strong>
+                                    </span>
+                            </div>
+
+                            <div class="col-6">
+                                <span class="latest-reminder-description">
+                                    {{rem.description}}
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <div id="footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
