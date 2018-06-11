@@ -70,25 +70,63 @@ h1 {
 
 }
 
-
+.center-text{
+    text-align:center!important;
+}
+.small-bottom-margin{
+    margin-bottom:8px!important;
+}
+.no-bottom-margin{
+    margin-bottom:0!important;
+}
 
 .pacient-icon {
-    width: 1.5em!important;
+    width: 4vmax!important;
     border-radius: 50%;
-    font-size: x-large!important;
+    font-size: 2.5vmax!important;
     color: whitesmoke;
-    line-height: 1.5em!important;
+    line-height: 4vmax!important;
     text-align: center;
     background-color: #2C3E50!important;
 }
 
+.pacient-icon-2 {
+    width: 5vmax!important;
+    border-radius: 50%;
+    font-size: 3.5vmax!important;
+    color: whitesmoke;
+    line-height: 5vmax!important;
+    text-align: center;
+    background-color: #2C3E50!important;
+    margin-top: 0.5vmax;
+}
+
 .pacient-text {
     font-weight: bolder!important;
-    font-size: large!important;
+    font-size: 2.5vmax;!important;
+}
+
+.pacient-text-2a {
+    font-weight: bolder!important;
+    font-size: 2vmax;!important;
+    text-align: center!important;
+    line-height: 2.5vmax!important;
+}
+.pacient-text-2b {
+    margin-top: 1vmax;
+    font-style: italic!important;
+    font-size: 2vmax;!important;
+    text-align: center!important;
+    line-height: 2.5vmax!important;
+}
+
+.journal-icon {
+    left: 0 !important;
+    right: 0!important;
 }
 
 .card-type-image {
-    width: 50%;
+    width: 4vmax;
     position: absolute;
     top: 5%;
     display: block;
@@ -130,7 +168,7 @@ h1 {
 }
 
 .status-type-image{
-    width: 50%;
+    width: 4vmax;
     position: absolute;
     bottom: 5%;
     display: block;
@@ -139,7 +177,7 @@ h1 {
 }
 
 .date-holder {
-    text-align: center;
+    text-align: center!important;
     vertical-align:middle;
 }
 
@@ -240,9 +278,10 @@ h1 {
 }
 
 .card-time {
-    text-align: left;
-    font-size:150%;
+    text-align: center;
+    font-size:2.5vmax;
     width: 100%;
+    left:0px;
 }
 
 .card-time-translate {
@@ -254,7 +293,9 @@ h1 {
     text-align: center;
     font-weight: bold;
 }
-
+.welcome-page-icons{
+    height: 5vh;
+}
 .icon-row {
     height: 100%; width: 100%; object-fit: contain;
 }
@@ -406,12 +447,17 @@ margin: .8em 30% .8em;
     background: #2C3E50;
 }
 
+.holder{
+    width:100%;
+    margin:0 auto;
+}
 
+.tab-content{
+    padding:1% 10% 0 10%;
+}
 .chart-container {
     border-color: black;
     background: white;
-    width:100%;
-    height:100%;
     border-radius: 15px 15px 0px 0px;
 }
 
@@ -537,37 +583,29 @@ margin: .8em 30% .8em;
     background-color: white;
 }
 
-.content {
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    height: 96%;
-    width: 96%;
-
-}
 .status-page {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
+    width:100%;
 }
 #caregiver-status-page {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
 }
 #caregiver-status-page-weight {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
 }
 
 #caregiver-status-page-blood-pressure {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
 }
 #caregiver-status-page-sleep {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
 }
 #caregiver-status-page-steps {
-    min-height: 100%; background-color:white;
+    max-height: 100%; background-color:white;
 }
 
 #caregiver-activities-page {
-    min-height: 100%; background-color:lightgray;
+    max-height: 100%; background-color:lightgray;
 }
 
 .content-scroll {
@@ -701,6 +739,11 @@ border-radius: 50%;
     border-color: gray;
 }
 
+.tab-panel{
+    display:grid;
+    align-items: center;
+}
+
 #afterhealthstatusbandr{
     max-height: 100%;
     position: fixed;
@@ -709,11 +752,10 @@ border-radius: 50%;
     overflow: hidden;
     background-color: #eeeeee;
 }
-#afterhealthstatusbandr2{
-    margin-top: -3%;
-    max-height: 45%;
-    height: 45%;
-    width: 110%;
+.statusbar{
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
     background-color: #eeeeee;
 }
@@ -807,23 +849,6 @@ text-align: center;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-    .status-type-image{
-        width: 20%;
-        position: absolute;
-        bottom: 5%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .card-type-image {
-        width: 20%;
-        position: absolute;
-        top: 5%;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     .welcome-message {
         margin-top: 5%;
         width: 100%;

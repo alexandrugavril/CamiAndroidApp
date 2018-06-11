@@ -810,7 +810,7 @@ var app = {
                     borderColorS.push('rgba(255,99,0,1)');
                     systolicValues.push(pData[i].value_info.systolic);
                 }
-                var latestValue = pData[pData.length - 1].value_info.systolic + "/" + pData[pData.length - 1].value_info.diastolic;
+                var latestValue = pData[pData.length - 1].value_info.systolic + " / " + pData[pData.length - 1].value_info.diastolic;
                 app.model.latestBloodPressureValue = latestValue;
                 app.model.latestBloodPressureSeverity = app.getBloodPressureSeverity(pData[pData.length - 1].value_info.systolic,
                     pData[pData.length - 1].value_info.diastolic);
