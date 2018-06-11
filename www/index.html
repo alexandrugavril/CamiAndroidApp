@@ -757,7 +757,35 @@
     <div id="caregiver-status-page" class="status-page" data-role="page">
 
         <div data-role="content" class="tab-content">
-            <div class="row tab-panel" >
+            <div class="row tab-panel row-panel-normal" >
+                <div class="col-15 selected">
+                    <a href='#caregiver-status-page'>
+                        <img class="tabicon" src="img/heart.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href="#caregiver-status-page-weight" >
+                        <img class="tabicon" src="img/icon-weight_400x400.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-blood-pressure'>
+                        <img class="tabicon" src="img/blood-pressure-icon.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-steps'>
+                        <img class="tabicon" src="img/steps-ok.png"/>
+                    </a>
+                </div>
+                <div class="col-15 notSelected">
+                    <a href='#caregiver-status-page-sleep'>
+                        <img class="tabicon" src="img/sleep-ok.png"/>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tab-panel row-panel-mobile-landscape" >
                 <div class="col-15 selected">
                     <a href='#caregiver-status-page'>
                         <img class="tabicon" src="img/heart.png"/>
@@ -786,21 +814,19 @@
             </div>
             <!-- Tab content -->
             <div id="caregiver-heartrate-chart-div" class="chart-container">
-                <h1>{{translations.heart_rate}}</h1>
-                <div class="row">
-                    <div class="col-6 horizontal-centered">
-                        <p>{{translations.latest_value}}</p>
-                    </div>
-                    <div class="col-6">
-                        <p id="latest-heartrate-value">{{latestHeartRateValue}} bpm</p>
-                    </div>
+                <h1 class="col-md-12">{{translations.heart_rate}}</h1>
+                <div class="col-6 horizontal-centered landscape-mobile-left">
+                    <p>{{translations.latest_value}}</p>
+                </div>
+                <div class="col-6 landscape-mobile-right">
+                    <p id="latest-heartrate-value">{{latestHeartRateValue}} bpm</p>
                 </div>
                 <canvas id="caregiver-heart-rate-chart">
 
                 </canvas>
             </div>
         </div>
-        <div  data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
+        <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
                     <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
