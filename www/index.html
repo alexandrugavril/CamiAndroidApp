@@ -803,6 +803,7 @@
                     <div class="col-10 center-text white-text"><strong>{{latestReminders[0].message}}</strong></div>
                 </button>
             </div>
+
             <div id="noUrgentStatus" ng-if="latestReminders.length == 0">
                 <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
                     <div class="text-center center-type-image">
@@ -1449,15 +1450,37 @@
 <script type="text/javascript">
     var login = $("#loginForm");
     login.on("submit",handleLogin);
-    $('#loginPage').on("pageshow", function(e) {
-        checkAlreadyLogged();
-    });
-    $("#enduser-journal-page").on("pageshow", function(e) {
-        var userId = JSON.parse(window.localStorage.getItem("user")).id;
-        console.log(userId);
-        getReminders(userId);
-    });
-    $("#enduser-page").on("pageshow ", function(e) {
+    var caregiverTimer = null;
+    var enduserTimer = null;
+
+    function startPollingEnduser()
+    {
+        enduserTimer = window.setInterval(updateEndUser, 10000);
+    }
+
+    function stopPollingEnduser()
+    {
+        if(enduserTimer)
+            window.clearInterval(enduserTimer);
+    }
+
+    function startPollingCaregiver()
+    {
+        caregiverTimer = window.setInterval(updateCareGiver, 10000);
+    }
+
+    function stopPollingCaregiver()
+    {
+        if(caregiverTimer)
+            window.clearInterval(caregiverTimer);
+    }
+
+
+
+
+    function updateEndUser()
+    {
+        console.log("Update eu");
         var userId = JSON.parse(window.localStorage.getItem("user")).id;
         getReminders(userId);
 
@@ -1472,7 +1495,38 @@
         app.plotStepsChart(ctx, userId);
         ctx = document.getElementById("enduser-sleep-chart");
         app.plotSleepChart(ctx, userId);
+    }
 
+    function updateCareGiver()
+    {
+        console.log("Update cg");
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        var ctx = document.getElementById("caregiver-heart-rate-chart");
+        app.plotHeartRateChart(ctx, userId);
+        ctx = document.getElementById("caregiver-weight-chart");
+        app.plotWeightChart(ctx, userId);
+        ctx = document.getElementById("caregiver-blood-pressure-chart");
+        app.plotBloodPressureChart(ctx, userId);
+        ctx = document.getElementById("caregiver-sleep-chart");
+        app.plotSleepChart(ctx, userId);
+        ctx = document.getElementById("caregiver-steps-chart");
+        app.plotStepsChart(ctx, userId);
+
+        var careId = JSON.parse(window.localStorage.getItem("user")).id;
+        getReminders(careId);
+        getUrgentAlert();
+    }
+
+    $('#loginPage').on("pageshow", function(e) {
+        checkAlreadyLogged();
+    });
+    $("#enduser-journal-page").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).id;
+        console.log(userId);
+        getReminders(userId);
+    });
+    $("#enduser-page").on("pageshow ", function(e) {
+        updateEndUser();
     });
     $("#enduser-status-page").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
@@ -1505,25 +1559,11 @@
         var ctx = document.getElementById("enduser-sleep-chart");
         app.plotSleepChart(ctx, userId);
     });
+
     $("#caregiver-page").on("pageshow", function(e){
-        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
-        var ctx = document.getElementById("caregiver-heart-rate-chart");
-        app.plotHeartRateChart(ctx, userId);
-        ctx = document.getElementById("caregiver-weight-chart");
-        app.plotWeightChart(ctx, userId);
-        ctx = document.getElementById("caregiver-blood-pressure-chart");
-        app.plotBloodPressureChart(ctx, userId);
-        ctx = document.getElementById("caregiver-sleep-chart");
-        app.plotSleepChart(ctx, userId);
-        ctx = document.getElementById("caregiver-steps-chart");
-        app.plotStepsChart(ctx, userId);
-
-        var careId = JSON.parse(window.localStorage.getItem("user")).id;
-        getReminders(careId);
-        getUrgentAlert();
-
-
+        updateCareGiver();
     });
+
     $("#caregiver-status-page").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
         var ctx = document.getElementById("caregiver-heart-rate-chart");
