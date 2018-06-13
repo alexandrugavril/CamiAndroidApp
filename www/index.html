@@ -730,7 +730,7 @@
             </div>
             <div class="statusbar">
                 <br/>
-                <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
+                <div class="welcome-page-icons" style="background-color: #eeeeee" >
                     <div class="text-center center-type-image">
                         <h2 style="font-weight:bold;color:grey">
                             {{translations.welcome}}
@@ -798,9 +798,9 @@
                 <br/>
             </div>
             <div id="urgentStatus" ng-if="latestReminders.length > 0" class="col-12" >
-                <button onclick="checkReminder()" class="row  {{latestReminders[0].severity+'Severity'}} urgent-reminder-button">
+                <button onclick="checkReminder()" class="{{latestReminders[0].severity+'Severity'}} urgent-reminder-button">
                     <div class="col-2"><img src="{{latestReminders[0].image}}" class="card-type-image button-type-image"></div>
-                    <div class="col-10 center-text white-text"><strong>{{latestReminders[0].message}}</strong></div>
+                    <div class="col-10 center-text white-text large-text"><strong>{{latestReminders[0].message}}</strong></div>
                 </button>
             </div>
 

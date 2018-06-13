@@ -87,7 +87,9 @@ h1 {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
 }
-
+.large-text{
+    font-size: 2vmax;
+}
 .center-text{
     text-align:center!important;
 }
@@ -328,7 +330,7 @@ h1 {
     font-weight: bold;
 }
 .welcome-page-icons{
-    height: 5vmax;
+    height: 4vmax;
 }
 .icon-row {
     height: 100%; width: 100%; object-fit: contain;
@@ -529,6 +531,7 @@ margin: .8em 30% .8em;
     padding:0;
     max-width:100%;
     min-width:100%;
+    min-height: 5vmax;
     display: flex;
     align-items: center;
 }
@@ -539,6 +542,7 @@ margin: .8em 30% .8em;
     padding:0;
     max-width:100%;
     min-width:100%;
+    min-height: 5vmax;
 
     display: flex;
     align-items: center;
