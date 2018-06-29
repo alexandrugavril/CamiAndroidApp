@@ -264,13 +264,11 @@ function getReminders(userId)
                 var today = moment(Date.now()).format('ddd D MMM');
                 rems[i].image = getImageForReminderType(rems[i]['type'], rems[i].severity);
                 rems[i].date = moment(t).format('HH:mm');
-                rems[i].dayMonth = moment(t).format('DD/MM');
+                rems[i].dayMonth = moment(t).format('DD/MM HH:mm');
                 rems[i].severityClass = rems[i].severity + ' col-9';
                 rems[i].statusImage = getImageForReminderStatus(rems[i].acknowledged);
                 rems[i].check = app.model.translations.check;
-
-                var isNotAck = !(rems[i].acknowledged === true || rems[i].acknowledged === false);
-                rems[i].isToday = today === date && isNotAck;
+                rems[i].canAcknowledge = rems[i].acknowledged !== true;
                 if(date in remsByDay)
                 {
                     remsByDay[date].push(rems[i]);

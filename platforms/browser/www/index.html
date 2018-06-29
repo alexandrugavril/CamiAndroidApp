@@ -382,10 +382,9 @@
         <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
-                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
-                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
-                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#enduser-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#enduser-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#enduser-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
                     <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
@@ -466,10 +465,9 @@
         <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
-                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
-                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
-                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#enduser-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#enduser-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#enduser-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
                     <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
@@ -550,10 +548,9 @@
         <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
-                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
-                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
-                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#enduser-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#enduser-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#enduser-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
                     <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
@@ -634,10 +631,9 @@
         <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
-                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
-                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
-                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#enduser-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#enduser-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#enduser-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
                     <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
@@ -718,10 +714,9 @@
         <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
             <div data-role="navbar">
                 <ul>
-                    <li><a href="#caregiver-page" data-icon="home" >{{translations.home}}</a></li>
-                    <li><a href="#caregiver-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
-                    <li><a href="#caregiver-journal-page" data-icon="star">{{translations.journal}}</a></li>
-                    <li><a href="#caregiver-activities-page" data-icon="grid">{{translations.activities}}</a></li>
+                    <li><a href="#enduser-page" data-icon="home" >{{translations.home}}</a></li>
+                    <li><a href="#enduser-journal-page" data-icon="star">{{translations.journal}}</a></li>
+                    <li><a href="#enduser-status-page" data-icon="flat-menu" data-theme="b">{{translations.status}}</a></li>
                     <li><a href="#loginPage" onclick="logOff()" data-icon="back">{{translations.logout}}</a></li>
                 </ul>
             </div>
@@ -729,13 +724,13 @@
     </div>
 
     <div id="caregiver-page" data-role="page">
-        <div class="content" ng-if="latestReminders.length <= 0">
+        <div class="content">
             <div class="header">
                 <br/>
             </div>
             <div class="statusbar">
                 <br/>
-                <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
+                <div class="welcome-page-icons" style="background-color: #eeeeee" >
                     <div class="text-center center-type-image">
                         <h2 style="font-weight:bold;color:grey">
                             {{translations.welcome}}
@@ -802,12 +797,55 @@
             <div class="header">
                 <br/>
             </div>
-            <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
-                <div class="text-center center-type-image">
-                    <h2 style="font-weight:lighter;color:grey">
-                        {{translations.no_new_reminders}}
-                    </h2>
+            <div id="urgentStatus" ng-if="latestReminders.length > 0" class="col-12" >
+                <button onclick="checkReminder()" class="{{latestReminders[0].severity+'Severity'}} urgent-reminder-button">
+                    <div class="col-2"><img src="{{latestReminders[0].image}}" class="card-type-image button-type-image"></div>
+                    <div class="col-10 center-text white-text large-text"><strong>{{latestReminders[0].message}}</strong></div>
+                </button>
+            </div>
+
+            <div id="noUrgentStatus" ng-if="latestReminders.length == 0">
+                <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
+                    <div class="text-center center-type-image">
+                        <h2 style="font-weight:lighter;color:grey">
+                            {{translations.all_is_fine}}
+                        </h2>
+                    </div>
                 </div>
+            </div>
+            <div class="header">
+                <br/>
+            </div>
+            <div>
+                <div style="width: 100%;text-align:center; background-color: #eeeeee" >
+                    <h4 style="font-weight:lighter;color:grey">
+                        {{translations.latest_journal_entries}}
+                    </h4>
+                </div>
+                <ul class="content-scroll" id="remscroll" style="background-color: lightgray" >
+                    <li class="selected" data-ng-repeat="rem in allReminders">
+                        <div class="row {{rem.severity + '-borders'}} row-latest-journal">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-2">
+                                <span class="latest-journal-icon">
+                                    <img class="latest-journal-icon center-type-image" src="{{rem.image}}"/>
+                                </span>
+                            </div>
+                            <div class="col-3">
+                                    <span class="card-type-image center-align center-type-image">
+                                        <strong>{{rem.dayMonth}}</strong>
+                                    </span>
+                            </div>
+
+                            <div class="col-6">
+                                <span class="latest-reminder-description">
+                                    {{rem.description}}
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <div id="footer" data-role="footer" data-id="footer1" data-position="fixed" data-tap-toggle="false">
@@ -1412,15 +1450,37 @@
 <script type="text/javascript">
     var login = $("#loginForm");
     login.on("submit",handleLogin);
-    $('#loginPage').on("pageshow", function(e) {
-        checkAlreadyLogged();
-    });
-    $("#enduser-journal-page").on("pageshow", function(e) {
-        var userId = JSON.parse(window.localStorage.getItem("user")).id;
-        console.log(userId);
-        getReminders(userId);
-    });
-    $("#enduser-page").on("pageshow ", function(e) {
+    var caregiverTimer = null;
+    var enduserTimer = null;
+
+    function startPollingEnduser()
+    {
+        enduserTimer = window.setInterval(updateEndUser, 10000);
+    }
+
+    function stopPollingEnduser()
+    {
+        if(enduserTimer)
+            window.clearInterval(enduserTimer);
+    }
+
+    function startPollingCaregiver()
+    {
+        caregiverTimer = window.setInterval(updateCareGiver, 10000);
+    }
+
+    function stopPollingCaregiver()
+    {
+        if(caregiverTimer)
+            window.clearInterval(caregiverTimer);
+    }
+
+
+
+
+    function updateEndUser()
+    {
+        console.log("Update eu");
         var userId = JSON.parse(window.localStorage.getItem("user")).id;
         getReminders(userId);
 
@@ -1435,7 +1495,38 @@
         app.plotStepsChart(ctx, userId);
         ctx = document.getElementById("enduser-sleep-chart");
         app.plotSleepChart(ctx, userId);
+    }
 
+    function updateCareGiver()
+    {
+        console.log("Update cg");
+        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
+        var ctx = document.getElementById("caregiver-heart-rate-chart");
+        app.plotHeartRateChart(ctx, userId);
+        ctx = document.getElementById("caregiver-weight-chart");
+        app.plotWeightChart(ctx, userId);
+        ctx = document.getElementById("caregiver-blood-pressure-chart");
+        app.plotBloodPressureChart(ctx, userId);
+        ctx = document.getElementById("caregiver-sleep-chart");
+        app.plotSleepChart(ctx, userId);
+        ctx = document.getElementById("caregiver-steps-chart");
+        app.plotStepsChart(ctx, userId);
+
+        var careId = JSON.parse(window.localStorage.getItem("user")).id;
+        getReminders(careId);
+        getUrgentAlert();
+    }
+
+    $('#loginPage').on("pageshow", function(e) {
+        checkAlreadyLogged();
+    });
+    $("#enduser-journal-page").on("pageshow", function(e) {
+        var userId = JSON.parse(window.localStorage.getItem("user")).id;
+        console.log(userId);
+        getReminders(userId);
+    });
+    $("#enduser-page").on("pageshow ", function(e) {
+        updateEndUser();
     });
     $("#enduser-status-page").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
@@ -1468,25 +1559,11 @@
         var ctx = document.getElementById("enduser-sleep-chart");
         app.plotSleepChart(ctx, userId);
     });
+
     $("#caregiver-page").on("pageshow", function(e){
-        var userId = JSON.parse(window.localStorage.getItem("user")).careId;
-        var ctx = document.getElementById("caregiver-heart-rate-chart");
-        app.plotHeartRateChart(ctx, userId);
-        ctx = document.getElementById("caregiver-weight-chart");
-        app.plotWeightChart(ctx, userId);
-        ctx = document.getElementById("caregiver-blood-pressure-chart");
-        app.plotBloodPressureChart(ctx, userId);
-        ctx = document.getElementById("caregiver-sleep-chart");
-        app.plotSleepChart(ctx, userId);
-        ctx = document.getElementById("caregiver-steps-chart");
-        app.plotStepsChart(ctx, userId);
-
-        var careId = JSON.parse(window.localStorage.getItem("user")).id;
-        getReminders(careId);
-        getUrgentAlert();
-
-
+        updateCareGiver();
     });
+
     $("#caregiver-status-page").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).careId;
         var ctx = document.getElementById("caregiver-heart-rate-chart");

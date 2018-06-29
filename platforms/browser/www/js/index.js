@@ -303,6 +303,8 @@ function logOff()
     window.localStorage.removeItem("user");
     location.reload();
     $.mobile.navigate("#login-page", { transition : "slide"});
+    stopPollingCaregiver();
+    stopPollingEnduser();
     user = JSON.parse(user);
     if(user !== null && user !== undefined) {
         var form = $("#loginForm");
@@ -353,6 +355,7 @@ function registerNotifications()
 
         window.plugins.PushbotsPlugin.on("notification:received", function(data){
             window.plugins.PushbotsPlugin.incrementBadgeCountBy(1);
+            location.reload();
 
             if(window.localStorage.getItem("user"))
             {
@@ -422,6 +425,7 @@ function checkLogin(u, p)
                                 window.localStorage.setItem("lastLoggedUser", JSON.stringify({'user': u, 'password': p,
                                     'id': users[0].id, 'careId' : users[0].id}));
                                 $.mobile.navigate("#enduser-page", { transition : "slide"});
+                                startPollingEnduser();
                             }
                         }
                         else {
@@ -451,6 +455,7 @@ function checkLogin(u, p)
                                     window.localStorage.setItem("lastLoggedUser", JSON.stringify({'user': u, 'password': p,
                                         'id': users[0].id, 'careId' : careId}));
                                     $.mobile.navigate("#caregiver-page", { transition : "slide"});
+                                    startPollingCaregiver();
                                 }
                             }
                             else {
