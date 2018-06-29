@@ -79,7 +79,7 @@
     <div id="home-page" data-role="page">
         <div data-role="content" >
             <!--<a data-icon="flat-heart" data-theme="d" href="#second-page" data-role="button">Second Page</a>-->
-            <p>{{translations.welcome}}</p>
+            <p class="constant-text">{{translations.welcome}}</p>
         </div>
     </div><!-- /page  -->
 
@@ -131,7 +131,7 @@
                 <br/>
                 <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
                     <div class="text-center center-type-image">
-                        <h2 style="font-weight:bold;color:grey">
+                        <h2 class="constant-text">
                             {{translations.welcome}}
                         </h2>
                     </div>
@@ -198,7 +198,7 @@
             </div>
             <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
                 <div class="text-center center-type-image">
-                    <h2 style="font-weight:lighter;color:grey">
+                    <h2 class="constant-text">
                         {{translations.no_new_reminders}}
                     </h2>
                 </div>
@@ -738,7 +738,7 @@
                 <br/>
                 <div class="welcome-page-icons" style="background-color: #eeeeee" >
                     <div class="text-center center-type-image">
-                        <h2 style="font-weight:bold;color:grey">
+                        <h2 class="constant-text">
                             {{translations.welcome}}
                         </h2>
                     </div>
@@ -813,7 +813,7 @@
             <div id="noUrgentStatus" ng-if="latestReminders.length == 0">
                 <div class="welcome-page-icons" style="background-color: #eeeeee" ng-if="latestReminders.length == 0">
                     <div class="text-center center-type-image">
-                        <h2 style="font-weight:lighter;color:grey">
+                        <h2 class="constant-text">
                             {{translations.all_is_fine}}
                         </h2>
                     </div>
@@ -824,7 +824,7 @@
             </div>
             <div>
                 <div style="width: 100%;text-align:center; background-color: #eeeeee" >
-                    <h4 style="font-weight:lighter;color:grey">
+                    <h4 class="constant-text">
                         {{translations.latest_journal_entries}}
                     </h4>
                 </div>

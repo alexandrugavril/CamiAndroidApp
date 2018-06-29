@@ -31,12 +31,17 @@ body {
     height: 100%;
 }
 
+
 .ui-icon-journal:after {
     background-image: url("../img/journal-menu.png");
 }
 /* Fallback */
 .ui-nosvg .ui-icon-journal:after {
     background-image: url("../img/journal-menu.png");
+}
+
+.constant-text{
+    font-weight:normal;color:#34495e;
 }
 
 .ui-page {

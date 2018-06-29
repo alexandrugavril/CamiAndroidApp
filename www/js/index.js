@@ -254,6 +254,8 @@ function getReminders(userId)
 
             for (var i = 0; i < rems.length; i++) {
                 var timestamp = rems[i]['timestamp'];
+                console.log(rems[i]);
+
                 var t = new Date(timestamp*1000);
                 var date = moment(t).format('ddd D MMM');
                 var today = moment(Date.now()).format('ddd D MMM');
