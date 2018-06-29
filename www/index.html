@@ -278,7 +278,7 @@
                                     </div>
                                     <div ng-if="rem.canAcknowledge">
                                         <p class="card-time card-description">
-                                            <button click="checkReminder()" class="ack-button">
+                                            <button id="{{rem.id}}" onclick="acknowledgeReminder(this.id)" class="ack-button">
                                                 <i class="fa fa-check-circle"> {{rem.check}}</i>
                                             </button>
                                         </p>
@@ -1329,7 +1329,7 @@
                                     </div>
                                     <div ng-if="rem.canAcknowledge">
                                         <p class="card-time card-description">
-                                            <button click="checkReminder()" class="ack-button">
+                                            <button id="{{rem.id}}" onclick="acknowledgeReminder(this.id)" class="ack-button">
                                                 <i class="fa fa-check-circle"> {{rem.check}}</i>
                                             </button>
                                         </p>

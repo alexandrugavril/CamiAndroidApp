@@ -583,6 +583,7 @@ margin: .8em 30% .8em;
 }
 
 .ack-button {
+    touch-action: manipulation;
     display: inline-block;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;

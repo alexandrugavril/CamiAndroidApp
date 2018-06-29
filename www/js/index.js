@@ -84,8 +84,6 @@ function getImageForReminderStatus(status)
     }
 }
 
-
-
 function checkReminder()
 {
     var url = "http://cami.vitaminsoftware.com:8008/api/v1/journal_entries/" + app.model.latestReminders[0].id + "/";
@@ -96,15 +94,12 @@ function checkReminder()
         contentType : 'application/json',
         success: function () {
             location.reload();
-
         },
         error: function () {
             alert("Reminder was not acknowledged.");
             location.reload();
-
         }
     });
-
 }
 
 function checkIfUserAlreadyLogged()
