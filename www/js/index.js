@@ -375,6 +375,10 @@ function handleLogin() {
     var form = $("#loginForm");
     //disable the button so we can't resubmit while we wait
     var u = $("#username", form).val();
+    if(u === 'cami')
+    {
+        u = "cami-user-pl-1";
+    }
     var p = $("#password", form).val();
 
     checkLogin(u, p);
