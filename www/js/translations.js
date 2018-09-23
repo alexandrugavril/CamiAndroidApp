@@ -22,7 +22,9 @@ var translations ={
         steps: "Pași",
         sleep: "Somn",
         welcome: "Bine ați venit",
-        latest_journal_entries: "Ultimele Evenimente"
+        latest_journal_entries: "Ultimele Evenimente",
+        error_connection: "Verificați conexiunea la internet.",
+        operation_failed_error: "Operațiune nereușită.",
     },
     en : {
         check: "Acknowledge",
@@ -47,8 +49,9 @@ var translations ={
         steps: "Steps",
         sleep: "Sleep",
         welcome: "Welcome",
-        latest_journal_entries: "Latest Journal Entries"
-
+        latest_journal_entries: "Latest Journal Entries",
+        error_connection: "Cannot receive reminders. Check your internet connection!",
+        operation_failed_error: "Operation failed.",
     },
     dk : {
         check: "Anerkende",
@@ -73,7 +76,9 @@ var translations ={
         steps: "Skridt",
         sleep: "Søvn",
         welcome: "Velkommen",
-        latest_journal_entries: "Seneste journalindlæg"
+        latest_journal_entries: "Seneste journalindlæg",
+        error_connection: "Advarsel. Kunne ikke hente påmindelser. Check venligst sin Internet forbindelse.",
+        operation_failed_error: "Operation mislykkedes",
     },
     pl: {
         check: "Uznać",
@@ -98,7 +103,9 @@ var translations ={
         steps: "Kroki",
         sleep: "Sen",
         welcome: "Witaj",
-        latest_journal_entries: "Najnowsze wpisy do dziennika"
+        latest_journal_entries: "Najnowsze wpisy do dziennika",
+        error_connection: "Ostrzeżenie. Nie udało się pobrać przypomnień. Sprawdź połączenie z Internetem.",
+        operation_failed_error: "Operacja nie powiodła się",
     }
 
 };

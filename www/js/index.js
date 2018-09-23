@@ -29,7 +29,7 @@ function acknowledgeReminder(id)
             location.reload();
         },
         error: function () {
-            alert("Reminder was not acknowledged.");
+            alert(app.model.translations.operation_failed_error);
             location.reload();
 
         }
@@ -96,7 +96,7 @@ function checkReminder()
             location.reload();
         },
         error: function () {
-            alert("Reminder was not acknowledged.");
+            alert(app.model.translations.operation_failed_error);
             location.reload();
         }
     });
@@ -121,7 +121,7 @@ function cancelReminder()
 
         },
         error: function () {
-            alert("Reminder was not acknowledged.");
+            alert(app.model.translations.operation_failed_error);
             location.reload();
 
         }
@@ -227,7 +227,7 @@ function getActivities(userId)
 
         },
         error: function () {
-            alert("Cannot receive reminders. Check your internet connection!");
+            alert(app.model.translations.error_connection);
             logOff();
         }
 
@@ -285,7 +285,7 @@ function getReminders(userId)
 
         },
         error: function () {
-            alert("Cannot receive reminders. Check your internet connection!");
+            alert(app.model.translations.error_connection);
             logOff();
         }
 
@@ -496,7 +496,6 @@ function checkLogin(u, p)
     }
     else {
         Materialize.toast('You must enter a username and password!', 4000, 'rounded');// 4000 is the duration of the toast
-
     }
 }
 
