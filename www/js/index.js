@@ -849,7 +849,7 @@ var app = {
                         {
                             month = "0" + month;
                         }
-                        var formatted = t.getDate() + "/" + month + "\n" + t.getHours() + ":" + t.getMinutes();
+                        var formatted = t.getDate() + "/" + month + "\n";// + t.getHours() + ":" + t.getMinutes();
                         labs.push(formatted);
 
                         diastolicValues.push(bpData[i].value_info.diastolic);
@@ -902,7 +902,7 @@ var app = {
                         scaleStepWidth: 20,
                         onResize: updateChartSize,
                         options: {
-                            maintainAspectRatio: false,
+                            maintainAspectRatio: true,
                             responsive: true,
                             hoverMode: 'index',
                             stacked: false,
@@ -925,8 +925,6 @@ var app = {
                     app.chart = myChart;
 
                     updateChartSize();
-                    app.chart.resize();
-
                 }
 
             }

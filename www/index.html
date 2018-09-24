@@ -1465,8 +1465,6 @@
 
     function updateChartSize()
     {
-        console.log("Updating size");
-
         var endUserBPChart = document.getElementById("enduser-blood-pressure-chart");
         var carGiverBPChart = document.getElementById("caregiver-blood-pressure-chart");
 
@@ -1475,15 +1473,14 @@
         {
             if(app.chart)
             {
-                alert("Resize");
-                app.chart.options.maintainAspectRatio = false;
+                app.chart.resize();
             }
         }
         //landscape
         else{
             if(app.chart)
             {
-                app.chart.options.maintainAspectRatio = true;
+                app.chart.resize();
             }
         }
     }
@@ -1509,9 +1506,6 @@
         if(caregiverTimer)
             window.clearInterval(caregiverTimer);
     }
-
-
-
 
     function updateEndUser()
     {
