@@ -538,7 +538,7 @@
                 <div class="col-6 landscape-mobile-right">
                     <p>{{latestBloodPressureValue}} mmHg</p>
                 </div>
-                <canvas id="enduser-blood-pressure-chart">
+                <canvas id="enduser-blood-pressure-chart" height="4%" width="4%">
 
                 </canvas>
             </div>
@@ -1093,7 +1093,7 @@
                 <div class="col-6 landscape-mobile-right">
                     <p id="latest-blood-pressure-value">{{latestBloodPressureValue}} mmHg</p>
                 </div>
-                <canvas id="caregiver-blood-pressure-chart">
+                <canvas id="caregiver-blood-pressure-chart" >
 
                 </canvas>
 
@@ -1460,6 +1460,12 @@
     var enduserTimer = null;
 
     window.addEventListener('orientationchange', function(){
+        updateChartSize();
+    });
+
+    function updateChartSize()
+    {
+        console.log("Updating size");
 
         var endUserBPChart = document.getElementById("enduser-blood-pressure-chart");
         var carGiverBPChart = document.getElementById("caregiver-blood-pressure-chart");
@@ -1479,7 +1485,7 @@
                 app.chart.options.maintainAspectRatio = true;
             }
         }
-    });
+    }
 
     function startPollingEnduser()
     {

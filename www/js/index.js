@@ -900,6 +900,7 @@ var app = {
                         scaleOverride: true,
                         scaleSteps: 10,
                         scaleStepWidth: 20,
+                        onResize: updateChartSize,
                         options: {
                             maintainAspectRatio: false,
                             responsive: true,
@@ -922,6 +923,10 @@ var app = {
                         }
                     });
                     app.chart = myChart;
+
+                    updateChartSize();
+                    app.chart.resize();
+
                 }
 
             }
@@ -990,6 +995,7 @@ var app = {
 
                 var myChart = new Chart(ctx, {
                     type: 'bar',
+                    maintainAspectRatio: false,
                     data: {
                         labels: labs,
                         datasets: [{
@@ -1010,6 +1016,7 @@ var app = {
                         }
                     }
                 });
+                app.chart = myChart;
             }
         });
     },
@@ -1061,6 +1068,7 @@ var app = {
 
                 var myChart = new Chart(ctx, {
                     type: 'line',
+                    maintainAspectRatio: false,
                     data: {
                         labels: labs,
                         datasets: [{
@@ -1093,6 +1101,7 @@ var app = {
                         }
                     }
                 });
+
             }
         });
     },
