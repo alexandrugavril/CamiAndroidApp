@@ -403,11 +403,18 @@ function checkLogin(u, p)
                         if(profile)
                         {
                             var account_role = profile['account_role'];
+
                             if(profile.language in translations)
                             {
                                 app.model.translations = translations[profile.language];
                                 window.localStorage.setItem('translations', JSON.stringify(translations[profile.language]));
-                                moment.locale(profile.language);
+                                if(profile.language === "dk")
+                                {
+                                    moment.locale("da");
+                                }
+                                else{
+                                    moment.locale(profile.language);
+                                }
                             }
                             else
                             {
@@ -436,6 +443,14 @@ function checkLogin(u, p)
                                     app.model.translations = translations[profile.language];
                                     window.localStorage.setItem('translations', JSON.stringify(translations[profile.language]));
                                     moment.locale(profile.language);
+
+                                    if(profile.language === "dk")
+                                    {
+                                        moment.locale("da");
+                                    }
+                                    else{
+                                        moment.locale(profile.language);
+                                    }
                                 }
                                 else {
                                     app.model.translations = translations['ro'];
