@@ -559,6 +559,7 @@ var app = {
     SOME_CONSTANTS : false,  // some constant
     user: {},
     reminders: [],
+    chart: null,
     currentReminder: -1,
     severities: {
         mediumHigh: "mediumHighSeverity",
@@ -848,8 +849,9 @@ var app = {
                         {
                             month = "0" + month;
                         }
-                        var formatted = t.getDate() + "/" + month;
+                        var formatted = t.getDate() + "/" + month + "\n" + t.getHours() + ":" + t.getMinutes();
                         labs.push(formatted);
+
                         diastolicValues.push(bpData[i].value_info.diastolic);
                         systolicValues.push(bpData[i].value_info.systolic);
                         heartRateValues.push(bpData[i].value_info.pulse);
@@ -896,11 +898,10 @@ var app = {
                     var myChart  = Chart.Bar(ctx, {
                         data: lineChartData,
                         scaleOverride: true,
-                        scaleSteps: 5,
-                        scaleStepWidth: 5,
+                        scaleSteps: 10,
+                        scaleStepWidth: 20,
                         options: {
-
-                            maintainAspectRatio: true,
+                            maintainAspectRatio: false,
                             responsive: true,
                             hoverMode: 'index',
                             stacked: false,
@@ -920,7 +921,7 @@ var app = {
                             }
                         }
                     });
-
+                    app.chart = myChart;
                 }
 
             }

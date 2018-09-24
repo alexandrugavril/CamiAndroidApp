@@ -1096,6 +1096,7 @@
                 <canvas id="caregiver-blood-pressure-chart">
 
                 </canvas>
+
             </div>
         </div>
         <div data-role="footer" data-id="footer2" data-position="fixed" data-tap-toggle="false">
@@ -1457,6 +1458,28 @@
     login.on("submit",handleLogin);
     var caregiverTimer = null;
     var enduserTimer = null;
+
+    window.addEventListener('orientationchange', function(){
+
+        var endUserBPChart = document.getElementById("enduser-blood-pressure-chart");
+        var carGiverBPChart = document.getElementById("caregiver-blood-pressure-chart");
+
+        //Portrait
+        if(window.orientation === 0)
+        {
+            if(app.chart)
+            {
+                app.chart.options.maintainAspectRatio = false;
+            }
+        }
+        //landscape
+        else{
+            if(app.chart)
+            {
+                app.chart.options.maintainAspectRatio = true;
+            }
+        }
+    });
 
     function startPollingEnduser()
     {
