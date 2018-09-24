@@ -643,6 +643,7 @@ var app = {
         }
         return this.severities.none;
     },
+
     plotWeightChart: function(ctx, userId) {
         var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=weight&limit=7" +
             "&order_by=-timestamp&user=" + userId;
