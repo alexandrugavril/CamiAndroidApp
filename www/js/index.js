@@ -725,7 +725,11 @@ var app = {
                 var dataValues = [];
                 var minVal = 999;
                 var maxVal = 0;
-                var padding = 2;
+
+                var padding = 10;
+                var paddingMin = 0;
+                var paddingMax = 0;
+
                 for (var i = 0; i < pData.length; i++) {
                     var t = new Date(pData[i].timestamp*1000);
                     var month = t.getMonth() + 1;
@@ -745,6 +749,9 @@ var app = {
                         maxVal = pData[i].value_info.value;
                     }
                 }
+                paddingMin = minVal % padding;
+                paddingMax = padding - maxVal % padding;
+
                 var latestValue = pData[pData.length - 1].value_info.value;
                 app.model.latestHeartRateValue = latestValue;
                 app.model.latestHeartRateSeverity = app.getHeartRateSeverity(latestValue);
@@ -769,8 +776,8 @@ var app = {
                             yAxes: [{
                                 ticks: {
                                     beginAtZero: false,
-                                    min: Math.round(minVal - padding),
-                                    max: Math.round(maxVal + padding)
+                                    min: Math.round(minVal - paddingMin),
+                                    max: Math.round(maxVal + paddingMax)
                                 }
                             }]
                         }
