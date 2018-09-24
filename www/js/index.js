@@ -788,84 +788,100 @@ var app = {
             url: url,
             dataType: "json",
             type: 'GET',
-            success: function (data) {
-                var pData = data.measurements.reverse();
-                var labs = [];
-                var diastolicValues = [];
-                var systolicValues = [];
-                var backgroundColorD= [];
-                var borderColorD= [];
-                var backgroundColorS = [];
-                var borderColorS = [];
-                for (var i = 0; i < pData.length; i++) {
-                    var t = new Date(pData[i].timestamp*1000);
-                    var month = t.getMonth() + 1;
-                    if(month < 10)
-                    {
-                        month = "0" + month;
-                    }
-                    var formatted = t.getDate() + "/" + month;
-                    labs.push(formatted);
-                    diastolicValues.push(pData[i].value_info.diastolic);
-                    backgroundColorD.push('rgba(255, 99, 132, 0.2)');
-                    backgroundColorS.push('rgba(255, 99, 0, 0.2)');
-                    borderColorD.push('rgba(255,99,132,1)');
-                    borderColorS.push('rgba(255,99,0,1)');
-                    systolicValues.push(pData[i].value_info.systolic);
-                }
-                var latestValue = pData[pData.length - 1].value_info.systolic + " / " + pData[pData.length - 1].value_info.diastolic;
-                app.model.latestBloodPressureValue = latestValue;
-                app.model.latestBloodPressureSeverity = app.getBloodPressureSeverity(pData[pData.length - 1].value_info.systolic,
-                    pData[pData.length - 1].value_info.diastolic);
-                app.model.$apply();
+            success: function (bpDataRaw) {
+                var bpData = bpDataRaw.measurements.reverse();
+                if(bpData.length > 0)
+                {
+                    var labs = [];
+                    var diastolicValues = [];
+                    var systolicValues = [];
+                    var heartRateValues = [];
 
+                    var backgroundColorD= [];
+                    var borderColorD= [];
+                    var backgroundColorS = [];
+                    var borderColorS = [];
+                    var backgroundColorHR = [];
+                    var borderColorHR = [];
 
-                var lineChartData = {
-                    labels: labs,
-                    datasets: [{
-                        label: app.model.translations.diastolic,
-                        backgroundColor: backgroundColorD,
-                        borderColor: borderColorD,
-                        fill: false,
-                        data: diastolicValues,
-                        yAxisID: "y-axis-1",
-                    }, {
-                        label: app.model.translations.systolic + " (mmHg)",
-                        backgroundColor: backgroundColorS,
-                        borderColor: borderColorS,
-                        fill: false,
-                        data: systolicValues,
-                    }]
-                };
-
-
-                var myChart  = Chart.Bar(ctx, {
-                    data: lineChartData,
-                    scaleOverride: true,
-                    scaleSteps: 5,
-                    scaleStepWidth: 5,
-                    options: {
-
-                        maintainAspectRatio: true,
-                        responsive: true,
-                        hoverMode: 'index',
-                        stacked: false,
-                        scales: {
-                            yAxes: [{
-                                type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                                display: true,
-                                position: "left",
-                                beginAtZero: true,
-                                fontSize: 12,
-                                id: "y-axis-1"
-                            }],
-                            xAxes: [{
-                                fontSize: 12,
-                                id: "x-axis-1"
-                            }]
+                    for (var i = 0; i < bpData.length; i++) {
+                        var t = new Date(bpData[i].timestamp*1000);
+                        var month = t.getMonth() + 1;
+                        if(month < 10)
+                        {
+                            month = "0" + month;
                         }
+                        var formatted = t.getDate() + "/" + month;
+                        labs.push(formatted);
+                        diastolicValues.push(bpData[i].value_info.diastolic);
+                        systolicValues.push(bpData[i].value_info.systolic);
+                        heartRateValues.push(bpData[i].value_info.pulse);
+
+                        backgroundColorD.push('rgba(15, 99, 255, 0.2)');
+                        backgroundColorS.push('rgba(255, 99, 0, 0.2)');
+                        backgroundColorHR.push('rgba(255, 0, 15, 0.2)');
                     }
-                });
+
+                    var latestValue = bpData[bpData.length - 1].value_info.systolic + " / " + bpData[bpData.length - 1].value_info.diastolic;
+                    app.model.latestBloodPressureValue = latestValue;
+                    app.model.latestBloodPressureSeverity = app.getBloodPressureSeverity(bpData[bpData.length - 1].value_info.systolic,
+                        bpData[bpData.length - 1].value_info.diastolic);
+                    app.model.$apply();
+
+
+                    var lineChartData = {
+                        labels: labs,
+                        datasets: [{
+                            label: app.model.translations.diastolic,
+                            backgroundColor: backgroundColorD,
+                            fill: false,
+                            data: diastolicValues,
+                            yAxisID: "y-axis-1",
+                        }, {
+                            label: app.model.translations.systolic,
+                            backgroundColor: backgroundColorS,
+                            fill: false,
+                            data: systolicValues,
+                        },
+                        {
+                            label: app.model.translations.heart_rate + " (bpm)",
+                            backgroundColor: backgroundColorHR,
+                            fill: true,
+                            data: heartRateValues,
+                        }]
+                    };
+
+
+                    var myChart  = Chart.Bar(ctx, {
+                        data: lineChartData,
+                        scaleOverride: true,
+                        scaleSteps: 5,
+                        scaleStepWidth: 5,
+                        options: {
+
+                            maintainAspectRatio: true,
+                            responsive: true,
+                            hoverMode: 'index',
+                            stacked: false,
+                            scales: {
+                                yAxes: [{
+                                    type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                                    display: true,
+                                    position: "left",
+                                    beginAtZero: true,
+                                    fontSize: 12,
+                                    id: "y-axis-1"
+                                }],
+                                xAxes: [{
+                                    fontSize: 12,
+                                    id: "x-axis-1"
+                                }]
+                            }
+                        }
+                    });
+
+                }
+
             }
         });
 
