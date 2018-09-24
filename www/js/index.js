@@ -683,6 +683,10 @@ var app = {
                 var paddingMax = padding - maxVal % padding;
 
                 var latestValue = pData[pData.length - 1].value_info.value;
+
+                if(app.model.latestWeightValue === latestValue)
+                    return;
+
                 app.model.latestWeightValue = latestValue;
                 app.model.latestWeightSeverity = app.getWeightSeverity(latestValue);
                 app.model.$apply();
@@ -759,6 +763,10 @@ var app = {
                 paddingMax = padding - maxVal % padding;
 
                 var latestValue = pData[pData.length - 1].value_info.value;
+
+                if(app.model.latestHeartRateValue === latestValue)
+                    return;
+
                 app.model.latestHeartRateValue = latestValue;
                 app.model.latestHeartRateSeverity = app.getHeartRateSeverity(latestValue);
                 app.model.$apply();
@@ -836,6 +844,10 @@ var app = {
                     }
 
                     var latestValue = bpData[bpData.length - 1].value_info.systolic + " / " + bpData[bpData.length - 1].value_info.diastolic;
+
+                    if(app.model.latestBloodPressureValue === latestValue)
+                        return;
+
                     app.model.latestBloodPressureValue = latestValue;
                     app.model.latestBloodPressureSeverity = app.getBloodPressureSeverity(bpData[bpData.length - 1].value_info.systolic,
                         bpData[bpData.length - 1].value_info.diastolic);
@@ -951,6 +963,10 @@ var app = {
                     dataValues.push(dataDict[key]);
                     latestValue = dataDict[key];
                 }
+
+                if(app.model.latestStepsValue === latestValue)
+                    return;
+
                 app.model.latestStepsValue = latestValue;
                 app.model.latestStepsSeverity = app.getStepsSeverity(latestValue);
                 app.model.$apply();
@@ -1018,6 +1034,9 @@ var app = {
 
                 var paddingMin = minVal % padding;
                 var paddingMax = padding - maxVal % padding;
+
+                if(app.model.latestSleepValue === latestValue)
+                    return;
 
                 app.model.latestSleepSeverity = app.getSleepSeverity(latestValue);
                 app.model.latestSleepValue = latestValue;
