@@ -656,7 +656,9 @@ var app = {
                 var dataValues = [];
                 var minVal = 999;
                 var maxVal = 0;
-                var padding = 2;
+                var padding = 10;
+
+
                 for (var i = 0; i < pData.length; i++) {
                     var t = new Date(pData[i].timestamp*1000);
                     var month = t.getMonth() + 1;
@@ -676,6 +678,10 @@ var app = {
                         maxVal = pData[i].value_info.value;
                     }
                 }
+
+                var paddingMin = minVal % padding;
+                var paddingMax = padding - maxVal % padding;
+
                 var latestValue = pData[pData.length - 1].value_info.value;
                 app.model.latestWeightValue = latestValue;
                 app.model.latestWeightSeverity = app.getWeightSeverity(latestValue);
@@ -702,8 +708,8 @@ var app = {
                             yAxes: [{
                                 ticks: {
                                     beginAtZero: false,
-                                    min: Math.round(minVal - padding),
-                                    max: Math.round(maxVal + padding)
+                                    min: Math.round(minVal - paddingMin),
+                                    max: Math.round(maxVal + paddingMax)
                                 }
                             }]
                         }
@@ -987,7 +993,7 @@ var app = {
                 var dataValues = [];
                 var minVal = 999;
                 var maxVal = 0;
-                var padding = 10;
+                var padding = 100;
 
                 for (var i = 0; i < pData.length; i++) {
                     var t = new Date(pData[i].timestamp*1000);
@@ -1009,6 +1015,10 @@ var app = {
                     }
                 }
                 var latestValue = pData[pData.length - 1].value_info.value;
+
+                var paddingMin = minVal % padding;
+                var paddingMax = padding - maxVal % padding;
+
                 app.model.latestSleepSeverity = app.getSleepSeverity(latestValue);
                 app.model.latestSleepValue = latestValue;
                 app.model.$apply();
@@ -1040,8 +1050,8 @@ var app = {
                         scales: {
                             yAxes: [{
                                 ticks: {
-                                    min: Math.round(minVal - padding),
-                                    max: Math.round(maxVal + padding)
+                                    min: Math.round(minVal - paddingMin),
+                                    max: Math.round(maxVal + paddingMax)
                                 }
                             }]
                         }
