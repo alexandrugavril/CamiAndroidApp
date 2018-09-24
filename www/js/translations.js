@@ -54,7 +54,7 @@ var translations ={
         operation_failed_error: "Operation failed.",
     },
     dk : {
-        check: "Anerkende",
+        check: "Godkend",
         no_new_reminders: "Ingen nye påmindelser",
         heart_rate: "Puls",
         weight: "Vægt",
