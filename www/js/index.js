@@ -184,45 +184,50 @@ function getActivities(userId)
                     }
                 }
             }
-            var activityDate = new Date(nextActivity.start);
-
-            app.model.nextActivity = {
-                severityClass: "high" + ' col-9',
-                dayWeek: moment(activityDate).format('ddd'),
-                day: moment(activityDate).format('DD'),
-                month: moment(activityDate).format('MMM').toUpperCase(),
-                hourFormatted: moment(activityDate).format('HH:mm'),
-                currentDate: "Today " + moment(new Date()).format("DD MMM"),
-                urgencyType: urgencyTypes.next,
-                date: new Date(nextActivity.start),
-                message: nextActivity.description,
-                description: nextActivity.title,
-                location: nextActivity.location
-            };
-
-
-            for(var actIdx in initActivities)
+            if(initActivities.length > 0 && nextActivity)
             {
-                var activity = data.activities[actIdx];
-                var activityDate = new Date(activity.start);
-                var activityModel = {
-                    severityClass: "medium" + ' col-9',
+                var activityDate = new Date(nextActivity.start);
+
+                app.model.nextActivity = {
+                    severityClass: "high" + ' col-9',
                     dayWeek: moment(activityDate).format('ddd'),
                     day: moment(activityDate).format('DD'),
                     month: moment(activityDate).format('MMM').toUpperCase(),
                     hourFormatted: moment(activityDate).format('HH:mm'),
                     currentDate: "Today " + moment(new Date()).format("DD MMM"),
-                    urgencyType: getActivityType(activity.start),
-                    date: new Date(activity.start),
-                    message: activity.description,
-                    description: activity.title,
-                    location: activity.location
+                    urgencyType: urgencyTypes.next,
+                    date: new Date(nextActivity.start),
+                    message: nextActivity.description,
+                    description: nextActivity.title,
+                    location: nextActivity.location
                 };
-                app.model.activities.push(activityModel);
 
+
+                for(var actIdx in initActivities)
+                {
+                    var activity = data.activities[actIdx];
+                    var activityDate = new Date(activity.start);
+                    var activityModel = {
+                        severityClass: "medium" + ' col-9',
+                        dayWeek: moment(activityDate).format('ddd'),
+                        day: moment(activityDate).format('DD'),
+                        month: moment(activityDate).format('MMM').toUpperCase(),
+                        hourFormatted: moment(activityDate).format('HH:mm'),
+                        currentDate: "Today " + moment(new Date()).format("DD MMM"),
+                        urgencyType: getActivityType(activity.start),
+                        date: new Date(activity.start),
+                        message: activity.description,
+                        description: activity.title,
+                        location: activity.location
+                    };
+                    app.model.activities.push(activityModel);
+                }
             }
             app.model.activities.reverse();
             app.model.$apply();
+
+
+
 
 
         },
@@ -251,6 +256,11 @@ function getReminders(userId)
             d.setTime(d.getTime() - dateOffset);
             app.model.latestReminders = [];
             app.model.allReminders = [];
+
+            //Today should show up even if no reminders are found
+            var today = new Date();
+            var dateToday = moment(today).format('ddd D MMM');
+            remsByDay[dateToday] = [];
 
             for (var i = 0; i < rems.length; i++) {
                 var timestamp = rems[i]['timestamp'];
@@ -442,8 +452,6 @@ function checkLogin(u, p)
                                 {
                                     app.model.translations = translations[profile.language];
                                     window.localStorage.setItem('translations', JSON.stringify(translations[profile.language]));
-                                    moment.locale(profile.language);
-
                                     if(profile.language === "dk")
                                     {
                                         moment.locale("da");
@@ -698,6 +706,8 @@ var app = {
 
                 var paddingMin = minVal % padding;
                 var paddingMax = padding - maxVal % padding;
+                if(!pData)
+                    return;
 
                 var latestValue = pData[pData.length - 1].value_info.value;
 
@@ -820,7 +830,7 @@ var app = {
 
     },
     plotBloodPressureChart: function(ctx, userId) {
-        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=blood_pressure&limit=7&" +
+        var url = "http://cami.vitaminsoftware.com:8008/api/v1/measurement/?measurement_type=blood_pressure&limit=6&" +
             "order_by=-timestamp&user=" + userId;
         $.ajax({
             url: url,
@@ -844,12 +854,18 @@ var app = {
 
                     for (var i = 0; i < bpData.length; i++) {
                         var t = new Date(bpData[i].timestamp*1000);
-                        var month = t.getMonth() + 1;
+
+                        var options = { day: '2-digit', month: '2-digit', hour: '2-digit', minute: "2-digit" };
+
+                        var formatted = t.toLocaleDateString("ro-RO", options);
+
+                        /*var month = t.getMonth() + 1;
                         if(month < 10)
                         {
                             month = "0" + month;
                         }
-                        var formatted = t.getDate() + "/" + month + "\n";// + t.getHours() + ":" + t.getMinutes();
+                        var formatted = t.getDate() + "/" + month + "\n" + t.getHours() + ":" + t.getMinutes();
+                        */
                         labs.push(formatted);
 
                         diastolicValues.push(bpData[i].value_info.diastolic);

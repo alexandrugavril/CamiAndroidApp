@@ -44,6 +44,10 @@ body {
     font-weight:normal;color:#34495e;
 }
 
+.date-text{
+    font-weight:normal;color:#67a592;
+}
+
 .ui-page {
     background-color: #67a592;
 }

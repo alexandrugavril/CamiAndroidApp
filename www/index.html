@@ -127,6 +127,9 @@
                         <h2 class="constant-text">
                             {{translations.welcome}}
                         </h2>
+                        <h3 class="date-text">
+                            {{currentDate}}
+                        </h3>
                     </div>
                 </div>
                 <br/>
@@ -733,6 +736,9 @@
                         <h2 class="constant-text">
                             {{translations.welcome}}
                         </h2>
+                        <h3 class="date-text">
+                            {{currentDate}}
+                        </h3>
                     </div>
                 </div>
                 <br/>
@@ -1349,7 +1355,10 @@
     </div>
 
     <div id="caregiver-activities-page" data-role="page">
-        <div class="content withMargin">
+        <div class="content withMargin" ng-if="activities">
+            <h1 class="date-text">{{translations.no_activities}}</h1>
+        </div>
+        <div class="content withMargin" ng-if="activities.length > 0">
             <ul class="sticky">
                 <li>
                     <div id="latestActivitySticky" class="row {{nextActivity.urgencyType}} vertical-divider-noBg ">
@@ -1507,6 +1516,16 @@
             window.clearInterval(caregiverTimer);
     }
 
+    function setDate()
+    {
+        var t = new Date();
+        var options = { day: '2-digit', month: '2-digit', hour: '2-digit', minute: "2-digit", year: "numeric" };
+        var formatted = t.toLocaleDateString("ro-RO", options);
+
+        app.model.currentDate = formatted;
+    }
+
+
     function updateEndUser()
     {
         console.log("Update eu");
@@ -1524,6 +1543,8 @@
         app.plotStepsChart(ctx, userId);
         ctx = document.getElementById("enduser-sleep-chart");
         app.plotSleepChart(ctx, userId);
+
+        setDate();
     }
 
     function updateCareGiver()
@@ -1544,6 +1565,8 @@
         var careId = JSON.parse(window.localStorage.getItem("user")).id;
         getReminders(careId);
         getUrgentAlert();
+
+        setDate();
     }
 
     $('#loginPage').on("pageshow", function(e) {
@@ -1623,7 +1646,7 @@
         getReminders(userId);
     });
     $("#caregiver-activities-page").on("pageshow", function(e) {
-        if(!app.activityLoaded)
+        if(!app.activityLoaded && app.model.activities && app.model.activities.length > 0)
         {
             var height = document.getElementById("latestActivitySticky").offsetHeight;
             document.getElementById("activitiesList").style.marginTop = (2 * height) + 'px';

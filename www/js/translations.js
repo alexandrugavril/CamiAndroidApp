@@ -1,6 +1,7 @@
 var translations ={
     ro : {
         check: "Validare",
+        no_activities: "Nu aveți Activități",
         no_new_reminders: "Nu aveți nicio notificare!",
         heart_rate: "Puls",
         weight: "Greutate",
@@ -28,6 +29,7 @@ var translations ={
     },
     en : {
         check: "Acknowledge",
+        no_activities: "No Activities",
         no_new_reminders: "No new reminders!",
         heart_rate: "Heart Rate",
         weight: "Weight",
@@ -55,6 +57,7 @@ var translations ={
     },
     dk : {
         check: "Godkend",
+        no_activities: "Ingen aktiviteter",
         no_new_reminders: "Ingen nye påmindelser",
         heart_rate: "Puls",
         weight: "Vægt",
@@ -82,6 +85,7 @@ var translations ={
     },
     pl: {
         check: "Uznać",
+        no_activities: "Brak działań",
         no_new_reminders: "Nie masz nowych powiadomień!",
         heart_rate: "Tętno",
         weight: "Waga",
