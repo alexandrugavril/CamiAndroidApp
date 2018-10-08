@@ -75,7 +75,7 @@ var translations ={
         password: "Password",
         login: "Login",
         back: "Tilbage",
-        all_is_fine: "Alt er I orden",
+        all_is_fine: "Alt er i orden",
         steps: "Skridt",
         sleep: "Søvn",
         welcome: "Velkommen",
