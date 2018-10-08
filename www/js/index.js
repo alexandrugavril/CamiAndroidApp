@@ -118,12 +118,10 @@ function cancelReminder()
         contentType : 'application/json',
         success: function () {
             location.reload();
-
         },
         error: function () {
             alert(app.model.translations.operation_failed_error);
             location.reload();
-
         }
     });
 }
@@ -391,11 +389,33 @@ function handleLogin() {
     }
     var p = $("#password", form).val();
 
-    checkLogin(u, p);
+    checkLogin(u, p, true);
     return false;
 }
 
-function checkLogin(u, p)
+function setMomentLocale()
+{
+    if(app && app.model && app.model.language) {
+        if (app.model.language === "dk") {
+            moment.locale("da");
+        }
+        else {
+            moment.locale(app.model.language);
+        }
+        if(app.model.language in translations)
+        {
+            app.model.translations = translations[app.model.language];
+            window.localStorage.setItem('translations', JSON.stringify(translations[app.model.language]));
+        }
+        else{
+            app.model.translations = translations['en'];
+            window.localStorage.setItem('translations', JSON.stringify(translations['en']));
+        }
+    }
+
+}
+
+function checkLogin(u, p, redirect)
 {
 
     if(u !== '' && p !== '')
@@ -414,24 +434,10 @@ function checkLogin(u, p)
                         {
                             var account_role = profile['account_role'];
 
-                            if(profile.language in translations)
-                            {
-                                app.model.translations = translations[profile.language];
-                                window.localStorage.setItem('translations', JSON.stringify(translations[profile.language]));
-                                if(profile.language === "dk")
-                                {
-                                    moment.locale("da");
-                                }
-                                else{
-                                    moment.locale(profile.language);
-                                }
-                            }
-                            else
-                            {
-                                app.model.translations = translations['ro'];
-                                window.localStorage.setItem('translations', JSON.stringify(translations['ro']));
-                                moment.locale('ro');
-                            }
+                            app.model.language = profile.language;
+                            console.log("Set moment locale");
+                            setMomentLocale();
+
                             app.model.$apply();
                             if(account_role === 'end_user')
                             {
@@ -440,7 +446,8 @@ function checkLogin(u, p)
                                     'id': users[0].id, 'careId' : users[0].id}));
                                 window.localStorage.setItem("lastLoggedUser", JSON.stringify({'user': u, 'password': p,
                                     'id': users[0].id, 'careId' : users[0].id}));
-                                $.mobile.navigate("#enduser-page", { transition : "slide"});
+                                if(redirect)
+                                    $.mobile.navigate("#enduser-page", { transition : "slide"});
                                 startPollingEnduser();
                             }
                         }
@@ -448,23 +455,10 @@ function checkLogin(u, p)
                             profile = users[0]['caregiver_profile'];
                             if(profile)
                             {
-                                if(profile.language in translations)
-                                {
-                                    app.model.translations = translations[profile.language];
-                                    window.localStorage.setItem('translations', JSON.stringify(translations[profile.language]));
-                                    if(profile.language === "dk")
-                                    {
-                                        moment.locale("da");
-                                    }
-                                    else{
-                                        moment.locale(profile.language);
-                                    }
-                                }
-                                else {
-                                    app.model.translations = translations['ro'];
-                                    window.localStorage.setItem('translations', JSON.stringify(translations['ro']));
-                                    moment.locale('ro');
-                                }
+                                app.model.language = profile.language;
+                                console.log("Set moment locale");
+                                setMomentLocale();
+
                                 app.model.$apply();
                                 var account_role = profile['account_role'];
                                 if(account_role === 'caregiver')
@@ -476,7 +470,8 @@ function checkLogin(u, p)
                                         'id': users[0].id, 'careId' : careId}));
                                     window.localStorage.setItem("lastLoggedUser", JSON.stringify({'user': u, 'password': p,
                                         'id': users[0].id, 'careId' : careId}));
-                                    $.mobile.navigate("#caregiver-page", { transition : "slide"});
+                                    if(redirect)
+                                        $.mobile.navigate("#caregiver-page", { transition : "slide"});
                                     startPollingCaregiver();
                                 }
                             }
@@ -540,14 +535,14 @@ function updateTranslations()
     }
 }
 
-function checkAlreadyLogged() {
+function checkAlreadyLogged(redirect) {
     if(checkIfUserAlreadyLogged())
     {
         var user = window.localStorage.getItem("user");
         user = JSON.parse(user);
         if(user !== null && user !== undefined)
         {
-            checkLogin(user['user'], user['password']);
+            checkLogin(user['user'], user['password'], redirect);
         }
     }
     else {

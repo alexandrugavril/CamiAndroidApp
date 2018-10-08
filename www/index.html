@@ -1472,6 +1472,11 @@
         updateChartSize();
     });
 
+    window.addEventListener('load', function( event ) {
+        checkAlreadyLogged(false);
+        console.log("before load");
+    }, true );
+
     function updateChartSize()
     {
         var endUserBPChart = document.getElementById("enduser-blood-pressure-chart");
@@ -1570,7 +1575,7 @@
     }
 
     $('#loginPage').on("pageshow", function(e) {
-        checkAlreadyLogged();
+        checkAlreadyLogged(true);
     });
     $("#enduser-journal-page").on("pageshow", function(e) {
         var userId = JSON.parse(window.localStorage.getItem("user")).id;
